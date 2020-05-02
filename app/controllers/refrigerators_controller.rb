@@ -1,0 +1,2 @@
+class RefrigeratorsController < ApplicationController
+end

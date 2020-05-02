@@ -1,0 +1,2 @@
+class Refrigerator < ApplicationRecord
+end
