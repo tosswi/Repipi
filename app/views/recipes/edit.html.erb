@@ -4,7 +4,7 @@
     <div class="col-xs-5 ">
     <%= form_for @recipe,url:recipe_path(@recipe.id) do |f| %>
       <label>
-        <span class="btn btn-primary">画像を選択
+        <span class="btn btn-primary">画像
           <input type="file" style="display:none">
         </span>
         <%= f.attachment_field :image, class: "image_form" %>
