@@ -1,0 +1,29 @@
+<h2>商品 詳細画面</h2>
+  <div class="row">
+
+    <div class="col-xs-6">
+      <table class="table table-borderless">
+        <% @recipes.each do |recipe|%>
+        <tr>
+          <th>レシピ名</th><td><%= recipe.name %></td>
+        </tr>
+        <tr>
+          <th>説明文</th><td><%= recipe.content %></td>
+        </tr>
+        <tr>
+          <th>材料</th><td><%= recipe.material %></td>
+        </tr>
+        <tr>
+          <th>材料数</th><td><%= recipe.quantity %></td>
+        </tr>
+        <tr>
+          <th>人数</th><td><%= recipe.human %></td>
+        </tr>
+        <tr>
+          <th>作業時間</th><td><%= recipe.playtime %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
