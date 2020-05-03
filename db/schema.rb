@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2020_05_02_222539) do
   end
 
   create_table "allergies", force: :cascade do |t|
-    t.string "allergies"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -105,7 +105,7 @@ ActiveRecord::Schema.define(version: 2020_05_02_222539) do
     t.string "name"
     t.string "nickname"
     t.integer "sex"
-    t.integer "allergies_id"
+    t.integer "allergy_id"
     t.integer "phone_number"
     t.string "image_id"
     t.datetime "created_at", null: false

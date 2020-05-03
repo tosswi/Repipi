@@ -13,6 +13,8 @@ class RecipesController < ApplicationController
   end
   def  index
     @recipes=Recipe.all
+
+    # @rank_recipes = Recipe.find(Recipe.group(:).order('count() desc').limit(3).pluck(:id))
   end
   def create
     @recipe=Recipe.new(recipe_params)
