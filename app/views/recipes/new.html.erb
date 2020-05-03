@@ -1,0 +1,41 @@
+<%= form_for (@recipe) do |f| %>
+    <% if @recipe.errors.any? %>
+        <%= @recipe.errors.count %>件のerrorが発生しました
+        <% @recipe.errors.full_messages.each do |message| %>
+            <%= message %>
+        <% end %>
+    <% end %>
+    <%= f.label :image, "画像選択", class: "image_input_btn btn-primary" %>
+    <%= f.attachment_field :image, class: "image_form" %>
+
+  <div class="field row">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "col-xs-12 book_title" %>
+  </div>
+
+  <div class="field row">
+    <%= f.label :content %> <!-- ここを変更 -->
+    <%= f.text_area :content, class: "col-xs-12 book_body" %>
+  </div>
+  <div class="field row">
+    <%= f.label :material %> <!-- ここを変更 -->
+    <%= f.text_area :material, class: "col-xs-12 book_body" %>
+  </div>
+  <div class="field row">
+    <%= f.label :quantity %> <!-- ここを変更 -->
+    <%= f.text_area :quantity , class: "col-xs-12 book_body" %>
+  </div>
+  <div class="field row">
+    <%= f.label :human %> <!-- ここを変更 -->
+    <%= f.text_area :human , class: "col-xs-12 book_body" %>
+  </div>
+  <div class="field row">
+    <%= f.label :playtime %> <!-- ここを変更 -->
+    <%= f.text_area :playtime , class: "col-xs-12 book_body" %>
+  </div>
+  <td><%= f.collection_select :genre_id, @genres, :id, :name %></td>
+   <td><%= f.collection_select :category_id, @categories, :id, :name %></td>
+  <div class="actions row">
+    <%= f.submit class: "btn btn-primary col-xs-12" %>
+  </div>
+<% end %>

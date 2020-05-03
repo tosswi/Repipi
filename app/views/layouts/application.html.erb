@@ -9,7 +9,86 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+
+
   <body>
+    <% if admin_signed_in? %>
+
+      <header class="navbar navbar-fixed-top">
+
+        <div class="container" id="nav-drawer">
+          <input id="nav-input" type="checkbox" class="nav-unshown">
+          <label id="nav-open" for="nav-input"><span></span></label>
+          <label class="nav-unshown" id="nav-close" for="nav-input"></label>
+          <div id="nav-content">
+            <nav>
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li><%= link_to ' カテゴリー一覧', admins_categories_path %></li>
+
+                    <li><%= link_to ' 会員一覧', admins_users_path %></li>
+
+                    <li><%= link_to ' アレルギー一覧', admins_allergies_path %></li>
+
+                    <li><%= link_to ' ジャンル', admins_genres_path %></li>
+
+                    <li><a rel="nofollow" data-method="delete" href="/admins/sign_out">ログアウト</a></li>
+                </ul>
+            </nav>
+          </div>
+
+        </div>
+      </header>
+
+    <% elsif user_signed_in? %>
+
+    <header class="navbar navbar-fixed-top">
+      <div class="container" id="nav-drawer">
+        <input id="nav-input" type="checkbox" class="nav-unshown">
+        <label id="nav-open" for="nav-input"><span></span></label>
+        <label class="nav-unshown" id="nav-close" for="nav-input"></label>
+        <div id="nav-content">
+          <nav>
+              <ul class="nav navbar-nav navbar-right">
+
+                  <li><%= link_to 'トップ', root_path, class: "btn btn-default" %></li>
+
+                  <li><%= link_to 'マイページ', user_path(current_user), class: "btn btn-default" %></li>
+
+                  <li><%= link_to ' 通知一覧', notifications_path, class: "btn btn-default" %></li>
+
+                  <li><%= link_to 'ブックマーク一覧', bookmarks_path, class: "btn btn-default" %></li>
+
+                  <li><a rel="nofollow" data-method="delete" href="/users/sign_out", class="btn btn-default">ログアウト</a></li>
+              </ul>
+          </nav>
+      </div>
+    </header>
+
+    <% else %>
+
+    <header class="navbar navbar-fixed-top">
+      <div class="container" id="nav-drawer">
+        <input id="nav-input" type="checkbox" class="nav-unshown">
+        <label id="nav-open" for="nav-input"><span></span></label>
+        <label class="nav-unshown" id="nav-close" for="nav-input"></label>
+        <div id="nav-content">
+          <nav>
+              <ul class="nav navbar-nav navbar-right">
+
+                  <li><%= link_to'新規登録',new_user_registration_path %></li>
+
+                  <li><a href="/users/sign_in", class="btn btn-default">ログイン</a></li>
+              </ul>
+          </nav>
+
+        </div>
+      </div>
+    </header>
+    <% end %>
+
+
+
     <%= yield %>
   </body>
 </html>
