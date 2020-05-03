@@ -1,24 +1,18 @@
-# README
+# アプリ名
+Pepipi
+## サイト概要
+Repipiとは料理好きのためのSNSです。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### サイトテーマ
+この人が作っている料理を真似をしたい！この人からアドバイスをもらいたい！といった料理好きなら誰もが思うことを形するサイトです。
 
-Things you may want to cover:
+### ターゲットユーザ
+料理好きな人はもちろん、料理を始めたいと思う人がアドバイスを求めやすくするため、チャット機能を搭載いたしました。
 
-* Ruby version
+## 設計書
+https://docs.google.com/spreadsheets/d/1KCCBrNyHAK9d3QCZbKqU2gdqUDEPSGrEB-DVWn36blQ/edit#gid=1579776156
 
-* System dependencies
+https://docs.google.com/spreadsheets/d/1KCCBrNyHAK9d3QCZbKqU2gdqUDEPSGrEB-DVWn36blQ/edit#gid=0
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### 機能一覧
+https://docs.google.com/spreadsheets/d/1tG5cXtENmaJNYn_o16hCNsNlgoPgCcO-IdRxtsJ3RWM/edit#gid=0
