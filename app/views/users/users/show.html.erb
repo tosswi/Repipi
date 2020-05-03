@@ -1,0 +1,7 @@
+    <tr><%= attachment_image_tag @user, :image, size: '100x100',format: "jpeg", fallback: "no_image.jpg" %></tr>
+
+    <%= @user.name %>
+    <%= @user.nickname %>
+    <%= @user.phone_number %>
+
+    <%= link_to 'フォロー一覧',relationships_path %>
