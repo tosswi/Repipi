@@ -10,6 +10,8 @@ class RecipesController < ApplicationController
   end
   def show
     @recipe=Recipe.find(params[:id])
+    @recipe_review=RecipeReview.new
+    @recipe_reviews=@recipe.recipe_reviews
   end
   def  index
     @recipes=Recipe.all
