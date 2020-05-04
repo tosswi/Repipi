@@ -14,7 +14,8 @@ class RecipesController < ApplicationController
     @recipe_reviews=@recipe.recipe_reviews
   end
   def  index
-    @recipes=Recipe.all
+    @recipes=Recipe.all.includes(:user)
+    @recipe_all=Recipe.all
 
     # @rank_recipes = Recipe.find(Recipe.group(:).order('count() desc').limit(3).pluck(:id))
   end
@@ -39,6 +40,9 @@ class RecipesController < ApplicationController
     else
       render :new
     end
+  end
+  def bookmarks
+    @recipes = current_user.bookmark_recipes.includes(:user)
   end
   private
   def recipe_params

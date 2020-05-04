@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_02_222539) do
+ActiveRecord::Schema.define(version: 2020_05_04_175137) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -30,11 +30,25 @@ ActiveRecord::Schema.define(version: 2020_05_02_222539) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "bookmarks", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "recipe_id"
+  create_table "average_caches", force: :cascade do |t|
+    t.integer "rater_id"
+    t.string "rateable_type"
+    t.integer "rateable_id"
+    t.float "avg", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["rateable_type", "rateable_id"], name: "index_average_caches_on_rateable_type_and_rateable_id"
+    t.index ["rater_id"], name: "index_average_caches_on_rater_id"
+  end
+
+  create_table "bookmarks", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "recipe_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipe_id"], name: "index_bookmarks_on_recipe_id"
+    t.index ["user_id", "recipe_id"], name: "index_bookmarks_on_user_id_and_recipe_id", unique: true
+    t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -56,6 +70,38 @@ ActiveRecord::Schema.define(version: 2020_05_02_222539) do
     t.integer "recipe_review_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "overall_averages", force: :cascade do |t|
+    t.string "rateable_type"
+    t.integer "rateable_id"
+    t.float "overall_avg", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["rateable_type", "rateable_id"], name: "index_overall_averages_on_rateable_type_and_rateable_id"
+  end
+
+  create_table "rates", force: :cascade do |t|
+    t.integer "rater_id"
+    t.string "rateable_type"
+    t.integer "rateable_id"
+    t.float "stars", null: false
+    t.string "dimension"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["rateable_type", "rateable_id"], name: "index_rates_on_rateable_type_and_rateable_id"
+    t.index ["rater_id"], name: "index_rates_on_rater_id"
+  end
+
+  create_table "rating_caches", force: :cascade do |t|
+    t.string "cacheable_type"
+    t.integer "cacheable_id"
+    t.float "avg", null: false
+    t.integer "qty", null: false
+    t.string "dimension"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cacheable_type", "cacheable_id"], name: "index_rating_caches_on_cacheable_type_and_cacheable_id"
   end
 
   create_table "recipe_reviews", force: :cascade do |t|
@@ -90,10 +136,13 @@ ActiveRecord::Schema.define(version: 2020_05_02_222539) do
   end
 
   create_table "relationships", force: :cascade do |t|
-    t.integer "follower_id"
-    t.integer "following_id"
+    t.integer "user_id"
+    t.integer "follow_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["follow_id"], name: "index_relationships_on_follow_id"
+    t.index ["user_id", "follow_id"], name: "index_relationships_on_user_id_and_follow_id", unique: true
+    t.index ["user_id"], name: "index_relationships_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -7,6 +7,8 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/c8c5fed458.js" crossorigin="anonymous"></script>
+
   </head>
 
 
@@ -57,7 +59,8 @@
 
                   <li><%= link_to ' 通知一覧', notifications_path, class: "btn btn-default" %></li>
 
-                  <li><%= link_to 'ブックマーク一覧', bookmarks_path, class: "btn btn-default" %></li>
+                  <li><%= link_to 'ブックマーク一覧', bookmarks_recipes_path, class: "btn btn-default" %></li>
+                  <li><%= link_to 'レシピ投稿', new_recipe_path, class: "btn btn-default" %></li>
 
                   <li><a rel="nofollow" data-method="delete" href="/users/sign_out", class="btn btn-default">ログアウト</a></li>
               </ul>
@@ -91,4 +94,14 @@
 
     <%= yield %>
   </body>
+  <script>
+ $('#star').raty({
+   size: 36,
+   starOff: "#{asset_path('star-off.png')}",
+   starOn: "#{asset_path('star-on.png')}",
+   starHalf: "#{asset_path('star-half.png')}",
+   scoreName: 'review[rate]', # reviewカラムに保存するので忘れないように
+   half: true, # ★の半分の入力を行う
+ });
+  </script> 
 </html>

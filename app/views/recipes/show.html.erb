@@ -18,18 +18,36 @@
         <tr>
           <th>人数分</th><td><%= @recipe.human %></td>
         </tr>
+        <% if @recipe.bookmark_by?(current_user) %>
+          <li>
+              <%= link_to recipe_bookmarks_path(@recipe), method: :delete do %>
+              <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+              <%= @recipe.bookmarks %> いいね
+              <% end %>
+          </li>
+          <% else %>
+          <li>
+              <%= link_to recipe_bookmarks_path(@recipe), method: :post do %>
+              <i class="fa fa-heart-o" aria-hidden="true"></i>
+              <%= @recipe.bookmarks %> いいね
+              <% end %>
+          </li>
+<% end %>
       </table>
     </div>
   <div class="col-xs-6">
     <%= form_for @recipe_review,url:recipe_recipe_reviews_path(@recipe) do |f|%>
     <%= f.label :recipe_comment %>
       <%= f.text_field :recipe_comment %>
+      レビュー : <%= rating_for @recipe_review, 'recipe_review' %>
       <%= f.submit '投稿する' %>
     <% end %>
+    </p>
     <table>
       <thead>
         <tr>
           <th>コメント</th>
+          <th>評価</th>
           <th colspan="1"></th>
         </tr>
       </thead>
@@ -37,11 +55,11 @@
         <% @recipe_reviews.each do |review| %>
         <tr>
           <td><%= review.recipe_comment %></td>
-          <% unless current_user != review.user %>
-            <td><%= link_to 'Destroy', recipe_recipe_reviews_path(@recipe), class: 'btn-sm btn-danger', method: :delete %></td>
-          <% end %>
+          <td><%= review.recipe_review %></td>
+            <td><%= link_to 'Destroy', recipe_recipe_reviews_path(review), class: 'btn-sm btn-danger', method: :delete %></td>
         </tr>
         <% end %>
       </tbody>
     </table>
   </div>
+  
