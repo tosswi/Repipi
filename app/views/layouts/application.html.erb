@@ -7,6 +7,7 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/c8c5fed458.js" crossorigin="anonymous"></script>
   </head>
 
 
@@ -57,7 +58,7 @@
 
                   <li><%= link_to ' 通知一覧', notifications_path, class: "btn btn-default" %></li>
 
-                  <li><%= link_to 'ブックマーク一覧', bookmarks_path, class: "btn btn-default" %></li>
+                  <li><%= link_to 'ブックマーク一覧', bookmarks_recipes_path, class: "btn btn-default" %></li>
 
                   <li><a rel="nofollow" data-method="delete" href="/users/sign_out", class="btn btn-default">ログアウト</a></li>
               </ul>

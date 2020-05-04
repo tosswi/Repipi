@@ -69,3 +69,4 @@ gem 'hirb'
 gem 'hirb-unicode'
 gem "refile-mini_magick"
 gem "refile", require: "refile/rails", github: 'manfe/refile'
+gem 'font-awesome-sass'
