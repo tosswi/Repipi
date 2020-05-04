@@ -39,12 +39,15 @@
     <%= form_for @recipe_review,url:recipe_recipe_reviews_path(@recipe) do |f|%>
     <%= f.label :recipe_comment %>
       <%= f.text_field :recipe_comment %>
+      レビュー : <%= rating_for @recipe_review, 'recipe_review' %>
       <%= f.submit '投稿する' %>
     <% end %>
+    </p>
     <table>
       <thead>
         <tr>
           <th>コメント</th>
+          <th>評価</th>
           <th colspan="1"></th>
         </tr>
       </thead>
@@ -52,6 +55,7 @@
         <% @recipe_reviews.each do |review| %>
         <tr>
           <td><%= review.recipe_comment %></td>
+          <td><%= review.recipe_review %></td>
             <td><%= link_to 'Destroy', recipe_recipe_reviews_path(review), class: 'btn-sm btn-danger', method: :delete %></td>
         </tr>
         <% end %>

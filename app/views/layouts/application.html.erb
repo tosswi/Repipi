@@ -8,6 +8,7 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://kit.fontawesome.com/c8c5fed458.js" crossorigin="anonymous"></script>
+
   </head>
 
 
@@ -93,4 +94,14 @@
 
     <%= yield %>
   </body>
+  <script>
+ $('#star').raty({
+   size: 36,
+   starOff: "#{asset_path('star-off.png')}",
+   starOn: "#{asset_path('star-on.png')}",
+   starHalf: "#{asset_path('star-half.png')}",
+   scoreName: 'review[rate]', # reviewカラムに保存するので忘れないように
+   half: true, # ★の半分の入力を行う
+ });
+  </script> 
 </html>
