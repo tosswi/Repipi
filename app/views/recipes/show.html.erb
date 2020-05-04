@@ -10,18 +10,38 @@
           <th>商品説明文</th><td><%= @recipe.content %></td>
         </tr>
         <tr>
-          <th>ジャンル</th><td><%= @recipe.material %></td>
+          <th>材料</th><td><%= @recipe.material %></td>
         </tr>
         <tr>
-          <th>税抜き価格</th><td><%= @recipe.quantity %></td>
+          <th>材料の数</th><td><%= @recipe.quantity %></td>
         </tr>
         <tr>
-          <th>税抜き価格</th><td><%= @recipe.human %></td>
-        </tr>
-        <tr>
-          <th>税抜き価格</th><td><%= @recipe.playtime %></td>
+          <th>人数分</th><td><%= @recipe.human %></td>
         </tr>
       </table>
     </div>
+  <div class="col-xs-6">
+    <%= form_for @recipe_review,url:recipe_recipe_reviews_path(@recipe) do |f|%>
+    <%= f.label :recipe_comment %>
+      <%= f.text_field :recipe_comment %>
+      <%= f.submit '投稿する' %>
+    <% end %>
+    <table>
+      <thead>
+        <tr>
+          <th>コメント</th>
+          <th colspan="1"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @recipe_reviews.each do |review| %>
+        <tr>
+          <td><%= review.recipe_comment %></td>
+          <% unless current_user != review.user %>
+            <td><%= link_to 'Destroy', recipe_recipe_reviews_path(@recipe), class: 'btn-sm btn-danger', method: :delete %></td>
+          <% end %>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
-</div>
