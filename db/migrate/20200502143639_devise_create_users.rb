@@ -37,6 +37,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.integer :allergy_id
       t.integer :phone_number
       t.string :image_id
+      t.string :visitor
+      t.string :visited
       t.timestamps null: false
     end
 

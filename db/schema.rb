@@ -68,8 +68,14 @@ ActiveRecord::Schema.define(version: 2020_05_04_175137) do
     t.integer "visited_id"
     t.integer "recipe_id"
     t.integer "recipe_review_id"
+    t.string "action", default: "", null: false
+    t.boolean "checked", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["recipe_id"], name: "index_notifications_on_recipe_id"
+    t.index ["recipe_review_id"], name: "index_notifications_on_recipe_review_id"
+    t.index ["visited_id"], name: "index_notifications_on_visited_id"
+    t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
   end
 
   create_table "overall_averages", force: :cascade do |t|
@@ -157,6 +163,8 @@ ActiveRecord::Schema.define(version: 2020_05_04_175137) do
     t.integer "allergy_id"
     t.integer "phone_number"
     t.string "image_id"
+    t.string "visitor"
+    t.string "visited"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true

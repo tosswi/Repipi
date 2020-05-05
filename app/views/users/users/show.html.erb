@@ -32,5 +32,6 @@
   <%= link_to "編集する",edit_user_path(@user.id) %>
   <p><%= @user.nickname %>が投稿したメニュー</p>
   <% @recipes.each do |f| %>
+  
   <%= link_to f.name ,recipe_path(f.id) %>
   <% end %>

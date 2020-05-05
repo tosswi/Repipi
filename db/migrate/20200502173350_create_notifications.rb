@@ -5,8 +5,14 @@ class CreateNotifications < ActiveRecord::Migration[5.2]
       t.integer :visited_id
       t.integer :recipe_id
       t.integer :recipe_review_id
+      t.string :action, default: '', null: false
+      t.boolean :checked, default: false, null: false
 
       t.timestamps
     end
+    add_index :notifications, :visitor_id
+    add_index :notifications, :visited_id
+    add_index :notifications, :recipe_id
+    add_index :notifications, :recipe_review_id
   end
 end

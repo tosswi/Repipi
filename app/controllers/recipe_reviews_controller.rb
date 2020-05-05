@@ -1,10 +1,11 @@
 class RecipeReviewsController < ApplicationController
   def create
-    @recipe = Recipe.find(params[:recipe_id])
-    @recipe_review = @recipe.recipe_reviews.new(recipe_review_params)
-    @recipe_review.user_id = current_user.id
-    if @recipe_review.save
-      redirect_to recipe_path(@recipe)
+    recipe = Recipe.find(params[:recipe_id])
+    recipe_review = recipe.recipe_reviews.new(recipe_review_params)
+    recipe_review.user_id = current_user.id
+    if recipe_review.save
+      recipe.create_notification_recipe_review(current_user, recipe_review.id)
+      redirect_to recipe_path(recipe)
     else
       @recipe_review = RecipeReview.where(recipe_id: @recipe.id)
       render '/recipes/show'
