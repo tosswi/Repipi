@@ -2,7 +2,8 @@
 
     <%= @user.name %>
     <%= @user.nickname %>
-    <%= @user.phone_number %>
+    <%= @user.sex %>
+
 
     <%= link_to 'フォロー一覧',relationships_path %>
 
@@ -28,4 +29,8 @@
       follower<%= link_to @user.followers.count,followers_path %>
     </td>
   </tr>
-
+  <%= link_to "編集する",edit_user_path(@user.id) %>
+  <p><%= @user.nickname %>が投稿したメニュー</p>
+  <% @recipes.each do |f| %>
+  <%= link_to f.name ,recipe_path(f.id) %>
+  <% end %>
