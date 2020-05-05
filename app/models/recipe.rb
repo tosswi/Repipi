@@ -6,6 +6,7 @@ class Recipe < ApplicationRecord
   belongs_to :user
   belongs_to :genre
   belongs_to :category
+  ratyrate_rateable "recipe"
   def bookmark_by?(user)
       bookmarks.where(user_id: user.id).exists?
   end

@@ -4,10 +4,27 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :nickname %><br />
+    <%= f.text_field :nickname %>
+  </div>
+  <div class="field">
+    <label><%= f.radio_button :sex, :女性, checked: "checked"  %>女性</label>
+     <label><%= f.radio_button :sex, :男性, checked: "checked"  %>男性</label>
+  </div>
+
+
+    <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
-
+  <div class="field">
+    <%= f.label :phone_number %><br />
+    <%= f.text_field :phone_number %>
+  </div>
   <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
@@ -20,6 +37,8 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
+
+
 
   <div class="actions">
     <%= f.submit "Sign up" %>

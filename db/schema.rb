@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2020_05_04_175137) do
   end
 
   create_table "allergies", force: :cascade do |t|
-    t.string "name"
+    t.integer "allergy"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
