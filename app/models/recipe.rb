@@ -3,6 +3,7 @@ class Recipe < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :notifications, dependent: :destroy
   has_many :recipe_reviews,dependent: :destroy
+  enum human: { 一人分: 0, 二人分: 1 ,三人分: 2, 四人分: 3 }
   belongs_to :user
   belongs_to :genre
   belongs_to :category
@@ -28,7 +29,7 @@ class Recipe < ApplicationRecord
     notification.save if notification.valid?
   end
 
-  def create_notification_like!(current_user)
+  def create_notification_bookmark!(current_user)
     temp = Notification.where(["visitor_id = ? and visited_id = ? and recipe_id = ? and action = ? ", current_user.id, user_id, id, 'bookmark'])
       if temp.blank?
     notification = current_user.active_notifications.new(

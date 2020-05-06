@@ -10,11 +10,11 @@
       <% when 'follow' then %>
       <%= "あなたをフォローしました" %>
       <% when 'bookmark' then %>
-        <%=link_to 'あなたの投稿', notification.post, style: "font-weight: bold;" %>
+        <%=link_to 'あなたの投稿', notification.recipe, style: "font-weight: bold;" %>
         <%="にいいねしました" %>
       <% when 'recipe_review' then %>
         <% if notification.recipe.user_id == current_user.id %>
-        <%= link_to "あなたの投稿", notification.recipe, style: "font-weight: bold;" %>
+        <%= link_to "あなたの投稿", notification.recipe, style: "font-weight: bold;" %>を評価しました。
         <% else %>
         <span>
           <%= link_to recipe_path(notification.recipe) do %>

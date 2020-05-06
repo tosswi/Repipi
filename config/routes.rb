@@ -29,7 +29,7 @@ Rails.application.routes.draw do
 
 
 
-  resources :notifications,only: [:index,:create,:destroy,:update]
+  resources :notifications,only: :index
   resources :recipes,only: [:new,:show,:index,:create,:edit,:destroy,:update] ,shallow: true do
     resource :bookmarks,only: [:index,:create,:destroy,:update]
     get :bookmarks, on: :collection

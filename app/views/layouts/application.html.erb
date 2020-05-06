@@ -8,7 +8,6 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://kit.fontawesome.com/c8c5fed458.js" crossorigin="anonymous"></script>
-
   </head>
 
 
@@ -17,12 +16,6 @@
     <% if admin_signed_in? %>
 
       <header class="navbar navbar-fixed-top">
-
-        <div class="container" id="nav-drawer">
-          <input id="nav-input" type="checkbox" class="nav-unshown">
-          <label id="nav-open" for="nav-input"><span></span></label>
-          <label class="nav-unshown" id="nav-close" for="nav-input"></label>
-          <div id="nav-content">
             <nav>
                 <ul class="nav navbar-nav navbar-right">
 
@@ -37,19 +30,13 @@
                     <li><a rel="nofollow" data-method="delete" href="/admins/sign_out">ログアウト</a></li>
                 </ul>
             </nav>
-          </div>
 
-        </div>
       </header>
 
     <% elsif user_signed_in? %>
 
     <header class="navbar navbar-fixed-top">
-      <div class="container" id="nav-drawer">
-        <input id="nav-input" type="checkbox" class="nav-unshown">
-        <label id="nav-open" for="nav-input"><span></span></label>
-        <label class="nav-unshown" id="nav-close" for="nav-input"></label>
-        <div id="nav-content">
+
           <nav>
               <ul class="nav navbar-nav navbar-right">
 
@@ -61,21 +48,17 @@
 
                   <li><%= link_to 'ブックマーク一覧', bookmarks_recipes_path, class: "btn btn-default" %></li>
                   <li><%= link_to 'レシピ投稿', new_recipe_path, class: "btn btn-default" %></li>
+                  <li><%= link_to 'ユーザー一覧', users_path, class: "btn btn-default" %></li>
 
                   <li><a rel="nofollow" data-method="delete" href="/users/sign_out", class="btn btn-default">ログアウト</a></li>
               </ul>
           </nav>
-      </div>
     </header>
 
     <% else %>
 
     <header class="navbar navbar-fixed-top">
-      <div class="container" id="nav-drawer">
-        <input id="nav-input" type="checkbox" class="nav-unshown">
-        <label id="nav-open" for="nav-input"><span></span></label>
-        <label class="nav-unshown" id="nav-close" for="nav-input"></label>
-        <div id="nav-content">
+
           <nav>
               <ul class="nav navbar-nav navbar-right">
 
@@ -85,14 +68,14 @@
               </ul>
           </nav>
 
-        </div>
-      </div>
     </header>
     <% end %>
-
-
-
     <%= yield %>
+    <footer>
+      <div class="footer-text">
+        nhw,cfejav.
+      </div>
+    </footer>
   </body>
   <script>
  $('#star').raty({
