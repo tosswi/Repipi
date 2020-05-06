@@ -1,2 +1,0 @@
-class Allergy < ApplicationRecord
-end
