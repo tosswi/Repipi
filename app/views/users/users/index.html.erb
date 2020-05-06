@@ -1,8 +1,18 @@
-<% @users.each do |f| %>
-
-<%= f.id %>
-
-<%= link_to 'f.id',user_path(f.id) %>
-
-<% end %>
-
+<table>
+  <thead>
+    <tr>
+      <th>名前</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |f| %>
+    <tr>
+      <td><%= link_to f.name,user_path(f) %></td>
+       <% if admin_signed_in? %>
+      <td><%= link_to '編集する',edit_user_path(f) %></td>
+      <% end %>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

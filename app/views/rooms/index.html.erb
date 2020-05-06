@@ -1,0 +1,9 @@
+<h1>Index</h1>
+
+<% @rooms.each do |room| %>
+  <div>
+    <%= link_to "Room#{room.id}", room_path(room) %>
+  </div>
+<% end %>
+
+<%= link_to "create new Room", rooms_path, method: :post, class: "btn btn-primary" %>

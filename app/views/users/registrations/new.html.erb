@@ -16,6 +16,14 @@
      <label><%= f.radio_button :sex, :男性, checked: "checked"  %>男性</label>
   </div>
 
+   <div class="field">
+    <%= f.label :allergy %>
+      <% ["卵","乳製品","小麦","蕎麦"].each do |allergy| %>
+      <%= f.check_box :allergy ,{multiple: true},allergy, nil %>
+      <%= allergy %>
+    <% end %>
+  </div>
+
 
     <div class="field">
     <%= f.label :email %><br />

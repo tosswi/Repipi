@@ -1,5 +1,16 @@
-<% @recipes.each do |f| %>
+<h1>ブックマーク一覧</h1>
+<table>
+  <thead>
+    <tr>
+      <th>レシピ名</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @recipes.each do |recipe| %>
+      <tr>
+        <td><%= link_to recipe.name,recipe_path(recipe) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
-<%= f.name %>
-
-<% end %>

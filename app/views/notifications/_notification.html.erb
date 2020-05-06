@@ -1,0 +1,38 @@
+<% visitor_user = User.find(notification.visitor_id) %>
+
+<div class="col-md-6.mx-auto">
+  <div class="form-inline">
+    <span>
+      <%= link_to user_path(visitor_user) do %>
+       <%=image_tag user_url(visitor_user).to_s, class: "icon_mini" %>
+      <% end %>
+      <strong><%= visitor_user.name %>さんが</strong>
+    </span>
+    <% case notification.action %>
+      <% when 'follow' then %>
+      <%= "あなたをフォローしました" %>
+      <% when 'bookmark' then %>
+        <%=link_to 'あなたの投稿', notification.recipe, style: "font-weight: bold;" %>
+        <%="にいいねしました" %>
+      <% when 'recipe_review' then %>
+        <% if notification.recipe.user_id == visitor_user.id %>
+        <%= link_to "あなたの投稿", notification.recipe, style: "font-weight: bold;" %>を評価しました。
+        <% else %>
+        <span>
+          <%= link_to recipe_path(notification.recipe) do %>
+          <strong><%=notification.recipe.user.name%> さんの投稿</strong>
+          にコメントしました。
+        </span>
+        <p class="text-muted.mb-0">
+          <%= RecipeReview.find_by(id: notification.recipe_review_id)&.recipe_review%>
+        </p>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+<div class="small.text-muted.text-right">
+  <%= time_ago_in_words(notification.created_at).upcase %>
+</div>
+<% end %>
+
+

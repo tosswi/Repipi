@@ -1,0 +1,35 @@
+<div class="main-top">
+  <div class="main-visual">
+    <div class="main-visual-content">
+      <p class="main-visual-name">RePiPi</p>
+        <p class="main-visual-text">新自炊時代に乗り遅れるな</p>
+    </div>
+  </div>
+
+  <div class="setting">
+  <li><%= link_to 'Sign_up', user_registration_path(current_user), class: "fas fa-sign-in-alt" %></li>
+  <li><%= link_to 'Sign_in', user_session_path, class: "fas fa-sign-in-alt" %></li>
+  </div>
+
+  <div id="repipi">
+    <div class="repipi-content">
+      <div class="recipe-content-name">RePiPiとは？</div>
+    </div>
+    <div class="logo-image-1">
+        <%= image_tag 'logo.png', class:'logo' %>
+    </div>
+    <p class="repipi-content-text">
+   Repipiとはピピッと押すだけで、あなたの手料理を世界中に共有ができる料理専用のSNSです。<br>
+    また投稿者に直接アドバイスを聞けるチャット機能も搭載しているためレビュー機能もございますので、<br>料理初心者にも優しいレシピサイトとなっております。<br>
+    いつもより質も良い日々を送れるように応援いたします。
+  </p>
+    <div class="repipi-human">
+      <%= image_tag '095400.jpg',  class:"logo-image" %>
+      <%= image_tag '085752.jpg',  class:"logo-image" %>
+      <%= image_tag '557630.jpg',  class:"logo-image" %>
+    </div>
+  </div>
+</div>
+
+
+

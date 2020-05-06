@@ -34,9 +34,11 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :name
       t.string :nickname
       t.integer :sex
-      t.integer :allergy_id
+      t.string :allergy
       t.integer :phone_number
       t.string :image_id
+      t.string :visitor
+      t.string :visited
       t.timestamps null: false
     end
 
