@@ -1,10 +1,12 @@
+<% visitor_user = User.find(notification.visitor_id) %>
+
 <div class="col-md-6.mx-auto">
   <div class="form-inline">
     <span>
-      <%= link_to user_path(current_user) do %>
-       <%=image_tag user_url(current_user).to_s, class: "icon_mini" %>
+      <%= link_to user_path(visitor_user) do %>
+       <%=image_tag user_url(visitor_user).to_s, class: "icon_mini" %>
       <% end %>
-      <strong><%= current_user.name %>さんが</strong>
+      <strong><%= visitor_user.name %>さんが</strong>
     </span>
     <% case notification.action %>
       <% when 'follow' then %>
@@ -13,13 +15,12 @@
         <%=link_to 'あなたの投稿', notification.recipe, style: "font-weight: bold;" %>
         <%="にいいねしました" %>
       <% when 'recipe_review' then %>
-        <% if notification.recipe.user_id == current_user.id %>
+        <% if notification.recipe.user_id == visitor_user.id %>
         <%= link_to "あなたの投稿", notification.recipe, style: "font-weight: bold;" %>を評価しました。
         <% else %>
         <span>
           <%= link_to recipe_path(notification.recipe) do %>
-          <%= image_tag avatar_url(notification.post.user).to_s, class: "icon_mini" %>
-          <strong>notification.recipe.user.name + 'さんの投稿'</strong>
+          <strong><%=notification.recipe.user.name%> さんの投稿</strong>
           にコメントしました。
         </span>
         <p class="text-muted.mb-0">

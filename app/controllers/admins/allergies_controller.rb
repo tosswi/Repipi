@@ -26,6 +26,6 @@ class Admins::AllergiesController < ApplicationController
   end
   private
   def allergy_params
-     params.require(:allergy).permit(:name)
+     params.require(:allergy).permit(:allergy)
   end
 end

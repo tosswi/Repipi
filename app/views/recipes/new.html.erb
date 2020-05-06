@@ -5,37 +5,34 @@
             <%= message %>
         <% end %>
     <% end %>
-    <%= f.label :image, "画像選択", class: "image_input_btn btn-primary" %>
-    <%= f.attachment_field :image, class: "image_form" %>
-
-  <div class="field row">
-    <%= f.label :name %>
-    <%= f.text_field :name, class: "col-xs-12 book_title" %>
-  </div>
-
-  <div class="field row">
-    <%= f.label :content %>
-    <%= f.text_area :content %>
-  </div>
-  <div class="field row">
-    <%= f.label :material %>
-    <%= f.text_area :material %>
-  </div>
-  <div class="field row">
-    <%= f.label :quantity %>
-    <%= f.text_area :quantity %>
-  </div>
-  <div class="field row">
-    <%= f.label :human %>
-    <%= f.select :human ,Recipe.humen.keys.to_a, {}%>
-  </div>
-  <div class="field row">
-    <%= f.label :playtime %>
-    <%= f.text_area :playtime %>
-  </div>
-  <td><%= f.collection_select :genre_id, @genres, :id, :name %></td>
-   <td><%= f.collection_select :category_id, @categories, :id, :name %></td>
-  <div class="actions row">
-    <%= f.submit class: "btn btn-primary col-xs-12" %>
+  <div class="container">
+      <div class="row">
+        <div class="col-xs-2">
+        <%= f.label :image, "画像選択", class: "image_input_btn btn-primary" %>
+        <%= f.attachment_field :image, class: "image_form" %>
+        <div class="field row">
+          <%= f.label :name %>
+          <%= f.text_field :name,:placeholder => "レシピ名" %>
+        </div>
+        <div class="field row">
+          <%= f.label :material %>
+          <%= f.text_area :material ,:placeholder => "材料：個数" %>
+        </div>
+        <div class="field row">
+          <%= f.label :human %>
+          <%= f.select :human ,Recipe.humen.keys.to_a, {}%>
+        </div>
+        <td><%= f.collection_select :genre_id, @genres, :id, :name %></td>
+         <td><%= f.collection_select :category_id, @categories, :id, :name %></td>
+      </div>
+      <div class="col-xs-10">
+        <div class="field row">
+          <%= f.label :content %>
+          <%= f.text_area :content,:placeholder => "作り方", :size=>"60x10" %>
+        </div>
+        <div class="actions row">
+          <%= f.submit class: "btn btn-primary col-xs-12" %>
+        </div>
+     </div>
   </div>
 <% end %>
