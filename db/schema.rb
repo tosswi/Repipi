@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_06_192749) do
+ActiveRecord::Schema.define(version: 2020_05_07_010858) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -112,6 +112,12 @@ ActiveRecord::Schema.define(version: 2020_05_06_192749) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["cacheable_type", "cacheable_id"], name: "index_rating_caches_on_cacheable_type_and_cacheable_id"
+  end
+
+  create_table "recipe_images", force: :cascade do |t|
+    t.string "recipe_image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "recipe_reviews", force: :cascade do |t|

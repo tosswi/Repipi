@@ -5,6 +5,16 @@
             <%= message %>
         <% end %>
     <% end %>
+
+
+       <%= form_for @recipe, html: { multipart: true } do |recipe|%>
+        <%= recipe.fields_for :@recipe do |f| %>
+            <%= f.file_field :image, multiple: "true" %>
+        <% end %>
+        <%= recipe.submit %>
+    <% end %>
+
+
   <div class="container">
       <div class="row">
         <div class="col-xs-2">

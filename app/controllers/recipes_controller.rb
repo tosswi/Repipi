@@ -7,6 +7,7 @@ class RecipesController < ApplicationController
     @recipe=Recipe.new
     @genres = Genre.all
     @categories = Category.all
+  
   end
   def show
     @recipe=Recipe.find(params[:id])
@@ -19,6 +20,13 @@ class RecipesController < ApplicationController
 
     # @rank_recipes = Recipe.find(Recipe.group(:).order('count() desc').limit(3).pluck(:id))
   end
+  def upload_file
+    recipe = Recipe.find_by_id(params[:id])
+    @recipe_images = recipe_images.create(recipe_params)
+  end
+
+
+
   def create
     @recipe=Recipe.new(recipe_params)
     @recipe.user_id = current_user.id
