@@ -45,9 +45,11 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
-
-
-
+    <li>
+    <%= link_to user_facebook_omniauth_authorize_path do %>
+    <i class="fab fa-facebook fa-10x"></i>
+    <% end %>
+  </li>
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>

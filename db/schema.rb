@@ -170,10 +170,10 @@ ActiveRecord::Schema.define(version: 2020_05_08_052312) do
   create_table "sns_credentials", force: :cascade do |t|
     t.string "provider"
     t.string "uid"
-    t.integer "user_id"
+    t.string "name"
+    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_sns_credentials_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -2,11 +2,14 @@
  <h2>レシピ一覧</h2>
  <div class="row">
   <div class="col-xs-2">
+     <%= render 'recipes/search', genre: @genres,category: @categories %>
+   </div>
       <table class="table table-borderless">
         <table>
           <thead>
             <tr>
               <th>レシピ名</th>
+              <th>画像</th>
             </tr>
           </thead>
           <tbody>
@@ -15,7 +18,7 @@
             <tr>
               <%= link_to recipe_path(recipe) do %>
               <td><%= recipe.name %></td>
-              <td><%= attachment_image_tag recipe, :image, size: '200x200',format: "jpeg" %></td>
+              <td><%= recipe.recipe_images[0].to_s %></td>
               <% end %>
             </tr>
             <% end %>

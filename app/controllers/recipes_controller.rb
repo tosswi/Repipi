@@ -14,9 +14,9 @@ class RecipesController < ApplicationController
     @categories=Category.all
     @recipe=Recipe.find(params[:id])
     @recipe_review=RecipeReview.new
-    @recipe_reviews=@recipe.recipe_reviews
     @recipe_image=RecipeImage.find(params[:id])
-    @recipe_images=Recipe.find(params[:id]).recipe_images
+    @recipe_reviews=@recipe.recipe_reviews
+    @recipe_images=@recipe.recipe_images
   end
   def  index
     # @recipes=Recipe.all.includes(:user)
@@ -74,5 +74,8 @@ class RecipesController < ApplicationController
   end
   def set_categories
     @categories = Category.all
+  end
+  def recipe_image_params
+    params.require(:recipe_image).permit(:recipe_image)
   end
 end

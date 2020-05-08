@@ -9,10 +9,8 @@
 <!-- recipe[image][] -->
       <div class="container">
         <div class="row">
-          <div class="col-xs-2">
+          <div class="col-xs-4">
             <%= render 'recipes/search', genre: @genres,category: @categories %>
-          </div>
-          <div class="col-xs-2">
             <div class="sell__block__form">
               <div class="sell__block__form__upload">
                 <h3 class="sell__block__form__upload__head">
@@ -53,7 +51,6 @@
               <td><%= f.collection_select :genre_id, @genres, :id, :name %></td>
                <td><%= f.collection_select :category_id, @categories, :id, :name %></td>
              </div>
-           </div>
           <div class="col-xs-8">
             <div class="field row">
               <%= f.label :content %>

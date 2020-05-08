@@ -1,84 +1,85 @@
 <h2>商品 詳細画面</h2>
-<div class="container">
-  <div class="row">
-    <div class="col-xs-2">
-      <%= render 'search', genre: @genres,category: @categories %>
-    </div>
-    <div class="col-xs-10">
-      <table class="table table-borderless">
-        <tr>
-          <th>料理画像</th><td></td>
-        </tr>
-        <tr>
-        <%= image_tag @recipe_image.recipe_image.to_s %>
-        </tr>
-        <% @recipe.recipe_images.each do |f|%>
-        <% image_tag f.recipe_image.url if f.recipe_image %>
-        <% end %>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-2">
+        <%= render 'search', genre: @genres,category: @categories %>
+      </div>
+      <div class="col-xs-10">
+        <table class="table table-borderless">
 
-        <tr>
-          <th>商品名</th><td><%= @recipe.name %></td>
-        </tr>
-        <tr>
-          <th>商品説明文</th><td><%= @recipe.content %></td>
-        </tr>
-        <tr>
-          <th>材料</th><td><%= @recipe.material %></td>
-        </tr>
-        <tr>
-          <th>材料の数</th><td><%= @recipe.quantity %></td>
-        </tr>
-        <tr>
-          <th>人数分</th><td><%= @recipe.human %></td>
-        </tr>
-              レビュー : <%= rating_for @recipe, 'recipe', disable_after_rate: false %>
 
-              <%= rating_for @recipe, 'recipe',  disable_after_rate: true, imdb_avg: true %>
-        <% if @recipe.bookmark_by?(current_user) %>
-          <li>
-              <%= link_to recipe_bookmarks_path(@recipe), method: :delete do %>
-              <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-              <%= @recipe.bookmarks %> いいね
-              <% end %>
-          </li>
-        <% else %>
-          <li>
-              <%= link_to recipe_bookmarks_path(@recipe), method: :post do %>
-              <i class="fa fa-heart-o" aria-hidden="true"></i>
-              <%= @recipe.bookmarks %> いいね
-              <% end %>
-          </li>zw 
-        <% end %>
-      </table>
-    </div>
-    <%= form_for @recipe_review,url:recipe_recipe_reviews_path(@recipe) do |f|%>
-    <%= f.label :recipe_comment %>
-      <%= f.text_field :recipe_comment %>
-      <%= f.submit '投稿する' %>
-    <% end %>
-    </p>
-    <table>
-      <thead>
-        <tr>
-          <th>コメント</th>
-          <th>評価</th>
-          <th colspan="1"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @recipe_reviews.each do |review| %>
-        <tr>
-          <td><%= review.recipe_comment %></td>
-          <% if current_user == review.recipe.user %>
-            <td><%= link_to 'Destroy', recipe_recipe_reviews_path(review), class: 'btn-sm btn-danger', method: :delete %></td>
+
+
+          <tr>
+            <th>料理画像</th>
+            <td>
+             <% @recipe_images.each do |f|%>
+             <div class="recipe-image-show">
+               <%= image_tag f.recipe_image.url if f.recipe_image %>
+             </div>
+             <% end %>
+            </td>
+            <tr>
+              <th>商品名</th><td><%= @recipe.name %></td>
+            </tr>
+            <tr>
+              <th>商品説明文</th><td><%= @recipe.content %></td>
+            </tr>
+            <tr>
+              <th>材料</th><td><%= @recipe.material %></td>
+            </tr>
+            <tr>
+              <th>材料の数</th><td><%= @recipe.quantity %></td>
+            </tr>
+            <tr>
+              <th>人数分</th><td><%= @recipe.human %></td>
+            </tr>
+                  レビュー : <%= rating_for @recipe, 'recipe', disable_after_rate: false %>
+
+                  <%= rating_for @recipe, 'recipe',  disable_after_rate: true, imdb_avg: true %>
+            <% if @recipe.bookmark_by?(current_user) %>
+              <li>
+                  <%= link_to recipe_bookmarks_path(@recipe), method: :delete do %>
+                  <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+                  <% @recipe.bookmarks %>ブックマークから外す
+                  <% end %>
+              </li>
+            <% else %>
+              <li>
+                  <%= link_to recipe_bookmarks_path(@recipe), method: :post do %>
+                  <i class="fa fa-heart-o" aria-hidden="true"></i>
+                  <% @recipe.bookmarks %> ブックマークする
+                  <% end %>
+              </li>
             <% end %>
-        </tr>
+          </table>
+        </div>
+        <%= form_for @recipe_review,url:recipe_recipe_reviews_path(@recipe) do |f|%>
+        <%= f.label :recipe_comment %>
+          <%= f.text_field :recipe_comment %>
+          <%= f.submit '投稿する' %>
         <% end %>
-      </tbody>
-    </table>
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>コメント</th>
+              <th>評価</th>
+              <th colspan="1"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @recipe_reviews.each do |review| %>
+            <tr>
+              <td><%= review.recipe_comment %></td>
+              <% if current_user == review.recipe.user %>
+                <td><%= link_to 'Destroy', recipe_recipe_reviews_path(review), class: 'btn-sm btn-danger', method: :delete %></td>
+                <% end %>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </div>
-</div>
-</div>
-
-  

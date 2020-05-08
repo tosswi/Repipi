@@ -20,6 +20,10 @@
 //= require_tree .
 
 
+
+
+
+
 $(function(){
   //querySelectorでfile_fieldを取得
   var file_field = document.querySelector('input[type=file]')
