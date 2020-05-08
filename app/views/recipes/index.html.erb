@@ -1,7 +1,7 @@
-<h2>レシピ一覧</h2>
-  <div class="row">
-
-    <div class="col-xs-6">
+<div class="container">
+ <h2>レシピ一覧</h2>
+ <div class="row">
+  <div class="col-xs-2">
       <table class="table table-borderless">
         <table>
           <thead>
@@ -11,7 +11,7 @@
           </thead>
           <tbody>
             </table>
-        <% @recipe_all.each do |recipe|%>
+        <% @recipes.each do |recipe|%>
             <tr>
               <%= link_to recipe_path(recipe) do %>
               <td><%= recipe.name %></td>
@@ -22,5 +22,5 @@
           </tbody>
       </table>
     </div>
-  </div>
+  </table>
 </div>

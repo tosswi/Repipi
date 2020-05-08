@@ -1,48 +1,67 @@
-<%= form_for (@recipe) do |f| %>
+
+  <%= form_for (@recipe) do |f| %>
     <% if @recipe.errors.any? %>
         <%= @recipe.errors.count %>件のerrorが発生しました
         <% @recipe.errors.full_messages.each do |message| %>
             <%= message %>
         <% end %>
     <% end %>
-
-
-       <%= form_for @recipe, html: { multipart: true } do |recipe|%>
-        <%= recipe.fields_for :@recipe do |f| %>
-            <%= f.file_field :image, multiple: "true" %>
-        <% end %>
-        <%= recipe.submit %>
-    <% end %>
-
-
-  <div class="container">
-      <div class="row">
-        <div class="col-xs-2">
-        <%= f.label :image, "画像選択", class: "image_input_btn btn-primary" %>
-        <%= f.attachment_field :image, class: "image_form" %>
-        <div class="field row">
-          <%= f.label :レシピ名 %>
-          <%= f.text_field :name,:placeholder => "チャーハン" %>
-        </div>
-        <div class="field row">
-          <%= f.label :材料 %>
-          <%= f.text_area :material ,:placeholder => "卵：2個、ネギ一本、オイスターソース：大さじ1" %>
-        </div>
-        <div class="field row">
-          <%= f.label :human %>
-          <%= f.select :human ,Recipe.humen.keys.to_a, {}%>
-        </div>
-        <td><%= f.collection_select :genre_id, @genres, :id, :name %></td>
-         <td><%= f.collection_select :category_id, @categories, :id, :name %></td>
+<!-- recipe[image][] -->
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-2">
+            <%= render 'recipes/search', genre: @genres,category: @categories %>
+          </div>
+          <div class="col-xs-2">
+            <div class="sell__block__form">
+              <div class="sell__block__form__upload">
+                <h3 class="sell__block__form__upload__head">
+                  出品画像<span class=".require">必須</span>
+                </h3>
+                <p>最大5枚までアップロードできます</p>
+                <div class="post__drop__box__container">
+                  <div class="prev-content">
+                    <div class="label-content">
+                      <label for="item_images_attributes_0_image" class="abel-box" id="label-box--0">
+                        <pre class="label-box__text-visible">クリックしてファイルをアップロード</pre>
+                      </label>
+                      <div class="hidden-content">
+                        <%= f.fields_for :recipe_images do |i| %>
+                          <%= i.file_field :recipe_image, class: "hidden-field" %>
+                           <input class="hidden-field" type="file" name="recipe[recipe_images_attributes][1][recipe_image]" id="recipe_images_attributes_1_image">
+                           <input class="hidden-field" type="file" name="recipe[recipe_images_attributes][2][recipe_image]" id="recipe_images_attributes_2_image">
+                           <input class="hidden-field" type="file" name="recipe[recipe_images_attributes][3][recipe_image]" id="recipe_images_attributes_3_image">
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+              <div class="field row">
+                <%= f.label :レシピ名 %>
+                <%= f.text_field :name,:placeholder => "チャーハン" %>
+              </div>
+            <div class="field row">
+              <%= f.label :材料 %>
+              <%= f.text_area :material ,:placeholder => "卵：2個、ネギ一本、オイスターソース：大さじ1" %>
+            </div>
+              <div class="field row">
+                <%= f.label :human %>
+                <%= f.select :human ,Recipe.humen.keys.to_a, {}%>
+              </div>
+              <td><%= f.collection_select :genre_id, @genres, :id, :name %></td>
+               <td><%= f.collection_select :category_id, @categories, :id, :name %></td>
+             </div>
+           </div>
+          <div class="col-xs-8">
+            <div class="field row">
+              <%= f.label :content %>
+              <%= f.text_area :content,:placeholder => "作り方", :size=>"60x10" %>
+            </div>
+            <div class="actions row">
+              <%= f.submit class: "btn btn-primary col-xs-12" %>
+            </div>
       </div>
-      <div class="col-xs-10">
-        <div class="field row">
-          <%= f.label :content %>
-          <%= f.text_area :content,:placeholder => "作り方", :size=>"60x10" %>
-        </div>
-        <div class="actions row">
-          <%= f.submit class: "btn btn-primary col-xs-12" %>
-        </div>
-     </div>
-  </div>
+    </div>
 <% end %>

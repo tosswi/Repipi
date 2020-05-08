@@ -1,8 +1,15 @@
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-2">
+      <%= render 'recipes/search', genre: @genres,category: @categories %>
     <tr><%= attachment_image_tag @user, :image, size: '100x100',format: "jpeg", fallback: "no_image.jpg" %></tr>
+  </div>
+  <div class="col-xs-10">
 
     <%= @user.name %>
     <%= @user.nickname %>
     <%= @user.sex %>
+ 
 
 
     <%= link_to 'フォロー一覧',relationships_path %>
@@ -22,7 +29,7 @@
 <% end %>
       <td>
       follow<%= link_to @user.followings.count,followers_path %>
-        </td>
+      </td>
       </tr>
     <tr>
       <td>
@@ -32,6 +39,27 @@
   <%= link_to "編集する",edit_user_path(@user.id) %>
   <p><%= @user.nickname %>が投稿したメニュー</p>
   <% @recipes.each do |f| %>
-  
   <%= link_to f.name ,recipe_path(f.id) %>
   <% end %>
+</div>
+   <table>
+  <thead>
+    <tr>
+      <th>名前</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |f| %>
+    <tr>
+      <td><%= link_to f.name,user_path(f) %></td>
+       <% if admin_signed_in? %>
+      <td><%= link_to '編集する',edit_user_path(f) %></td>
+      <% end %>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+</div>
+</div>
+

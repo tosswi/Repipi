@@ -3,6 +3,9 @@ class Users::UsersController < ApplicationController
   def show
     @user=User.find(params[:id])
     @recipes=User.find(params[:id]).recipes
+        @genres = Genre.all
+    @categories = Category.all
+    @users=User.all
   end
   def edit
     @user=User.find(params[:id])
@@ -17,6 +20,8 @@ class Users::UsersController < ApplicationController
   end
   def index
     @users=User.all
+        @genres = Genre.all
+    @categories = Category.all
   end
   def following
       @user  = User.find(params[:id])

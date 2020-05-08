@@ -5,27 +5,38 @@ class RecipesController < ApplicationController
   end
   def new
     @recipe=Recipe.new
+    @recipe.recipe_images.build
     @genres = Genre.all
     @categories = Category.all
-  
   end
   def show
+    @genres=Genre.all
+    @categories=Category.all
     @recipe=Recipe.find(params[:id])
     @recipe_review=RecipeReview.new
     @recipe_reviews=@recipe.recipe_reviews
+    @recipe_image=RecipeImage.find(params[:id])
+    @recipe_images=Recipe.find(params[:id]).recipe_images
   end
   def  index
-    @recipes=Recipe.all.includes(:user)
-    @recipe_all=Recipe.all
-
+    # @recipes=Recipe.all.includes(:user)
+    @recipes=Recipe.all
+    @categories=Category.all
+    @genres=Genre.all
+    if params[:category_id]
+    @category=Category.find(params[:category_id])
+    @recipes = @category.recipes
+  end
+    if params[:genre_id]
+    @genre=Genre.find(params[:genre_id])
+    @recipes = @genre.recipes
+  end
     # @rank_recipes = Recipe.find(Recipe.group(:).order('count() desc').limit(3).pluck(:id))
   end
   def upload_file
     recipe = Recipe.find_by_id(params[:id])
     @recipe_images = recipe_images.create(recipe_params)
   end
-
-
 
   def create
     @recipe=Recipe.new(recipe_params)
@@ -50,11 +61,13 @@ class RecipesController < ApplicationController
     end
   end
   def bookmarks
+    @genres = Genre.all
+    @categories = Category.all
     @recipes = current_user.bookmark_recipes.includes(:user)
   end
   private
   def recipe_params
-    params.require(:recipe).permit(:name,:content,:material,:quantity,:human,:playtime,:image,:genre_id,:user_id,:category_id,)
+    params.require(:recipe).permit(:name,:content,:material,:quantity,:human,:playtime,:image,:genre_id,:user_id,:category_id, recipe_images_attributes: [:recipe_image])
   end
   def set_genres
     @genres = Genre.all
