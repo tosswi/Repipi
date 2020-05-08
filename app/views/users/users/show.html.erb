@@ -9,8 +9,6 @@
     <%= @user.name %>
     <%= @user.nickname %>
     <%= @user.sex %>
- 
-
 
     <%= link_to 'フォロー一覧',relationships_path %>
 
@@ -28,12 +26,12 @@
   <% end %>
 <% end %>
       <td>
-      follow<%= link_to @user.followings.count,followers_path %>
+      follow<%= link_to @user.followings.count,user_followindex_path(@user) %>
       </td>
       </tr>
     <tr>
       <td>
-      follower<%= link_to @user.followers.count,followers_path %>
+      follower<%= link_to @user.followers.count,user_followerindex_path(@user) %>
     </td>
   </tr>
   <%= link_to "編集する",edit_user_path(@user.id) %>

@@ -34,6 +34,12 @@ class Users::UsersController < ApplicationController
     @users = @user.followers
     render 'show_follower'
   end
+  def followerindex
+    @user=User.find(params[:user_id])
+  end
+  def followindex
+    @user=User.find(params[:user_id])
+  end
   def allergy_string
     params[:user][:allergy] = params[:user][:allergy].join("/")  # to string
   end

@@ -7,13 +7,16 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
       sessions: 'users/sessions',
       registrations: 'users/registrations',
-      passwords: 'users/passwords'
-
+      passwords: 'users/passwords',
+      omniauth_callbacks: 'users/omniauth_callbacks'
     }
 
         scope module: :users do
-     resources :users, only: [:show, :edit, :update,:index]
+     resources :users, only: [:show, :edit, :update,:index]do
       get :following, :followers
+        get 'followindex'
+    get 'followerindex'
+  end
   end
         devise_for :admins, controllers: {
           sessions: 'admins/sessions'
@@ -33,10 +36,12 @@ Rails.application.routes.draw do
   end
   resources :refrigerators,only: [:new,:index,:create,:edit,:destroy,:update]
   resources :rooms,only: [:index,:show,:create,:destroy]
-  resources :relationships,only: [:index,:create,:destroy]do
+  resources :relationships,only: [:index,:create,:destroy]
+
    post 'follow/:id' => 'relationships#follow', as: 'follow' # フォローする
 post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow' # フォロー外す
 
-end
+
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
