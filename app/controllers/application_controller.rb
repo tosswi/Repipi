@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
     end
   protected
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name,:email,:nickname,:sex,:allergies, :phone_number, :image])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name,:email,:nickname,:sex,:allergy, :phone_number, :image])
   end
   # データ更新時のパラメーターを設定する
   def configure_account_update_params

@@ -14,11 +14,11 @@
           </thead>
           <tbody>
             </table>
-        <% @recipes.each do |recipe|%>
+              <% @recipes.each do |recipe|%>
             <tr>
               <%= link_to recipe_path(recipe) do %>
               <td><%= recipe.name %></td>
-              <td><%= recipe.recipe_images[0].to_s %></td>
+              <td><%= image_tag recipe.recipe_images[0].recipe_image.to_s %></td>
               <% end %>
             </tr>
             <% end %>
