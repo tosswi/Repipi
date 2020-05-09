@@ -4,5 +4,7 @@ class NotificationsController < ApplicationController
     @notifications.where(checked: false).each do |notification|
       notification.update_attributes(checked: true)
     end
+      @categories=Category.all
+    @genres=Genre.all
   end
 end

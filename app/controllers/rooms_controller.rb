@@ -3,6 +3,8 @@ class RoomsController < ApplicationController
 
   def index
     @rooms = Room.all.order(:id)
+    @genres = Genre.all
+    @categories = Category.all
   end
 
   def create

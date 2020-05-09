@@ -1,3 +1,5 @@
+<% followers = User.find(relationship.user_id) %>
+
 <h3>フォロワー一覧</h3>
   <% @users.followers.where.not(id: @user.id).each do |user| %>
     <p>

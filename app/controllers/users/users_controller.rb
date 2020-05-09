@@ -3,6 +3,9 @@ class Users::UsersController < ApplicationController
   def show
     @user=User.find(params[:id])
     @recipes=User.find(params[:id]).recipes
+        @genres = Genre.all
+    @categories = Category.all
+    @users=User.all
   end
   def edit
     @user=User.find(params[:id])
@@ -17,6 +20,8 @@ class Users::UsersController < ApplicationController
   end
   def index
     @users=User.all
+        @genres = Genre.all
+    @categories = Category.all
   end
   def following
       @user  = User.find(params[:id])
@@ -28,6 +33,12 @@ class Users::UsersController < ApplicationController
     @user  = User.find(params[:id])
     @users = @user.followers
     render 'show_follower'
+  end
+  def followerindex
+    @user=User.find(params[:user_id])
+  end
+  def followindex
+    @user=User.find(params[:user_id])
   end
   def allergy_string
     params[:user][:allergy] = params[:user][:allergy].join("/")  # to string

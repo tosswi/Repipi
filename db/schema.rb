@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_06_192749) do
+ActiveRecord::Schema.define(version: 2020_05_08_052312) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -114,6 +114,13 @@ ActiveRecord::Schema.define(version: 2020_05_06_192749) do
     t.index ["cacheable_type", "cacheable_id"], name: "index_rating_caches_on_cacheable_type_and_cacheable_id"
   end
 
+  create_table "recipe_images", force: :cascade do |t|
+    t.string "recipe_image"
+    t.integer "recipe_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "recipe_reviews", force: :cascade do |t|
     t.text "recipe_comment"
     t.float "recipe_review"
@@ -156,6 +163,15 @@ ActiveRecord::Schema.define(version: 2020_05_06_192749) do
   end
 
   create_table "rooms", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sns_credentials", force: :cascade do |t|
+    t.string "provider"
+    t.string "uid"
+    t.string "name"
+    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

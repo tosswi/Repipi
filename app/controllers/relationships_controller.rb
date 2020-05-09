@@ -8,6 +8,8 @@ def unfollow
   current_user.unfollow(params[:follow_id])
   redirect_to root_path
 end
+def index
+end
 
   def create
     @user = User.find(params[:follow_id])
