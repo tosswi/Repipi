@@ -3,6 +3,7 @@ class RecipesController < ApplicationController
   before_action :set_categories, only: [:index, :new, :edit, :create,:update]
   def top
   end
+
   def new
     @recipe=Recipe.new
     @recipe.recipe_images.build

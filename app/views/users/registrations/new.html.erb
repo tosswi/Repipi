@@ -1,55 +1,60 @@
 <h2>Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :nickname %>
-    <%= f.text_field :nickname %>
-  </div>
-  <div class="field">
-    <label><%= f.radio_button :sex, :女性, checked: "checked"  %>女性</label>
-     <label><%= f.radio_button :sex, :男性, checked: "checked"  %>男性</label>
-     </div>
-   <div class="field">
-    <%= f.label :allergy %>
-      <% ["卵","乳製品","小麦","蕎麦"].each do |allergy| %>
-      <%= f.check_box :allergy ,{multiple: true},allergy, nil %>
-      <%= allergy %>
-    <% end %>
-  </div>
-    <div class="field">
-    <%= f.label :email %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-  <div class="field">
-    <%= f.label :phone_number %>
-    <%= f.text_field :phone_number %>
-  </div>
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %>
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+<div class="field">
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+</div>
+<div class="field">
+  <%= f.label :nickname %>
+  <%= f.text_field :nickname %>
+</div>
+<div class="field">
+  <label><%= f.radio_button :sex, :女性, checked: "checked"  %>女性</label>
+  <label><%= f.radio_button :sex, :男性, checked: "checked"  %>男性</label>
+</div>
+<div class="field">
+  <%= f.label :allergy %>
+  <%= f.check_box :allergy,{multiple: true},"卵", nil %>卵
+  <%= f.check_box :allergy,{multiple: true},"乳製品", nil  %>乳製品
+  <%= f.check_box :allergy,{multiple: true},"小麦", nil  %>小麦
+  <%= f.check_box :allergy,{multiple: true},"蕎麦", nil  %>蕎麦
 
-  <div class="field">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-    <li>
-    <%= link_to user_facebook_omniauth_authorize_path do %>
-    <i class="fab fa-facebook fa-10x"></i>
-    <% end %>
-  </li>
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
+
+
+
+
+</div>
+<div class="field">
+  <%= f.label :email %>
+  <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+</div>
+<div class="field">
+  <%= f.label :phone_number %>
+  <%= f.text_field :phone_number %>
+</div>
+<div class="field">
+  <%= f.label :password %>
+  <% if @minimum_password_length %>
+  <em>(<%= @minimum_password_length %> characters minimum)</em>
+  <% end %>
+  <%= f.password_field :password, autocomplete: "new-password" %>
+</div>
+
+<div class="field">
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+</div>
+<li>
+  <%= link_to user_facebook_omniauth_authorize_path do %>
+  <i class="fab fa-facebook fa-10x"></i>
+  <% end %>
+</li>
+<div class="actions">
+  <%= f.submit "Sign up" %>
+</div>
 <% end %>
 
 <%= render "users/shared/links" %>

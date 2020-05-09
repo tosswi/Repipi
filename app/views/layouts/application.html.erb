@@ -1,79 +1,80 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Repipi</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <script src="https://kit.fontawesome.com/c8c5fed458.js" crossorigin="anonymous"></script>
-  </head>
-  <body>
-    <div id="wrapper">
-    <% if admin_signed_in? %>
-      <header class="navbar navbar-fixed-top">
-          <nav class="navbar navbar-light">
-            <div class="navbar-expand-lg navbar-collapse">
-              <ul class="navbar-nav">
-                <li><%= link_to ' カテゴリー一覧', admins_categories_path %></li>
 
-                <li><%= link_to ' 会員一覧', users_path %></li>
-                <li><%= link_to ' ジャンル', admins_genres_path %></li>
-                <li><a rel="nofollow" data-method="delete" href="/admins/sign_out">ログアウト</a></li>
-            </ul>
-          </div>
-        </nav>
-      </header>
+<head>
+  <title>Repipi</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <script src="https://kit.fontawesome.com/c8c5fed458.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div id="wrapper">
+    <% if admin_signed_in? %>
+    <header class="navbar navbar-fixed-top">
+      <nav class="navbar navbar-light">
+        <div class="navbar-expand-lg navbar-collapse">
+          <ul class="navbar-nav">
+            <li><%= link_to ' カテゴリー一覧', admins_categories_path %></li>
+            <li><%= link_to ' 会員一覧', users_path %></li>
+            <li><%= link_to ' ジャンル', admins_genres_path %></li>
+            <li><a rel="nofollow" data-method="delete" href="/admins/sign_out">ログアウト</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
     <% elsif user_signed_in? %>
     <header>
-        <nav class="navbar navbar-light">
-          <div class="navbar-expand-lg navbar-collapse">
-            <ul class="navbar-nav">
-                <li class="nav-item"><%= link_to 'トップ', root_path, class: "btn btn-default" %></li>
-
-                <li class="nav-item"><%= link_to 'マイページ', user_path(current_user), class: "btn btn-default" %></li>
-
-                <li class="nav-item"><%= link_to ' 通知一覧', notifications_path, class: "btn btn-default" %></li>
-            </ul>
-            <div class="hamburger" id="open_nav">
-              <%= image_tag 'hamburger.png',class:"hamburger-image" %>
-            </div>
+      <nav class="navbar navbar-light">
+        <div class="navbar-expand-lg navbar-collapse">
+          <ul class="navbar-nav">
+            <li class="nav-item"><%= link_to 'トップ', root_path, class: "btn btn-default" %></li>
+            <li class="nav-item"><%= link_to 'マイページ', user_path(current_user), class: "btn btn-default" %></li>
+            <li class="nav-item"><%= link_to ' 通知一覧', notifications_path, class: "btn btn-default" %></li>
+          </ul>
+          <div class="hamburger" id="open_nav">
+            <%= image_tag 'hamburger.png',class:"hamburger-image" %>
           </div>
-       </nav>
+        </div>
+      </nav>
     </header>
     <% else %>
     <header class="navbar navbar-fixed-top">
       <nav>
-          <ul class="nav navbar-nav navbar-right">
-              <li><%= link_to'新規登録',new_user_registration_path %></li>
-              <li><a href="/users/sign_in", class="btn btn-default">ログイン</a></li>
-          </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><%= link_to'新規登録',new_user_registration_path %></li>
+          <li><a href="/users/sign_in" , class="btn btn-default">ログイン</a></li>
+        </ul>
       </nav>
     </header>
     <% end %>
     <%= yield %>
+  </div>
+  <footer>
+    <div class="footer-text">
+      nhw,cfejav.
     </div>
-    <footer>
-      <div class="footer-text">
-        nhw,cfejav.
-      </div>
-    </footer>
-  <nav id="nav" >
+  </footer>
+  <nav id="nav">
     <%= image_tag 'logo.png', class:'hum-logo' %>
-      <ul>
-        <li class="nav-item"><%= link_to 'ブックマーク', bookmarks_recipes_path, class: "btn btn-default" %></li>
-        <li class="nav-item"><%= link_to 'レシピ投稿', new_recipe_path, class: "btn btn-default" %></li>
-        <li class="nav-item"><%= link_to 'ユーザー一覧', users_path, class: "btn btn-default" %></li>
-        <li class="nav-item"><a rel="nofollow" data-method="delete" href="/users/sign_out", class="btn btn-default">ログアウト</a></li>
-      </ul>
+    <ul>
+      <li class="nav-item"><%= link_to 'ブックマーク', bookmarks_recipes_path, class: "btn btn-default" %></li>
+      <li class="nav-item"><%= link_to 'レシピ投稿', new_recipe_path, class: "btn btn-default" %></li>
+      <li class="nav-item"><%= link_to 'ユーザー一覧', users_path, class: "btn btn-default" %></li>
+      <li class="nav-item"><a rel="nofollow" data-method="delete" href="/users/sign_out" ,
+          class="btn btn-default">ログアウト</a></li>
+    </ul>
     </div>
   </nav>
-  </body>
-  <script>
-    $(document).ready(function() {
-        $('#open_nav').on('click', function() {
-            $('#wrapper, #nav').toggleClass('show');
-        });
+</body>
+<script>
+  $(document).ready(function () {
+    $('#open_nav').on('click', function () {
+      $('#wrapper, #nav').toggleClass('show');
     });
-  </script> 
+  });
+</script>
+
 </html>

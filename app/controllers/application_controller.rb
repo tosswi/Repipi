@@ -20,10 +20,15 @@ class ApplicationController < ActionController::Base
     end
   protected
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name,:email,:nickname,:sex,:allergy, :phone_number, :image])
+    #sign_up時にはアレルギー情報を文字列にする必要がある。
+    #deviseの処理であるためconfigure_permitted_parameterをオーバーライドし、パラメーターを上書きして実現。
+    # if params[:commit] == "Sign up"
+    #   params[:user][:allergy] = params[:user][:allergy]&.join("/")
+    # end
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:name,:email,:nickname,:sex,:allergy, :phone_number, :image])
   end
   # データ更新時のパラメーターを設定する
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:name,:email,:nickname,:sex,:allergies, :phone_number, :image])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name,:email,:nickname,:sex,:allergy, :phone_number, :image])
   end
 end

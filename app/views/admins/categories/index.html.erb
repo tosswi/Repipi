@@ -1,27 +1,23 @@
-<h1>Admins::Categories#index</h1>
-<p>Find me in app/views/admins/categories/index.html.erb</p>
-
-    <%= form_for @category, url:admins_categories_path do |f| %>
-      <div class="field row">
-        <%= f.label :カテゴリー %>
-        <%= f.text_field :name %>
-        <%= f.submit "追加", class: "btn btn-primary" %>
-      </div>
+<%= form_for @category, url:admins_categories_path do |f| %>
+<div class="field row">
+  <%= f.label :カテゴリー %>
+  <%= f.text_field :name %>
+  <%= f.submit "追加", class: "btn btn-primary" %>
+</div>
+<% end %>
+<table>
+  <thead>
+    <tr>
+      <th>カテゴリー名</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @categories.each do |category|%>
+    <tr>
+      <td><%= category.name %></td>
+      <td><%= link_to "編集する", edit_admins_category_path(category.id) ,class: "btn btn-primary"%></td>
+    </tr>
     <% end %>
-
-    <table>
-      <thead>
-        <tr>
-          <th>カテゴリー名</th>
-          <th colspan="1"></th>
-        </tr>
-      </thead>
-      <tbody>
-         <% @categories.each do |category|%>
-        <tr>
-            <td><%= category.name %></td>
-            <td><%= link_to "編集する", edit_admins_category_path(category.id) ,class: "btn btn-primary"%></td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
+  </tbody>
+</table>

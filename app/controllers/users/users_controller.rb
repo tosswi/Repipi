@@ -41,7 +41,7 @@ class Users::UsersController < ApplicationController
     @user=User.find(params[:user_id])
   end
   def allergy_string
-    params[:user][:allergy] = params[:user][:allergy].join("/")  # to string
+    params[:user][:allergy] = params[:user][:allergy]&.join("/")  # to string
   end
   private
   def user_params

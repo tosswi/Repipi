@@ -2,7 +2,7 @@
   <h1>商品　編集画面</h1>
   <div class="row">
     <div class="col-xs-5 ">
-    <%= form_for @recipe,url:recipe_path(@recipe.id) do |f| %>
+      <%= form_for @recipe,url:recipe_path(@recipe.id) do |f| %>
       <label>
         <span class="btn btn-primary">画像
           <input type="file" style="display:none">
@@ -10,52 +10,47 @@
         <%= f.attachment_field :image, class: "image_form" %>
       </label>
       <% if@recipe.errors.any? %>
-        <%= @recipe.errors.count %>件のerrorが発生しました
-        <% @recipe.errors.full_messages.each do |message| %>
-          <%= message %>
-        <% end %>
-      <% end %> 
+      <%= @recipe.errors.count %>件のerrorが発生しました
+      <% @recipe.errors.full_messages.each do |message| %>
+      <%= message %>
+      <% end %>
+      <% end %>
     </div>
-      <div class="col-xs-5">
-        <table class="table table-borderless">
-          <tr>
-            <th>商品名</th><td><%= f.text_field :name %></td>
-          </tr>
-          <tr>
-            <th>商品説明文</th><td><%= f.text_area :content %></td>
-          </tr>
-            <div class="field row">
-            <%= f.label :material %> 
-            <%= f.text_area :material, class: "col-xs-12 book_body" %>
-          </div>
-          <div class="field row">
-
-            <%= f.text_area :quantity , class: "col-xs-12 book_body" %>
-          </div>
-          <div class="field row">
-            <%= f.text_area :human , class: "col-xs-12 book_body" %>
-          </div>
-          <div class="field row">
-
-            <%= f.text_area :playtime , class: "col-xs-12 book_body" %>
-          </div>
-          <tr>
-            <th>ジャンル</th><td><%= f.collection_select :genre_id, @genres, :id, :name %></td>
-          </tr>
-          <th>カテゴリー</th>
-            <td><%= f.collection_select :category_id, @categories, :id, :name %></td>
-          </tr>
-        </table>
-      </div>
-      <div class="row">
-        <button type="submit" class="btn btn-primary btn-lg pull-right">変更を保存</button>
-      </div>
+    <div class="col-xs-5">
+      <table class="table table-borderless">
+        <tr>
+          <th>商品名</th>
+          <td><%= f.text_field :name %></td>
+        </tr>
+        <tr>
+          <th>商品説明文</th>
+          <td><%= f.text_area :content %></td>
+        </tr>
+        <div class="field row">
+          <%= f.label :material %>
+          <%= f.text_area :material, class: "col-xs-12 book_body" %>
+        </div>
+        <div class="field row">
+          <%= f.text_area :quantity , class: "col-xs-12 book_body" %>
+        </div>
+        <div class="field row">
+          <%= f.text_area :human , class: "col-xs-12 book_body" %>
+        </div>
+        <div class="field row">
+          <%= f.text_area :playtime , class: "col-xs-12 book_body" %>
+        </div>
+        <tr>
+          <th>ジャンル</th>
+          <td><%= f.collection_select :genre_id, @genres, :id, :name %></td>
+        </tr>
+        <th>カテゴリー</th>
+        <td><%= f.collection_select :category_id, @categories, :id, :name %></td>
+        </tr>
+      </table>
+    </div>
+    <div class="row">
+      <button type="submit" class="btn btn-primary btn-lg pull-right">変更を保存</button>
+    </div>
     <% end %>
   </div>
 </div>
-
-
-
-
-
-

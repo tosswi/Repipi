@@ -2,9 +2,9 @@
   <%= link_to "<<back index", rooms_path %>
   <h1><%= "Chat Room #{@room.id}" %></h1>
   <h4 class="border"><%= "Your Mail Address: #{current_user&.email}" %></h4>
-<div id='messages' data-room_id="<%= @room.id %>">
-  <%= render @messages %>
-</div>
+  <div id='messages' data-room_id="<%= @room.id %>">
+    <%= render @messages %>
+  </div>
 
-<%= label_tag :content, 'Say something:' %>
-<%= text_field_tag :content, nil, data: { behavior: 'room_speaker' } %>
+  <%= label_tag :content, 'Say something:' %>
+  <%= text_field_tag :content, nil, data: { behavior: 'room_speaker' } %>

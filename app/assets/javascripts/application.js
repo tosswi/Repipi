@@ -14,6 +14,7 @@
 //= require jquery.raty
 //= require ratyrate
 //= require rails-ujs
+//= require bxslider
 //= require activestorage
 //= require turbolinks
 //= require bootstrap-sprockets

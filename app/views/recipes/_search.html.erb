@@ -9,7 +9,7 @@
         <tr>
           <td><%= link_to f.name ,recipes_path(category_id: f.id) %></td>
         </tr>
-         <% end %>
+        <% end %>
       </tbody>
     </table><br>
     <table>
@@ -19,10 +19,10 @@
         </tr>
       </thead>
       <tbody>
-         <% @genres.each do |f|%>
+        <% @genres.each do |f|%>
         <tr>
           <td><%= link_to f.name ,recipes_path(genre_id: f.id) %></td>
         </tr>
-          <% end %>
+        <% end %>
       </tbody>
     </table>

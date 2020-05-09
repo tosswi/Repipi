@@ -1,26 +1,24 @@
- 
-      <div class="container">
-         <h1>ブックマーク一覧</h1>
-        <div class="row">
-          <div class="col-xs-2">
+<div class="container">
+  <h1>ブックマーク一覧</h1>
+  <div class="row">
+    <div class="col-xs-2">
       <%= render 'recipes/search', genre: @genres,category: @categories %>
-          </div>
-          <div class="col-xs-10">
-            <table>
-              <thead>
-                <tr>
-                  <th>レシピ名</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% @recipes.each do |recipe| %>
-                  <tr>
-                    <td><%= link_to recipe.name,recipe_path(recipe) %></td>
-                  </tr>
-                <% end %>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
+    </div>
+    <div class="col-xs-10">
+      <table>
+        <thead>
+          <tr>
+            <th>レシピ名</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @recipes.each do |recipe| %>
+          <tr>
+            <td><%= link_to recipe.name,recipe_path(recipe) %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

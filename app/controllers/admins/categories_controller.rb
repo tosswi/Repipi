@@ -7,16 +7,13 @@ class Admins::CategoriesController < ApplicationController
       render :index
     end
   end
-
   def index
     @categories=Category.all
     @category=Category.new
   end
-
   def edit
     @category=Category.find(params[:id])
   end
-
   def update
     @category=Category.find(params[:id])
     if @category.update(category_params)

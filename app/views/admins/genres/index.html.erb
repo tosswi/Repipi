@@ -1,17 +1,14 @@
-<h1>Admins::Genres#index</h1>
-<p>Find me in app/views/admins/genres/index.html.erb</p>
+<%= form_for @genre, url:admins_genres_path do |f| %>
+<div class="field row">
+  <%= f.label :ジャンル %>
+  <%= f.text_field :name %>
+  <%= f.submit "追加", class: "btn btn-primary" %>
+</div>
+<% end %>
 
-    <%= form_for @genre, url:admins_genres_path do |f| %>
-      <div class="field row">
-        <%= f.label :ジャンル %>
-        <%= f.text_field :name %>
-        <%= f.submit "追加", class: "btn btn-primary" %>
-      </div>
-    <% end %>
-
-  <% @genres.each do |genre|%>
-    <tr>
-      <td><%= genre.name %></td>
-      <td><%= link_to "編集する", edit_admins_genre_path(genre.id) ,class: "btn btn-primary"%></td>
-    </tr>
-  <% end %>
+<% @genres.each do |genre|%>
+<tr>
+  <td><%= genre.name %></td>
+  <td><%= link_to "編集する", edit_admins_genre_path(genre.id) ,class: "btn btn-primary"%></td>
+</tr>
+<% end %>

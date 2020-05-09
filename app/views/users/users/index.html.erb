@@ -1,4 +1,3 @@
-
 <table>
   <thead>
     <tr>
@@ -10,10 +9,10 @@
     <% @users.each do |f| %>
     <tr>
       <td><%= link_to f.name,user_path(f) %></td>
-       <% if admin_signed_in? %>
+      <% if admin_signed_in? %>
       <td><%= link_to '編集する',edit_user_path(f) %></td>
       <% end %>
     </tr>
-  <% end %>
+    <% end %>
   </tbody>
 </table>
