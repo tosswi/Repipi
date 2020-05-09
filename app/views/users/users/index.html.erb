@@ -13,6 +13,15 @@
       <td><%= link_to '編集する',edit_user_path(f) %></td>
       <% end %>
     </tr>
+    <tr>
+      <% if admin_signed_in? %>
+      <% if user.is_member_status == false %>
+      <span class="text-success">有効会員</span>
+      <% else %>
+      <span class="text-danger">退会済み</span>
+      <% end %>
+      <% end %>
+    </tr>
     <% end %>
   </tbody>
 </table>

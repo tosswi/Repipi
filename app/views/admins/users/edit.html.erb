@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="col-xs-8">
+        <h2>会員詳細画面</h2>
+        <%= form_for @user, url:admins_user_path(@user.id) do |f| %>
+        <table class="table table-hover table-borderless">
+            <tr>
+            <tr>
+                <th>会員ステータス</th>
+                <td><%= f.radio_button :is_member_status, "false" %>有効<%= f.radio_button :is_member_status, "ture" %>退会済み
+                </td>
+            </tr>
+        </table>
+        <div class="actions row">
+            <%= f.submit "変更を保存する",class: "btn btn-primary" %>
+        </div>
+        <% end %>
+    </div>
+</div>

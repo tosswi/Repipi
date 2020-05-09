@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   get 'rooms/show'
   post '/rate' => 'rater#create', :as => 'rate'
+  namespace :users do
+    get 'confirm' => 'users#confirm'
+    patch 'hide' => 'users#hide'
+    put 'hide' => 'users#hide'
+end
   root to: 'recipes#top'
   devise_for :users, controllers: {
       sessions: 'users/sessions',

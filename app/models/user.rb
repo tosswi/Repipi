@@ -36,7 +36,7 @@ class User < ApplicationRecord
     self.followings.include?(other_user)
   end
 
-    def create_notification_follow!(current_user)
+  def create_notification_follow!(current_user)
     temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'follow'])
     if temp.blank?
       notification = current_user.active_notifications.new(
@@ -60,6 +60,9 @@ class User < ApplicationRecord
       )
       end
     user
+  end
+  def active_for_authentication?
+    super && (self.is_member_status == false)
   end
 
 end
