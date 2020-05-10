@@ -216,10 +216,13 @@ header ul li {
   width: 100%;
 }
 
-//       img{
-//         width: 112px;
-//         height: 112px;
-//  }
+.recipe-image-show {
+  img {
+    width: 112px;
+    height: 112px;
+  }
+}
+
 .lower-box {
   display: flex;
   text-align: center;

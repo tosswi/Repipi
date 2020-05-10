@@ -5,17 +5,21 @@
       <%= render 'recipes/search', genre: @genres,category: @categories %>
     </div>
     <div class="col-xs-10">
-      <table>
+      <table class="table table-hover table-inverse">
         <thead>
           <tr>
             <th>レシピ名</th>
+            <th>詳細を見る</th>
           </tr>
         </thead>
         <tbody>
           <% @recipes.each do |recipe| %>
           <tr>
-            <td><%= link_to recipe.name,recipe_path(recipe) %></td>
+            <td><%= recipe.name %></td>
           </tr>
+          <th>
+          <td><%= link_to recipe.name,recipe_path(recipe) %></td>
+          </th>
           <% end %>
         </tbody>
       </table>

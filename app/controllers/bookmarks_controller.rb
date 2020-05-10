@@ -15,6 +15,8 @@ class BookmarksController < ApplicationController
     recipe = Recipe.find(params[:recipe_id])
     if recipe.bookmark_by?(current_user)
     current_user.bookmarks.find_by(recipe_id: params[:recipe_id]).destroy!
+    recipe.user.point -= 20
+    recipe.user.save
     redirect_to request.referer, success: t('.flash.not_bookmark')
     end
   end
