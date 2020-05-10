@@ -2,6 +2,7 @@ class RecipesController < ApplicationController
   before_action :set_genres, only: [:index, :new, :edit, :create,:update]
   before_action :set_categories, only: [:index, :new, :edit, :create,:update]
   def top
+   
   end
 
   def new
@@ -42,6 +43,8 @@ class RecipesController < ApplicationController
   def create
     @recipe=Recipe.new(recipe_params)
     @recipe.user_id = current_user.id
+    @point=@recipe.user.point
+    @point+10.to_i
     if @recipe.save
       redirect_to recipes_path
     else
@@ -68,7 +71,7 @@ class RecipesController < ApplicationController
   end
   private
   def recipe_params
-    params.require(:recipe).permit(:name,:content,:material,:quantity,:human,:playtime,:image,:genre_id,:user_id,:category_id, recipe_images_attributes: [:recipe_image])
+    params.require(:recipe).permit(:name,:content,:material,:quantity,:human,:playtime,:image,:genre_id,:user_id,:category_id,:is_recipe_status, recipe_images_attributes: [:recipe_image])
   end
   def set_genres
     @genres = Genre.all

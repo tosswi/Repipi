@@ -9,6 +9,7 @@ class Recipe < ApplicationRecord
   belongs_to :user
   belongs_to :genre
   belongs_to :category
+  has_many :points
   ratyrate_rateable "recipe"
 
   def create_notification_recipe_review(current_user, recipe_review_id)
@@ -49,4 +50,11 @@ class Recipe < ApplicationRecord
   def bookmark_by?(user)
       bookmarks.where(user_id: user.id).exists?
   end
+
+  def point_plus(user)
+    
+  end
+
+
+
 end

@@ -9,6 +9,9 @@
             <%= @user.nickname %>
             <%= @user.sex %>
             <%= @user.allergy %>
+            <% if @user.user_rank_update(@user) %>
+            <%= @user.rank  %>
+            <% end %>
             <%= link_to 'フォロー一覧',relationships_path %>
             <% unless current_user == @user %>
             <% if current_user.following?(@user) %>
