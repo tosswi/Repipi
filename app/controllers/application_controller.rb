@@ -22,9 +22,9 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     #sign_up時にはアレルギー情報を文字列にする必要がある。
     #deviseの処理であるためconfigure_permitted_parameterをオーバーライドし、パラメーターを上書きして実現。
-    # if params[:commit] == "Sign up"
-    #   params[:user][:allergy] = params[:user][:allergy]&.join("/")
-    # end
+    if params[:commit] == "Sign up"
+      params[:user][:allergy] = params[:user][:allergy]&.join("/")
+    end
       devise_parameter_sanitizer.permit(:sign_up, keys: [:name,:email,:nickname,:sex,:allergy, :phone_number, :image])
   end
   # データ更新時のパラメーターを設定する

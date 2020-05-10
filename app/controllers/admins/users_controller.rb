@@ -1,6 +1,7 @@
 class Admins::UsersController < ApplicationController
   def index
     @users=User.all
+
     @genres = Genre.all
     @categories = Category.all
   end

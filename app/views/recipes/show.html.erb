@@ -88,3 +88,4 @@
 </div>
 </div>
 <%= @recipe.bookmarks.count %>
+<%= link_to "Destroy", recipe_path(@recipe.id), method: :delete , class: "btn btn-danger" %>

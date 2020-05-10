@@ -12,6 +12,11 @@ class Recipe < ApplicationRecord
   has_many :points
   ratyrate_rateable "recipe"
 
+  validates :name, presence: true
+  validates :material, presence: true
+  validates :content, presence: true
+  validates :recipe_images, presence: true
+
   def create_notification_recipe_review(current_user, recipe_review_id)
      temp_ids = RecipeReview.select(:user_id).where(recipe_id: id).where.not(user_id: current_user.id).distinct
      temp_ids.each do |temp_id|

@@ -364,3 +364,17 @@ footer {
   font-size: 10px;
   line-height: 30px;
 }
+
+
+
+.recipe_showimage {
+  height: 300px;
+  width: 300px;
+
+  & image_tag {
+    height: 300px;
+    width: 300px;
+
+  }
+
+}

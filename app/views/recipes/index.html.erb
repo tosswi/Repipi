@@ -18,7 +18,7 @@
       <tr>
         <%= link_to recipe_path(recipe) do %>
         <td><%= recipe.name %></td>
-        <td><%= image_tag recipe.recipe_images[0].recipe_image.to_s %></td>
+        <td><%= image_tag recipe.recipe_images[0].recipe_image.to_s, class:"recipe_showimage" %></td>
         <% end %>
       </tr>
       <% end %>
@@ -27,3 +27,19 @@
   </div>
   </table>
 </div>
+
+<ul class="bxslider">
+  <% @recipe_images.each do |recipe_image| %>
+  <li>
+    <%= link_to recipe_path(recipe_image) do %>
+    <% if recipe_image.recipe_image? %>
+    <div class="recipe_showimage">
+      <%= image_tag recipe_image.recipe_image.to_s, class:"recipe_showimage" %>
+    </div>
+    <% else %>
+    <%= image_tag 'no_image.jpg' %>
+    <% end %>
+    <% end %>
+  </li>
+  <% end %>
+</ul>

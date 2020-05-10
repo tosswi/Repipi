@@ -22,6 +22,7 @@ class Users::UsersController < ApplicationController
     @users=User.all
         @genres = Genre.all
     @categories = Category.all
+    @user_pointrank=User.find(User.group(:point).order('count(point) desc').limit(6).pluck(:id))
   end
   def following
       @user  = User.find(params[:id])

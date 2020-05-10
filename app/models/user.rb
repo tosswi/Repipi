@@ -20,6 +20,10 @@ class User < ApplicationRecord
   ratyrate_rater
   has_many :points
   has_many :sns_credentials, dependent: :destroy
+
+  validates :sex, presence: true
+
+
   
   def user_rank_update(user)
     case user.point
