@@ -48,12 +48,10 @@ class Recipe < ApplicationRecord
   end
 
   def bookmark_by?(user)
-      bookmarks.where(user_id: user.id).exists?
+      self.bookmarks.where(user_id: user.id).exists?
   end
 
-  def point_plus(user)
-    
-  end
+  
 
 
 

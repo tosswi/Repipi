@@ -24,6 +24,7 @@ end
           sessions: 'admins/sessions'
         }
   namespace :admins do
+    get '/' => 'admins#top'
     resources :users,only: [:show,:index,:edit,:update]
     resources :genres,only: [:index,:create,:edit,:update]
     resources :categories,only: [:index,:create,:edit,:destroy,:update]

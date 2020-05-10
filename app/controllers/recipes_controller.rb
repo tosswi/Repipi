@@ -43,9 +43,9 @@ class RecipesController < ApplicationController
   def create
     @recipe=Recipe.new(recipe_params)
     @recipe.user_id = current_user.id
-    @point=@recipe.user.point
-    @point+10.to_i
     if @recipe.save
+      @recipe.user.point += 20
+      @recipe.user.save
       redirect_to recipes_path
     else
       render :new
