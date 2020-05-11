@@ -37,7 +37,7 @@
             <li>
               <dl class="searchbox">
                 <%= search_form_for @search, url: recipes_path do |f| %>
-                <dt><%= f.text_field :name_cont ,placeholder: '検索するテキストを入力...' %></dt>
+                <dt><%= f.text_field :name_cont ,placeholder: 'レシピ名を検索' %></dt>
                 <dd><%= f.submit ("検索") , class: 'search-btn'%></dd>
                 <% end %>
               </dl>
