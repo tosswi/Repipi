@@ -3,7 +3,7 @@ class Users::UsersController < ApplicationController
   def show
     @user=User.find(params[:id])
     @recipes=User.find(params[:id]).recipes
-        @genres = Genre.all
+    @genres = Genre.all
     @categories = Category.all
     @users=User.all
   end
@@ -26,7 +26,7 @@ class Users::UsersController < ApplicationController
     @user_pointrank = User.all.order(point: "desc").limit(6)
     @user_weekrank=@user_pointrank.where("updated_at >= ?", Time.zone.now.beginning_of_day)
     @q = User.ransack(params[:q])
-    @users = @q.result(distinct: true)
+    @users = @q.result(distinct: true).page(params[:page]).per(3)
   end
   def following
       @user  = User.find(params[:id])

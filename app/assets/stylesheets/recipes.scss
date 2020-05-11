@@ -66,10 +66,17 @@ header .container {
 }
 
 .hum-logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.hum-logo1 {
   width: 100px;
   height: 100px;
   border-radius: 50%;
 }
+
 
 #nav {
   width: 150px;
@@ -78,7 +85,14 @@ header .container {
   top: 0;
   position: fixed;
   background-color: #aaa;
+  text-align: center;
 }
+
+#nav ul {
+  text-align: left;
+}
+
+
 
 .show {
   transform: traslate3d(150px, 0, 0, );

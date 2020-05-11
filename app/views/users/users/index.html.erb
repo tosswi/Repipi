@@ -1,40 +1,51 @@
-<%= search_form_for @q do |f| %>
-<%= f.label :name, "Keyword" %>
-<%= f.search_field :name_cont,placeholder: 'ユーザー検索' %>
-<%= f.submit "検索" %>
-<% end %>
-<table>
-  <thead>
-    <tr>
-      <th>名前</th>
-      <th colspan="1"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @user_pointrank.each do |f| %>
-    <tr>
-      <td><%= link_to f.name,user_path(f) %></td>
-      <td><%= f.rank %></td>
-    </tr>
-    <tr>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-2">
+      <table>
+        <h2>人気ランキング</h2>
+        <thead>
+          <tr>
+            <th>名前</th>
+            <th>会員ステータス</th>
+            <th>ポイント数</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @user_pointrank.each do |user| %>
+          <tr>
+            <td><%= link_to user.name,user_path(user) %></td>
+            <td><%= user.rank %></td>
+            <td><%= user.point %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-xs-10">
+      <h2>友達検索</h2>
+      <%= search_form_for @q do |f| %>
+      <%= f.label :name, "Keyword" %>
+      <%= f.search_field :name_cont,placeholder: 'ユーザー検索' %>
+      <%= f.submit "検索" %>
       <% end %>
-  </tbody>
-</table>
-
-<table>
-  <thead>
-    <tr>
-      <th>名前</th>
-      <th colspan="1"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users.each do |f| %>
-    <tr>
-      <td><%= link_to f.name,user_path(f) %></td>
-      <td><%= f.rank %></td>
-    </tr>
-    <tr>
-      <% end %>
-  </tbody>
-</table>
+      <table>
+        <thead>
+          <tr>
+            <th>名前</th>
+            <th colspan="1"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |f| %>
+          <tr>
+            <td><%= link_to f.name,user_path(f) %></td>
+            <td><%= f.rank %></td>
+          </tr>
+          <tr>
+            <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<%= paginate @users %>
