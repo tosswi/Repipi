@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  namespace :admins do
-    get 'recipe_reviews/destroy'
-  end
   get 'rooms/show'
   post '/rate' => 'rater#create', :as => 'rate'
   namespace :users do
