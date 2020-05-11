@@ -14,7 +14,7 @@
         </thead>
         <tbody>
       </table>
-      <% @recipes.each do |recipe|%>
+      <% @search_recipes.each do |recipe|%>
       <tr>
         <%= link_to recipe_path(recipe) do %>
         <td><%= recipe.name %></td>

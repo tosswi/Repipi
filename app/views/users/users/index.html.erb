@@ -1,30 +1,9 @@
-<table>
-  <thead>
-    <tr>
-      <th>名前</th>
-      <th colspan="1"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users.each do |f| %>
-    <tr>
-      <td><%= link_to f.name,user_path(f) %></td>
-      <% if admin_signed_in? %>
-      <td><%= link_to '編集する',edit_user_path(f) %></td>
-      <% end %>
-    </tr>
-    <tr>
-      <% if admin_signed_in? %>
-      <% if user.is_member_status == false %>
-      <span class="text-success">有効会員</span>
-      <% else %>
-      <span class="text-danger">退会済み</span>
-      <% end %>
-      <% end %>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= search_form_for @q do |f| %>
+<%= f.label :name, "Keyword" %>
+<%= f.search_field :name_cont %>
+
+<%= f.submit "検索" %>
+<% end %>
 
 <table>
   <thead>
@@ -37,19 +16,27 @@
     <% @user_pointrank.each do |f| %>
     <tr>
       <td><%= link_to f.name,user_path(f) %></td>
-      <% if admin_signed_in? %>
-      <td><%= link_to '編集する',edit_user_path(f) %></td>
-      <% end %>
+      <td><%= f.rank %></td>
     </tr>
     <tr>
-      <% if admin_signed_in? %>
-      <% if user.is_member_status == false %>
-      <span class="text-success">有効会員</span>
-      <% else %>
-      <span class="text-danger">退会済み</span>
       <% end %>
-      <% end %>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>名前</th>
+      <th colspan="1"></th>
     </tr>
-    <% end %>
+  </thead>
+  <tbody>
+    <% @users.each do |f| %>
+    <tr>
+      <td><%= link_to f.name,user_path(f) %></td>
+      <td><%= f.rank %></td>
+    </tr>
+    <tr>
+      <% end %>
   </tbody>
 </table>

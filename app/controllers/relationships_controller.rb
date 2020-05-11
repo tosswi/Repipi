@@ -10,11 +10,11 @@ def unfollow
 end
 def index
 end
-
   def create
     @user = User.find(params[:follow_id])
     following = current_user.follow(@user)
     if following.save
+      @user.point +=  
       @user.create_notification_follow!(current_user)
       flash[:success] = 'ユーザーをフォローしました'
       redirect_to users_path

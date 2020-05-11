@@ -34,8 +34,18 @@ class RecipesController < ApplicationController
     @genre=Genre.find(params[:genre_id])
     @recipes = @genre.recipes
   end
-    # @rank_recipes = Recipe.find(Recipe.group(:).order('count() desc').limit(3).pluck(:id))
   end
+
+  def self.search(search)
+    if search # Controllerから渡されたパラメータが!= nilの場合は、titleカラムを部分一致検索
+      Recipe.where(['name LIKE ?', "%#{search}%"])
+    else
+      Recipe.all #全て表示。
+    end
+  end
+
+
+
   def upload_file
     recipe = Recipe.find_by_id(params[:id])
     @recipe_images = recipe_images.create(recipe_params)

@@ -7,9 +7,15 @@ class Users::UsersController < ApplicationController
     @categories = Category.all
     @users=User.all
   end
+
   def edit
     @user=User.find(params[:id])
   end
+
+
+
+
+
   def update
     @user=User.find(params[:id])
     if @user.update(user_params)
@@ -19,10 +25,12 @@ class Users::UsersController < ApplicationController
     end
   end
   def index
-    @users=User.all
-        @genres = Genre.all
+    @genres = Genre.all
     @categories = Category.all
-    @user_pointrank=User.find(User.group(:point).order('count(point) desc').limit(6).pluck(:id))
+    @user_pointrank = User.all.order(point: "desc").limit(6)
+    @user_weekrank=@user_pointrank.where("updated_at >= ?", Time.zone.now.beginning_of_day)
+    @q = User.ransack(params[:q])
+    @users = @q.result(distinct: true)
   end
   def following
       @user  = User.find(params[:id])

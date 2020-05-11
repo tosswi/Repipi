@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_09_215323) do
+ActiveRecord::Schema.define(version: 2020_05_09_194546) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -91,15 +91,6 @@ ActiveRecord::Schema.define(version: 2020_05_09_215323) do
     t.index ["rateable_type", "rateable_id"], name: "index_overall_averages_on_rateable_type_and_rateable_id"
   end
 
-  create_table "points", force: :cascade do |t|
-    t.integer "point"
-    t.integer "reason"
-    t.integer "user_id"
-    t.integer "recipe_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "rates", force: :cascade do |t|
     t.integer "rater_id"
     t.string "rateable_type"
@@ -151,13 +142,6 @@ ActiveRecord::Schema.define(version: 2020_05_09_215323) do
     t.integer "user_id"
     t.integer "category_id"
     t.boolean "is_recipe_status", default: false, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "refrigerators", force: :cascade do |t|
-    t.string "name"
-    t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
