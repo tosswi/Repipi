@@ -26,6 +26,9 @@ end
   namespace :admins do
     get '/' => 'admins#top'
     resources :users,only: [:show,:index,:edit,:update]
+    resources :recipes,only: [:show,:destroy] do
+    resource :recipe_reviews,only: [:destroy]
+    end
     resources :genres,only: [:index,:create,:edit,:update]
     resources :categories,only: [:index,:create,:edit,:destroy,:update]
   end

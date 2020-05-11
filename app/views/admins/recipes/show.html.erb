@@ -1,0 +1,56 @@
+<h2>ユーザー 詳細画面</h2>!
+<div class="container">
+    <div class="row">
+        <div class="col-xs-2">
+            <table class="table table-borderless">
+                <tr>
+                    <th>レシピ画像</th>
+                    <td>
+                        <% @recipe_images.each do |f|%>
+                        <div class="recipe-image-show">
+                            <%= image_tag f.recipe_image.url if f.recipe_image %>
+                        </div>
+                        <% end %>
+                    </td>
+                <tr>
+                    <th>レシピ名</th>
+                    <td><%= @recipe.name %></td>
+                </tr>
+                <tr>
+                    <th>人数分</th>
+                    <td><%= @recipe.human %></td>
+                </tr>
+                <tr>
+                    <th>材料</th>
+                    <td><%= @recipe.material %></td>
+                </tr>
+                <tr>
+                    <th>料理手順</th>
+                    <td><%= @recipe.content %></td>
+                </tr>
+            </table>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>コメント</th>
+                    <th>評価</th>
+                    <th colspan="1"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @recipe_reviews.each do |review| %>
+                <tr>
+                    <td><%= review.recipe_comment %></td>
+                    <td><%= link_to 'Destroy', admins_recipe_recipe_reviews_path(review), class: 'btn-sm btn-danger', method: :delete %>
+                    </td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+</div>
+<%= @recipe.bookmarks.count %>
+<%= link_to "Destroy", recipe_path(@recipe.id), method: :delete , class: "btn btn-danger" %>
