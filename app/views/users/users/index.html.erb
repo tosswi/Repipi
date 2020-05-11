@@ -1,10 +1,8 @@
 <%= search_form_for @q do |f| %>
 <%= f.label :name, "Keyword" %>
-<%= f.search_field :name_cont %>
-
+<%= f.search_field :name_cont,placeholder: 'ユーザー検索' %>
 <%= f.submit "検索" %>
 <% end %>
-
 <table>
   <thead>
     <tr>
