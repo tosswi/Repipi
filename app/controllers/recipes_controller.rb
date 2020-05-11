@@ -22,7 +22,7 @@ class RecipesController < ApplicationController
   end
   def  index
     # @recipes=Recipe.all.includes(:user)
-    @recipes=Recipe.all
+    @recipes_all=Recipe.all
     @recipe_images=RecipeImage.all
     @categories=Category.all
     @genres=Genre.all

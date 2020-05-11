@@ -9,17 +9,15 @@
         <thead>
           <tr>
             <th>レシピ名</th>
-            <th>詳細を見る</th>
+            <th>投稿者</th>
           </tr>
         </thead>
         <tbody>
           <% @recipes.each do |recipe| %>
           <tr>
-            <td><%= recipe.name %></td>
+            <td><%= link_to recipe.name,recipe_path(recipe) %></td>
+            <td><%= link_to recipe.user.name,user_path(recipe) %></td>
           </tr>
-          <th>
-          <td><%= link_to recipe.name,recipe_path(recipe) %></td>
-          </th>
           <% end %>
         </tbody>
       </table>

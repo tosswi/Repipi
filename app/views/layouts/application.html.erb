@@ -18,10 +18,11 @@
       <nav class="navbar navbar-light">
         <div class="navbar-expand-lg navbar-collapse">
           <ul class="navbar-nav">
-            <li><%= link_to ' カテゴリー一覧', admins_categories_path %></li>
-            <li><%= link_to ' 会員一覧', admins_users_path %></li>
-            <li><%= link_to ' ジャンル', admins_genres_path %></li>
-            <li><a rel="nofollow" data-method="delete" href="/admins/sign_out">ログアウト</a></li>
+            <li class="fab fa-linode"><%= link_to ' カテゴリー登録', admins_categories_path %></li>
+            <li class="fas fa-users"><%= link_to ' 会員一覧', admins_users_path %></li>
+            <li class="far fa-dot-circle"><%= link_to ' ジャンル登録', admins_genres_path %></li>
+            <li class="fas fa-sign-out-alt"><a rel=" nofollow" data-method="delete" href="/admins/sign_out">ログアウト</a>
+            </li>
           </ul>
         </div>
       </nav>
@@ -31,9 +32,14 @@
       <nav class="navbar navbar-light">
         <div class="navbar-expand-lg navbar-collapse">
           <ul class="navbar-nav">
-            <li class="nav-item"><%= link_to 'トップ', root_path, class: "btn btn-default" %></li>
-            <li class="nav-item"><%= link_to 'マイページ', user_path(current_user), class: "btn btn-default" %></li>
-            <li class="nav-item"><%= link_to ' 通知一覧', notifications_path, class: "btn btn-default" %></li>
+            <li><%= image_tag 'logo.png', class:'hum-logo' %></li>
+            <li class="fas fa-desktop"><%= link_to 'トップ', root_path, class: "btn btn-default" %></li>
+            <li class="fas fa-user-circle"><%= link_to 'マイページ', user_path(current_user), class: "btn btn-default" %>
+            </li>
+            <li class="far fa-bell"><%= link_to ' 通知一覧', notifications_path, class: "btn btn-default" %></li>
+            <li class="fas fa-cookie-bite"><%= link_to ' レシピ一覧', recipes_path, class: "btn btn-default" %></li>
+            <li class="fas fa-sms"><%= link_to ' チャットルーム一覧', rooms_path, class: "btn btn-default" %></li>
+
             <li>
               <dl class="searchbox">
                 <%= search_form_for @search, url: recipes_path do |f| %>
@@ -55,7 +61,7 @@
         <div class="navbar-expand-lg navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><%= link_to'新規登録',new_user_registration_path, class:"btn btn-default" %></li>
-            <li><a href="/users/sign_in" , class="btn btn-default">ログイン</a></li>
+            <li class="fas fa-sign-in-alt"><a href="/users/sign_in" , class="btn btn-default">ログイン</a></li>
           </ul>
         </div>
       </nav>
@@ -69,12 +75,12 @@
     </div>
   </footer>
   <nav id="nav">
-    <%= image_tag 'logo.png', class:'hum-logo' %>
+    <%= image_tag 'logo.png', class:'hum-logo1' %>
     <ul>
-      <li class="nav-item"><%= link_to 'ブックマーク', bookmarks_recipes_path, class: "btn btn-default" %></li>
-      <li class="nav-item"><%= link_to 'レシピ投稿', new_recipe_path, class: "btn btn-default" %></li>
-      <li class="nav-item"><%= link_to 'ユーザー一覧', users_path, class: "btn btn-default" %></li>
-      <li class="nav-item"><a rel="nofollow" data-method="delete" href="/users/sign_out" ,
+      <li class="fas fa-bookmark"><%= link_to 'ブックマーク', bookmarks_recipes_path, class: "btn btn-default" %></li>
+      <li class="fas fa-cookie"><%= link_to 'レシピ投稿', new_recipe_path, class: "btn btn-default" %></li>
+      <li class="fas fa-users"><%= link_to 'ユーザー一覧', users_path, class: "btn btn-default" %></li>
+      <li class="fas fa-sign-out-alt"><a rel="nofollow" data-method="delete" href="/users/sign_out" ,
           class="btn btn-default">ログアウト</a></li>
     </ul>
     </div>
