@@ -2,7 +2,7 @@ class RecipesController < ApplicationController
   before_action :set_genres, only: [:index, :new, :edit, :create,:update]
   before_action :set_categories, only: [:index, :new, :edit, :create,:update]
   def top
-   
+    @recipe=Recipe.last(2)
   end
 
   def new
@@ -40,9 +40,10 @@ class RecipesController < ApplicationController
     if search # Controllerから渡されたパラメータが!= nilの場合は、titleカラムを部分一致検索
       Recipe.where(['name LIKE ?', "%#{search}%"])
     else
-      Recipe.all #全て表示。
+      Recipe.all 
     end
   end
+  
 
 
 
@@ -54,11 +55,15 @@ class RecipesController < ApplicationController
   def create
     @recipe=Recipe.new(recipe_params)
     @recipe.user_id = current_user.id
+    @genres = Genre.all
+    @categories = Category.all
     if @recipe.save
       @recipe.user.point += 20
       @recipe.user.save
       redirect_to recipes_path
     else
+      @genres = Genre.all
+      @categories = Category.all
       render :new
     end
   end

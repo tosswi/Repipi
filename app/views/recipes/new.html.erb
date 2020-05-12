@@ -1,16 +1,18 @@
-<%= form_for (@recipe) do |f| %>
-<% if @recipe.errors.any? %>
-<%= @recipe.errors.count %>件のerrorが発生しました
-<% @recipe.errors.full_messages.each do |message| %>
-<%= message %>
-<% end %>
-<% end %>
 <!-- recipe[image][] -->
 <div class="container">
   <div class="row">
-    <div class="col-xs-4">
+    <div class="col-xs-2">
       <%= render 'recipes/search', genre: @genres,category: @categories %>
-      <div class="sell__block__form">
+      <%= form_for (@recipe) do |f| %>
+      <% if @recipe.errors.any? %>
+      <%= @recipe.errors.count %>件のerrorが発生しました
+      <% @recipe.errors.full_messages.each do |message| %>
+      <%= message %>
+      <% end %>
+      <% end %>
+    </div>
+    <div class="col-xs-3">
+      < class="sell__block__form">
         <div class="sell__block__form__upload">
           <h3 class="sell__block__form__upload__head">
             出品画像<span class=".require">必須</span>
@@ -37,30 +39,27 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="field row">
-        <%= f.label :レシピ名 %>
-        <%= f.text_field :name,:placeholder => "チャーハン" %>
-      </div>
-      <div class="field row">
-        <%= f.label :材料 %>
-        <%= f.text_area :material ,:placeholder => "卵：2個、ネギ一本、オイスターソース：大さじ1" %>
-      </div>
-      <div class="field row">
-        <%= f.label :human %>
-        <%= f.select :human ,Recipe.humen.keys.to_a, {}%>
-      </div>
-      <td><%= f.collection_select :genre_id, @genres, :id, :name %></td>
-      <td><%= f.collection_select :category_id, @categories, :id, :name %></td>
-    </div>
-    <div class="col-xs-8">
-      <div class="field row">
-        <%= f.label :content %>
-        <%= f.text_area :content,:placeholder => "作り方", :size=>"60x10" %>
-      </div>
-      <div class="actions row">
-        <%= f.submit class: "btn btn-primary col-xs-12" %>
-      </div>
+        <div class="field row">
+          <%= f.label :レシピ名 %>
+          <%= f.text_field :name,:placeholder => "チャーハン" %>
+        </div>
+        <div class="field row">
+          <%= f.label :材料 %>
+          <%= f.text_area :material ,:placeholder => "卵：2個、ネギ一本、オイスターソース：大さじ1" %>
+        </div>
+        <div class="field row">
+          <%= f.label :human %>
+          <%= f.select :human ,Recipe.humen.keys.to_a, {}%>
+        </div>
+        <td><%= f.collection_select :genre_id, @genres, :id, :name %></td>
+        <td><%= f.collection_select :category_id, @categories, :id, :name %></td>
+        <div class="field row">
+          <%= f.label :content %>
+          <%= f.text_area :content,:placeholder => "作り方", :size=>"60x10" %>
+        </div>
+        <div class="actions row">
+          <%= f.submit class: "btn btn-primary col-xs-12" %>
+        </div>
     </div>
   </div>
   <% end %>

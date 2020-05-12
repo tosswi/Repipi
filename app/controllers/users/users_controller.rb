@@ -1,8 +1,9 @@
 class Users::UsersController < ApplicationController
+  before_action :authenticate_user!
   before_action :allergy_string, only: [:create, :update]
   def show
     @user=User.find(params[:id])
-    @recipes=User.find(params[:id]).recipes
+    @recipes=User.find(params[:id]).recipes.order(id: "DESC")
     @genres = Genre.all
     @categories = Category.all
     @users=User.all

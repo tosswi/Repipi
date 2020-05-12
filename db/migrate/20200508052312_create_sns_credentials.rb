@@ -5,6 +5,7 @@ class CreateSnsCredentials < ActiveRecord::Migration[5.2]
       t.string :uid
       t.string :name
       t.string :image
+      t.integer :user_id
 
       t.timestamps
     end

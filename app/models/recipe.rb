@@ -17,12 +17,15 @@ class Recipe < ApplicationRecord
   validates :content, presence: true
   validates :recipe_images, presence: true
 
+
+
+
   def create_notification_recipe_review(current_user, recipe_review_id)
-     temp_ids = RecipeReview.select(:user_id).where(recipe_id: id).where.not(user_id: current_user.id).distinct
-     temp_ids.each do |temp_id|
-       save_notification_recipe_review!(current_user, recipe_review_id, temp_id['user_id'])
-     end
-     save_notification_recipe_review!(current_user, recipe_review_id, user_id) if temp_ids.blank?
+    temp_ids = RecipeReview.select(:user_id).where(recipe_id: id).where.not(user_id: current_user.id).distinct
+    temp_ids.each do |temp_id|
+      save_notification_recipe_review!(current_user, recipe_review_id, temp_id['user_id'])
+    end
+    save_notification_recipe_review!(current_user, recipe_review_id, user_id) if temp_ids.blank?
   end
   def save_notification_recipe_review!(current_user, recipe_review_id, visited_id)
     notification = current_user.active_notifications.new(

@@ -16,3 +16,28 @@
  */
 @import "bootstrap";
 @import "*";
+
+
+.form-wrapper {
+    background: #fafafa;
+    margin: 3em auto;
+    padding: 0 1em;
+    max-width: 370px;
+    text-align: center;
+
+    h2 {
+        text-align: center;
+        padding: 1em 0;
+    }
+}
+
+.form-item {
+    margin-bottom: 0.75em;
+    width: 100%;
+
+
+}
+
+.field {
+    margin: 0 auto;
+}

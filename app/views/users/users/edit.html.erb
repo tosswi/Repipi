@@ -1,22 +1,16 @@
-<%= form_for @user ,url:user_path(@user.id) do |f| %>
-
-<%= f.label :image, "画像選択", class: "image_input_btn btn-primary" %>
-<%= f.attachment_field :image, class: "image_form" %>
-
-<td>
-    <%= f.label :name %>
-    <%= f.text_area :name %>
-</td>
-<td>
-    <%= f.label :nickname %>
-    <%= f.text_area :nickname %>
-</td>
-
-<td>
-    <%= f.label :phone_number %>
-    <%= f.text_area :phone_number %>
-</td>
-<%= f.submit %>
-<% end %>
-
-<td><%= link_to "退会する",  users_confirm_path, class: "btn btn-danger" %></td>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-2">
+            <%= form_for @user ,url:user_path(@user.id) do |f| %>
+            <%= f.label :image, "プロフィール画像を選択"%>
+            <%= f.attachment_field :image, class: "image_form" %><br>
+            <td>
+                <%= f.label :nickname %>
+                <%= f.text_field :nickname %>
+            </td>
+            <%= f.submit %>
+            <% end %>
+            <td><%= link_to "退会する",  users_confirm_path, class: "btn btn-danger" %></td>
+        </div>
+    </div>
+</div>

@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-2">
-      <%= render 'search', genre: @genres,category: @categories %>
+      <%= render 'recipes/search', genre: @genres,category: @categories %>
     </div>
     <div class="col-xs-10">
       <table class="table table-borderless">
@@ -58,6 +58,12 @@
       </table>
     </div>
     <%= form_for @recipe_review,url:recipe_recipe_reviews_path(@recipe) do |f|%>
+    <% if @recipe_review.errors.any? %>
+    <%= @recipe_review.errors.count %>件のerrorが発生しました
+    <% @recipe_review.errors.full_messages.each do |message| %>
+    <%= message %>
+    <% end %>
+    <% end %>
     <%= f.label :recipe_comment %>
     <%= f.text_field :recipe_comment %>
     <%= f.submit '投稿する' %>
