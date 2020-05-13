@@ -1,64 +1,66 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-2">
-      <table class="table table-borderless">
-        <h2>人気ランキング</h2>
-        <thead>
-          <tr>
-            <th>名前</th>
-            <th>会員ステータス</th>
-            <th>ポイント数</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @user_pointrank.each do |user| %>
-          <tr>
-            <td><%= link_to user.name,user_path(user) %></td>
-            <td><%= user.rank %></td>
-            <td><%= user.point %></td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-    <div class="col-xs-3">
-      <h2>友達検索</h2>
-      <%= search_form_for @q do |f| %>
-      <%= f.label :name, "Keyword" %>
-      <%= f.search_field :name_cont,placeholder: 'ユーザー検索' %>
-      <%= f.submit "検索" %>
-      <% end %>
-      <table>
-        <thead class="table table-borderless">
-          <tr>
-            <th>名前</th>
-            <th colspan="1"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @users.each do |f| %>
-          <tr>
-            <td><%= link_to f.name,user_path(f) %></td>
-            <td><%= f.rank %></td>
-          </tr>
-          <tr>
+<div class="user_index">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-2">
+        <table class="table table-borderless">
+          <h2>人気ランキング</h2>
+          <thead>
+            <tr>
+              <th>名前</th>
+              <th>会員ステータス</th>
+              <th>ポイント数</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @user_pointrank.first(10).each do |user| %>
+            <tr>
+              <td><%= link_to user.name,user_path(user) %></td>
+              <td><%= user.rank %></td>
+              <td><%= user.point %></td>
+            </tr>
             <% end %>
-        </tbody>
-      </table>
-    </div>
-    <div class="col-xs-3">
-      <h3>会員詳細</h3>
-      <p>レギュラー会員：0pt~29pt</p>
-      <p>シルバー会員：30pt~99pt</p>
-      <p>ゴールド会員：100pt~499pt</p>
-      <p>プラチナ会員：500pt~999pt</p>
-      <p>ダイヤモンド会員：1000pt~9999pt</p>
-    </div>
-    <div class="col-xs-3">
-      <h3>ポイント詳細</h3>
-      <p>レシピ投稿：10pt</p>
-      <p>ブックマーク：5pt</p>
-      <p>フォロー：3pt</p>
+          </tbody>
+        </table>
+
+        <h3>会員詳細</h3>
+        <p>レギュラー会員：0pt~29pt</p>
+        <p>シルバー会員：30pt~99pt</p>
+        <p>ゴールド会員：100pt~499pt</p>
+        <p>プラチナ会員：500pt~999pt</p>
+        <p>ダイヤモンド会員：1000pt~9999pt</p>
+
+        <h3>ポイント詳細</h3>
+        <p>レシピ投稿：10pt</p>
+        <p>ブックマーク：5pt</p>
+        <p>フォロー：3pt</p>
+
+      </div>
+      <div class="col-xs-10">
+        <h2>友達検索</h2>
+        <%= search_form_for @q do |f| %>
+        <%= f.label :name, "Keyword" %>
+        <%= f.search_field :name_cont,placeholder: 'ユーザー検索' %>
+        <%= f.submit "検索" %>
+        <% end %>
+        <table>
+          <thead class="table table-borderless">
+            <tr>
+              <th>名前</th>
+              <th colspan="1"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @users.each do |f| %>
+            <tr>
+              <td><%= link_to f.name,user_path(f) %></td>
+              <td><%= f.rank %></td>
+            </tr>
+            <tr>
+              <% end %>
+          </tbody>
+        </table>
+      </div>
+
     </div>
   </div>
 </div>
