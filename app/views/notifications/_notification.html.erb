@@ -3,9 +3,10 @@
 
 
 <%= link_to user_path(visitor_user) do %>
-<%=image_tag user_url(visitor_user).to_s, class: "icon_mini" %>
-<% end %>
-<strong><%= visitor_user.name %>さんが</strong>
+<strong>
+  <%= visitor_user.name %>
+  <% end %>さんが</strong>
+
 
 <% case notification.action %>
 <% when 'follow' then %>
@@ -19,17 +20,18 @@
 <% else %>
 
 <%= link_to recipe_path(notification.recipe) do %>
-<strong><%=notification.recipe.user.name%> さんの投稿</strong>
+<strong><%=notification.recipe.user.name%>
+  さんの投稿 <% end %> </strong>
 にコメントしました。<br>
 
 <p class="text-muted.mb-0">
   <%= RecipeReview.find_by(id: notification.recipe_review_id)&.recipe_review%>
 </p>
-<% end %>
+
 <% end %>
 
 
 <div class="small.text-muted.text-right">
-  <%= time_ago_in_words(notification.created_at).upcase %>
+  <%= notification.created_at.strftime('%Y年%m月%d日 %H時%M分に').upcase %>
 </div>
 <% end %>

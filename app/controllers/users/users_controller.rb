@@ -3,7 +3,7 @@ class Users::UsersController < ApplicationController
   before_action :allergy_string, only: [:create, :update]
   def show
     @user=User.find(params[:id])
-    @recipes=User.find(params[:id]).recipes.order(id: "DESC")
+    @recipes=User.find(params[:id]).recipes.order(id: "DESC").page(params[:page]).per(4)
     @genres = Genre.all
     @categories = Category.all
     @users=User.all
@@ -11,6 +11,8 @@ class Users::UsersController < ApplicationController
 
   def edit
     @user=User.find(params[:id])
+    @genres = Genre.all
+    @categories = Category.all
   end
 
   def update

@@ -44,9 +44,6 @@ class RecipesController < ApplicationController
     end
   end
   
-
-
-
   def upload_file
     recipe = Recipe.find_by_id(params[:id])
     @recipe_images = recipe_images.create(recipe_params)
@@ -62,8 +59,6 @@ class RecipesController < ApplicationController
       @recipe.user.save
       redirect_to recipes_path
     else
-      @genres = Genre.all
-      @categories = Category.all
       render :new
     end
   end

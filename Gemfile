@@ -76,8 +76,9 @@ gem 'carrierwave'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
-gem 'dotenv-rails'
 gem 'mini_magick'
 gem 'bxslider-rails'
 gem 'dotenv-rails'
-
+group :production do
+  gem 'mysql2'
+end

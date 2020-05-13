@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-2">
-      <table>
+      <table class="table table-borderless">
         <h2>人気ランキング</h2>
         <thead>
           <tr>
@@ -21,7 +21,7 @@
         </tbody>
       </table>
     </div>
-    <div class="col-xs-10">
+    <div class="col-xs-3">
       <h2>友達検索</h2>
       <%= search_form_for @q do |f| %>
       <%= f.label :name, "Keyword" %>
@@ -29,7 +29,7 @@
       <%= f.submit "検索" %>
       <% end %>
       <table>
-        <thead>
+        <thead class="table table-borderless">
           <tr>
             <th>名前</th>
             <th colspan="1"></th>
@@ -45,6 +45,20 @@
             <% end %>
         </tbody>
       </table>
+    </div>
+    <div class="col-xs-3">
+      <h3>会員詳細</h3>
+      <p>レギュラー会員：0pt~29pt</p>
+      <p>シルバー会員：30pt~99pt</p>
+      <p>ゴールド会員：100pt~499pt</p>
+      <p>プラチナ会員：500pt~999pt</p>
+      <p>ダイヤモンド会員：1000pt~9999pt</p>
+    </div>
+    <div class="col-xs-3">
+      <h3>ポイント詳細</h3>
+      <p>レシピ投稿：10pt</p>
+      <p>ブックマーク：5pt</p>
+      <p>フォロー：3pt</p>
     </div>
   </div>
 </div>

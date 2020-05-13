@@ -12,7 +12,17 @@
       <th>性別</th>
       <td><%= @user.sex %></td><br>
       <% if @user.user_rank_update(@user) %>
-      <%= @user.rank  %>
+      <%= @user.rank  %><br>
+      <% case @user.rank %>
+      <% when 'レギュラー会員' %>
+      <%= "シルバー会員まで" %><%= 30 - @user.point  %> pt<br>
+      <% when 'シルバー会員' %>
+      <%= "ゴールド会員まで" %><%= 99 - @user.point  %> pt<br>
+      <% when 'ゴールド会員' %>
+      <%= "プラチナ会員まで"%><%= 1000 - @user.point  %>pt<br>
+      <% when 'プラチナ会員' %>
+      <%= "ダイヤモンド会員まで"%><%= 2000 - @user.point  %>pt<br>
+      <% end %>
       <% end %>
       <% unless current_user == @user %>
       <% if current_user.following?(@user) %>
@@ -37,32 +47,37 @@
           follower<%= link_to @user.followers.count,user_followerindex_path(@user) %>
         </td><br>
       </tr>
-      <%= link_to "パスワードを変更する", edit_user_password_path(current_user) %><br>
       <% if @user ==current_user %>
+      <%= link_to "パスワードを変更する", edit_user_password_path(current_user) %><br>
       <%= link_to "プロフィールを編集する",edit_user_path(@user.id) %><br>
       <% end %>
     </div>
     <div class="col-xs-5">
       <p><%= @user.nickname %>が投稿したメニュー</p>
-      <table class="table table-borderless">
-        <thead>
-          <tr>
-            <th>レシピ名</th>
-            <th>画像</th>
-            <th>投稿日時</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @recipes.each do |recipe| %>
-          <tr>
-            <td class="recipe_td"><%= link_to recipe.name,recipe_path(recipe) %></td>
-            <td class="recipe_td">
-              <%= image_tag recipe.recipe_images[0].recipe_image.to_s, class:"recipe_user_showimage" %></td>
-            <td class="recipe_td"><%= recipe.created_at.to_s(:datetime_jp) %></td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
+      <div style="display:table; width:100%;">
+        <table class="table-hover">
+          <thead>
+            <tr>
+              <th>レシピ名</th>
+              <th>画像</th>
+              <th>材料</th>
+              <th>投稿日時</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @recipes.each do |recipe| %>
+            <tr>
+              <td><%= link_to recipe.name,recipe_path(recipe) %></td>
+              <td>
+                <%= image_tag recipe.recipe_images[0].recipe_image.to_s, class:"recipe_user_showimage" %></td>
+              <td style="display:table-cell; width:200px" ;><%= recipe.material%></td>
+              <td style="display:table-cell; width:200px"><%= recipe.created_at.strftime('%Y年%m月%d日') %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <%= paginate @recipes %>
     </div>
   </div>
 </div>
