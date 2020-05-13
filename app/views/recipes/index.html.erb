@@ -5,35 +5,50 @@
     <div class="col-xs-2">
       <%= render 'recipes/search', genre: @genres,category: @categories %>
     </div>
-    <th>レシピ名</th>
-    <th>画像</th>
-    <% @search_recipes.each do |recipe|%>
-    <%= link_to recipe_path(recipe) do %>
-    <%= image_tag recipe.recipe_images[0].recipe_image.to_s, class:"recipe_showimage" %><br>
-    <p><%= recipe.name %></p>
-    <% end %>
-    </tr>
-    <% end %>
-    </tbody>
-    </table>
-  </div>
-  </table>
-</div>
-
-<ul class="bxslider">
-  <% @recipe_images.each do |recipe_image| %>
-  <li>
-    <%= link_to recipe_path(recipe_image) do %>
-    <% if recipe_image.recipe_image? %>
-    <div class="recipe_showimage">
-      <%= image_tag recipe_image.recipe_image.to_s, class:"recipe_showimage" %>
+    <div class="col-xs-10">
+      <div class="table-responsive">
+        <div class="flex_test-box">
+          <% @search_recipes.each do |recipe|%>
+          <%= link_to recipe_path(recipe) do %>
+          <%= image_tag recipe.recipe_images[0].recipe_image.to_s, class:"recipe_showimage" %><br>
+          <p><%= recipe.name %></p>
+          <% end %>
+          </tr>
+          <% end %>
+        </div>
+      </div>
+      <div class='p-top__paginate'>
+        <%= paginate @search_recipes %>
+      </div>
     </div>
-    <% else %>
-    <%= image_tag 'no_image.jpg' %>
-    <% end %>
-    <% end %>
-  </li>
-  <% end %>
-</ul>
 
-<%= paginate @search_recipes %>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+
+      <p>aaaaaaaaaaaaaaaaa</p>
+    </div>
+    <div class="col-xs-10">
+      <div class="table-responsive">
+        <div class="flex_test-box">
+          <%# <ul class="bxslider"> %>
+          <% @recipe_images.each do |recipe_image| %>
+          <li>
+            <%= link_to recipe_path(recipe_image) do %>
+            <% if recipe_image.recipe_image? %>
+            <div class="recipe_showimage">
+              <%= image_tag recipe_image.recipe_image.to_s, class:"recipe_showimage" %>
+            </div>
+            <% else %>
+            <%= image_tag 'no_image.jpg' %>
+            <% end %>
+            <% end %>
+          </li>
+          <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

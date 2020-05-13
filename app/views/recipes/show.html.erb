@@ -36,15 +36,12 @@
           <td><%= @recipe.human %></td>
         </tr>
         レビュー : <%= rating_for @recipe, 'recipe', disable_after_rate: false %>
-
         <%= rating_for @recipe, 'recipe',  disable_after_rate: true, imdb_avg: true %>
         <% if @recipe.bookmark_by?(current_user) %>
-
         <li>
           <%= link_to recipe_bookmarks_path(@recipe), method: :delete do %>
           <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
           <% @recipe.bookmarks %>ブックマークから外す
-
           <% end %>
         </li>
         <% else %>
@@ -93,5 +90,7 @@
 </div>
 </div>
 </div>
-<%= @recipe.bookmarks.count %>
-<%= link_to "Destroy", recipe_path(@recipe.id), method: :delete , class: "btn btn-danger" %>
+<% if @recipe.user == current_user  %>
+<%= link_to "Destroy", recipe_path(@recipe.id), method: :delete , class: "btn btn-danger",data: {confirm: '本当に削除しますか？'} %>
+<%= link_to '編集する',edit_recipe_path(@recipe), class: "btn btn-primary"  %>
+<% end %>

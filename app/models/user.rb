@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :omniauthable
+        :recoverable, :rememberable, :validatable, :omniauthable
   enum sex: { 男性: 0, 女性: 1 }
   attachment :image
   has_many :messages
@@ -27,15 +27,15 @@ class User < ApplicationRecord
   
   def user_rank_update(user)
     case user.point
-    when 0..9
+    when 0..29
       user.rank = "レギュラー会員"
-    when 10..49
+    when 30..99
       user.rank = "シルバー会員"
-    when 49..99
+    when 100..499
       user.rank = "ゴールド会員"
-    when 100..199
+    when 1000..1999
       user.rank = "プラチナ会員"
-    when 200..999
+    when 2000..9999
       user.rank = "ダイアモンド会員"
     end
     user.save
