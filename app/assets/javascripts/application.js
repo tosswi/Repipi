@@ -37,7 +37,9 @@ $(function () {
     //読み込みが完了すると、srcにfileのURLを格納
     fileReader.onloadend = function () {
       var src = fileReader.result
+
       var html = '<img src="${src}" width="114" height="80">'
+
       //image_box__container要素の前にhtmlを差し込む
       $('#image-box__container').before(html);
     }
