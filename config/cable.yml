@@ -10,4 +10,3 @@ production:
 
 production:
   adapter: async
-

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root to: 'recipes#index'
   get 'rooms/show'
   post '/rate' => 'rater#create', :as => 'rate'
   namespace :users do
@@ -6,7 +7,7 @@ Rails.application.routes.draw do
     patch 'hide' => 'users#hide'
     put 'hide' => 'users#hide'
 end
-  root to: 'recipes#top'
+  
   devise_for :users, controllers: {
       sessions: 'users/sessions',
       registrations: 'users/registrations',

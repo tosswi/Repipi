@@ -125,7 +125,7 @@ header ul li {
 
 .main-visual {
   height: 500px;
-  background-image: url(main-visual-image.jpg);
+  background-image: image-url("main-visual-image.jpg");
   background-size: cover;
   width: 90%;
   margin: 0 auto;
@@ -181,7 +181,7 @@ header ul li {
   height: 300px;
   width: 300px;
   margin: 2px 2px;
-  background-image: url(/095400.png);
+  background-image: image-url("095400.png");
   flex-wrap: wrap;
   margin-left: 110px;
   border-radius: 50%;
