@@ -48,7 +48,7 @@
         </td><br>
       </tr>
       <% if @user ==current_user %>
-      <%= link_to "パスワードを変更する", edit_user_password_path(current_user) %><br>
+      <%= link_to "パスワードを変更する", edit_user_password_path %><br>
       <%= link_to "プロフィールを編集する",edit_user_path(@user.id) %><br>
       <% end %>
     </div>

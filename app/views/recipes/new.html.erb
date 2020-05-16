@@ -1,11 +1,10 @@
-<!-- recipe[image][] -->
 <div class="container">
   <div class="row">
     <div class="col-xs-2">
       <%= render 'recipes/search', genre: @genres,category: @categories %>
     </div>
+    <%= form_for (@recipe) do |f| %>
     <div class="col-xs-10">
-      <%= form_for (@recipe) do |f| %>
       <%= render 'layouts/error', model:@recipe %>
       <div class="sell__block__form">
         <div class="sell__block__form__upload">
@@ -46,8 +45,8 @@
           <%= f.label :human %>
           <%= f.select :human ,Recipe.humen.keys.to_a, {}%>
         </div>
-        <td><%= f.collection_select :genre_id, @genres, :id, :name %></td>
-        <td><%= f.collection_select :category_id, @categories, :id, :name %></td>
+        <%= f.collection_select :genre_id, @genres, :id, :name %>
+        <%= f.collection_select :category_id, @categories, :id, :name %>
         <div class="field content">
           <%= f.label :content %>
           <%= f.text_area :content,:placeholder => "作り方", :size=>"30x10"%>
@@ -56,10 +55,8 @@
           <%= f.submit class: "btn btn-primary col-xs-12" %>
         </div>
       </div>
-
     </div>
     <% end %>
+
   </div>
-</div>
-</div>
 </div>
