@@ -2,7 +2,7 @@ class RecipesController < ApplicationController
   before_action :set_genres, only: [:index, :new, :edit, :create,:update]
   before_action :set_categories, only: [:index, :new, :edit, :create,:update]
   def top
-    @recipe=Recipe.last(2)
+    @recipes=Recipe.all
   end
 
   def new

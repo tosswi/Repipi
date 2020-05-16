@@ -16,17 +16,33 @@
 //= require rails-ujs
 //= require bxslider
 //= require activestorage
-//= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
 
-// jQuery(document).ready(function ($) {
-//   $('.slider').bxSlider({
-//     auto: true,
-//     controls: true,
-//     pager: false
-//   });
-// });
+/*
+jQuery(document).ready(function ($) {
+  $('.slider').bxSlider({
+    auto: true,
+    controls: true,
+    pager: false
+  });
+});
+*/
+
+$(document).ready(function () {
+  $('.bxslider').bxSlider({
+    auto: true, // 自動スライド
+    speed: 5000, // スライドするスピード
+    moveSlides: 1, // 移動するスライド数
+    pause: 500, // 自動スライドの待ち時間
+    maxSlides: 5, // 一度に表示させる最大数
+    slideWidth: 250, // 各スライドの幅
+    randomStart: true, // 最初に表示するスライドをランダムに設定
+    pager: false,
+    auto: true,
+    controls: true
+  });
+});
 
 // $(function () {
 //   //querySelectorでfile_fieldを取得

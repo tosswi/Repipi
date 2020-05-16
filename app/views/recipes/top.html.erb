@@ -4,10 +4,9 @@
       <p class="main-visual-name">RePiPi</p>
     </div>
   </div>
-
   <div id="repipi">
     <div class="repipi-content">
-      <div class="recipe-content-name">aaaaaaaaaaaaRePiPiとは？</div>
+      <div class="recipe-content-name">RePiPiとは？</div>
     </div>
     <div class="logo-image-1">
       <%= image_tag 'logo.png', class:'logo' %>
@@ -25,11 +24,15 @@
   </div>
   <div class="new_recipeindex">
     <div class="new_recipe_content">
-      <h3 class="fas fa-cookie">新着レシピ</h3><br>
-      <%= link_to recipe_path(@recipe) do %>
-      <td><%= image_tag Recipe.find(1).recipe_images[0].recipe_image.to_s, class:"recipe_showimage1" %></td>
-      <td><%= image_tag Recipe.find(2).recipe_images[0].recipe_image.to_s, class:"recipe_showimage1" %></td>
-      <% end %>
+      <ul class="bxslider">
+        <% @recipes.each do |recipe| %>
+        <li>
+          <%= link_to recipe_path(recipe) do %>
+          <%= image_tag recipe.recipe_images[0].recipe_image.to_s, class:"recipe_showimage" %>
+          <% end %>
+        </li>
+        <% end %>
+      </ul>
     </div>
   </div>
 </div>

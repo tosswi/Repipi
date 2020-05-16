@@ -9,9 +9,6 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   <script src="https://kit.fontawesome.com/c8c5fed458.js" crossorigin="anonymous"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  <script src="js/jquery.bxslider.min.js"></script>
-  <link href="css/jquery.bxslider.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -31,7 +28,6 @@
       </nav>
     </header>
     <% elsif user_signed_in? %>
-
     <header>
       <li><%= image_tag 'logo.png', class:'hum-logo' %></li>
       <nav class="navbar navbar-light">
