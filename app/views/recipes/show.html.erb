@@ -68,23 +68,19 @@
       <table>
         <thead>
           <tr>
+            <th>名前</th>
             <th>コメント</th>
-            <th>評価</th>
             <th colspan="1"></th>
           </tr>
         </thead>
         <tbody>
           <% @recipe_reviews.each do |review| %>
           <tr>
+            <td><%= review.user.name %></td>
             <td><%= review.recipe_comment %></td>
-            <% if current_user == review.recipe.user %>
-            <td>
-              <%= link_to 'Destroy', recipe_recipe_reviews_path(review), class: 'btn-sm btn-danger', method: :delete %>
-            </td>
-            <% else review.recipe.user %>
+            <% if current_user == review.user %>
             <td>
               <%= link_to 'Edit', edit_recipe_recipe_reviews_path(review), class: 'btn-sm btn-primary' %>
-              <%= link_to 'Destroy', recipe_recipe_reviews_path(review), class: 'btn-sm btn-danger', method: :delete %>
             </td>
             <% end %>
           </tr>

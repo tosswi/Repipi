@@ -28,10 +28,10 @@ class RecipeReviewsController < ApplicationController
   def destroy
     @recipe_review = RecipeReview.find(params[:recipe_id])
     if @recipe_review.user != current_user
-      redirect_to request.referer
+      redirect_to request.referer 
     end
     @recipe_review.destroy
-    redirect_to request.referer
+    redirect_to recipe_path(@recipe_review.recipe,@recipe_review)
   end
   private
   def recipe_review_params

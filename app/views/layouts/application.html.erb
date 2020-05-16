@@ -4,6 +4,7 @@
 <head>
   <title>Repipi</title>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <%= csp_meta_tag %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -30,11 +31,12 @@
       </nav>
     </header>
     <% elsif user_signed_in? %>
+
     <header>
+      <li><%= image_tag 'logo.png', class:'hum-logo' %></li>
       <nav class="navbar navbar-light">
         <div class="navbar-expand-lg navbar-collapse">
           <ul class="navbar-nav">
-            <li><%= image_tag 'logo.png', class:'hum-logo' %></li>
             <li class="fas fa-desktop"><%= link_to 'トップ', root_path, class: "btn btn-default" %></li>
             <li class="fas fa-user-circle"><%= link_to 'マイページ', user_path(current_user), class: "btn btn-default" %>
             </li>
@@ -56,12 +58,13 @@
             <%= message %>
             <% end %>
           </div>
-          <div class="hamburger" id="open_nav">
-            <%= image_tag 'hamburger.png',class:"hamburger-image" %>
-          </div>
+
         </div>
       </nav>
     </header>
+    <div class="hamburger" id="open_nav">
+      <%= image_tag 'hamburger.png',class:"hamburger-image" %>
+    </div>
     <% else %>
     <header class="navbar navbar-fixed-top">
       <nav class="navbar navbar-light">

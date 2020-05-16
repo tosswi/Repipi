@@ -39,12 +39,12 @@
       <% end %>
       <% end %>
       <td>
-        follow<%= link_to @user.followings.count,user_followindex_path(@user) %>
+        follow<%= link_to @user.followings.count,user_followindex_path(@user) %>人
       </td><br>
       </tr>
       <tr>
         <td>
-          follower<%= link_to @user.followers.count,user_followerindex_path(@user) %>
+          follower<%= link_to @user.followers.count,user_followerindex_path(@user) %>人
         </td><br>
       </tr>
       <% if @user ==current_user %>
@@ -71,7 +71,9 @@
               <td>
                 <%= image_tag recipe.recipe_images[0].recipe_image.to_s, class:"recipe_user_showimage" %></td>
               <td style="display:table-cell; width:200px" ;><%= recipe.material%></td>
-              <td style="display:table-cell; width:200px"><%= recipe.created_at.strftime('%Y年%m月%d日') %></td>
+              <div class="search_g_and_c">
+                <td style="display:table-cell; width:200px"><%= recipe.created_at.strftime('%Y年%m月%d日') %></td>
+              </div>
             </tr>
             <% end %>
           </tbody>

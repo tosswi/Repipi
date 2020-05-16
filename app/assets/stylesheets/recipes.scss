@@ -59,6 +59,7 @@ header .container {
   right: 5px;
   width: 50px;
   height: 50px;
+  float: right;
 }
 
 .show {
@@ -69,6 +70,7 @@ header .container {
   width: 80px;
   height: 80px;
   border-radius: 50%;
+  float: left;
 }
 
 .hum-logo1 {
@@ -295,6 +297,7 @@ header ul li {
 }
 
 
+
 .label-content {
   margin-bottom: 10px;
   width: 620px;
@@ -463,4 +466,100 @@ p {
   border: 1px solid #CCCCCC;
   padding: 5px 10px;
   text-align: left;
+}
+
+
+
+
+@media screen and (max-width:425px) {
+  .navbar-expand-lg ul li {
+    float: none;
+  }
+
+  .search_g_and_c {
+    display: none;
+  }
+
+  .main-visual-name {
+    font-size: 40px;
+  }
+
+  .main-visual {
+    height: 200px;
+  }
+
+  .recipe-content-name {
+    text-align: center;
+  }
+
+  .logo {
+    height: 150px;
+    width: 150px;
+  }
+
+  .repipi-content-text {
+    font-size: 10px;
+    line-height: 20px;
+  }
+
+  .repipi-human {
+    height: 120px;
+    display: flex;
+  }
+
+  .logo-image {
+    height: 100px;
+    width: 100px;
+    margin: 2px 2px;
+    flex-wrap: wrap;
+    margin-left: 20px;
+    border-radius: 50%;
+  }
+
+  #repipi {
+    height: 500px;
+  }
+
+  .new_recipeindex {
+    display: flex;
+    height: 350px;
+  }
+
+  .new_recipe_content {
+    width: 100%;
+  }
+
+  .recipe_showimage {
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 30px;
+    margin: 0 auto;
+  }
+
+  .user_index {
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .flex_test-box {
+    width: 90%;
+  }
+
+  .recipe_showimage {
+    width: 90%;
+    height: 300px;
+
+  }
+
+  .recipe_showimage1 {
+    width: 60%;
+    height: 130px;
+
+  }
+
+
+
+
 }

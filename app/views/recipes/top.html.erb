@@ -4,10 +4,7 @@
       <p class="main-visual-name">RePiPi</p>
     </div>
   </div>
-  <div class="setting">
-    <li><%= link_to 'Sign_up', new_user_registration_path(current_user), class: "fas fa-sign-in-alt" %></li>
-    <li><%= link_to 'Sign_in', user_session_path, class: "fas fa-sign-in-alt" %></li>
-  </div>
+
   <div id="repipi">
     <div class="repipi-content">
       <div class="recipe-content-name">RePiPiとは？</div>
@@ -28,16 +25,10 @@
   </div>
   <div class="new_recipeindex">
     <div class="new_recipe_content">
-
-
-      <ul class="bxslider">
-        <li><%= image_tag Recipe.find(1).recipe_images[0].recipe_image.to_s, class:"recipe_showimage" %></li>
-        <li><%= image_tag Recipe.find(2).recipe_images[0].recipe_image.to_s, class:"recipe_showimage" %></li>
-      </ul>
       <h3 class="fas fa-cookie">新着レシピ</h3><br>
       <%= link_to recipe_path(@recipe) do %>
-      <td><%= image_tag Recipe.find(1).recipe_images[0].recipe_image.to_s, class:"recipe_showimage" %></td>
-      <td><%= image_tag Recipe.find(2).recipe_images[0].recipe_image.to_s, class:"recipe_showimage" %></td>
+      <td><%= image_tag Recipe.find(1).recipe_images[0].recipe_image.to_s, class:"recipe_showimage1" %></td>
+      <td><%= image_tag Recipe.find(2).recipe_images[0].recipe_image.to_s, class:"recipe_showimage1" %></td>
       <% end %>
     </div>
   </div>

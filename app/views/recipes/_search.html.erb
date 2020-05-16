@@ -1,28 +1,30 @@
-    <table class="table table-inverse">
-      <thead>
-        <tr>
-          <th>カテゴリーから検索</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @categories.each do |f|%>
-        <tr>
-          <td><%= link_to f.name ,recipes_path(category_id: f.id) %></td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table><br>
-    <table class="table table-inverse">
-      <thead>
-        <tr>
-          <th>ジャンルから検索</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @genres.each do |f|%>
-        <tr>
-          <td><%= link_to f.name ,recipes_path(genre_id: f.id) %></td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <div class="search_g_and_c">
+      <table class="table table-inverse">
+        <thead>
+          <tr>
+            <th>カテゴリーから検索</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @categories.each do |f|%>
+          <tr>
+            <td><%= link_to f.name ,recipes_path(category_id: f.id) %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table><br>
+      <table class="table table-inverse">
+        <thead>
+          <tr>
+            <th>ジャンルから検索</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @genres.each do |f|%>
+          <tr>
+            <td><%= link_to f.name ,recipes_path(genre_id: f.id) %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
