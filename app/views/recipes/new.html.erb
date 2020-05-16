@@ -3,21 +3,16 @@
   <div class="row">
     <div class="col-xs-2">
       <%= render 'recipes/search', genre: @genres,category: @categories %>
-      <%= form_for (@recipe) do |f| %>
-      <% if @recipe.errors.any? %>
-      <%= @recipe.errors.count %>件のerrorが発生しました
-      <% @recipe.errors.full_messages.each do |message| %>
-      <%= message %>
-      <% end %>
-      <% end %>
     </div>
     <div class="col-xs-10">
-      < class="sell__block__form">
+      <%= form_for (@recipe) do |f| %>
+      <%= render 'layouts/error', model:@recipe %>
+      <div class="sell__block__form">
         <div class="sell__block__form__upload">
           <h3 class="sell__block__form__upload__head">
             出品画像<span class=".require">必須</span>
           </h3>
-          <p>aaaaaaa最大5枚までアップロードできます</p>
+          <p>最大5枚までアップロードできます</p>
           <div class="post__drop__box__container">
             <div class="prev-content">
               <div class="label-content">
@@ -60,7 +55,8 @@
         <div class="actions row">
           <%= f.submit class: "btn btn-primary col-xs-12" %>
         </div>
+      </div>
     </div>
+    <% end %>
   </div>
-  <% end %>
 </div>

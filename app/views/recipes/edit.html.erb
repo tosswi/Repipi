@@ -8,16 +8,13 @@
           <input type="file" style="display:none">
         </span>
         <%= f.attachment_field :image, class: "image_form" %>
+
       </label>
-      <% if@recipe.errors.any? %>
-      <%= @recipe.errors.count %>件のerrorが発生しました
-      <% @recipe.errors.full_messages.each do |message| %>
-      <%= message %>
-      <% end %>
-      <% end %>
+
     </div>
     <div class="col-xs-5">
       <table class="table table-borderless">
+        <%= render 'layouts/error', model:@recipe %>
         <tr>
           <th>商品名</th>
           <td><%= f.text_field :name %></td>

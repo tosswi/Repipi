@@ -1,0 +1,11 @@
+      <%= form_with model:@recipe_review,url:recipe_recipe_reviews_path(@recipe_review) do |f|%>
+      <% if @recipe_review.errors.any? %>
+      <%= @recipe_review.errors.count %>件のerrorが発生しました
+      <% @recipe_review.errors.full_messages.each do |message| %>
+      <%= message %>
+      <% end %>
+      <% end %>
+      <%= f.label :recipe_comment %>
+      <%= f.text_field :recipe_comment %>
+      <%= f.submit '投稿する' %>
+      <% end %>

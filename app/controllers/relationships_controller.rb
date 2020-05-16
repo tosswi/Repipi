@@ -18,10 +18,10 @@ class RelationshipsController < ApplicationController
       @user.save 
       @user.create_notification_follow!(current_user)
       flash[:success] = 'ユーザーをフォローしました'
-      redirect_to users_path
+      redirect_to request.referer
     else
       flash.now[:alert] = 'ユーザーのフォローに失敗しました'
-      redirect_to users_path
+      redirect_to request.referer
     end
   end
 
@@ -32,10 +32,10 @@ class RelationshipsController < ApplicationController
       @user.point -= 5
       @user.save 
       flash[:success] = 'ユーザーのフォローを解除しました'
-      redirect_to users_path
+      redirect_to request.referer
     else
-      flash.now[:alert] = 'ユーザーのフォロー解除に失敗しました'
-      redirect_to users_path
+      flash.now[:danger] = 'ユーザーのフォロー解除に失敗しました'
+      redirect_to request.referer
     end
   end
 

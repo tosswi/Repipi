@@ -5,3 +5,7 @@ class Relationship < ApplicationRecord
   validates :user_id, presence: true
   validates :follow_id, presence: true
 end
+
+def following?(other_user)
+  self.followings.include?(other_user)
+end

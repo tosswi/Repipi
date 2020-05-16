@@ -5,20 +5,18 @@ class User < ApplicationRecord
         :recoverable, :rememberable, :validatable, :omniauthable
   enum sex: { 男性: 0, 女性: 1 }
   attachment :image
-  has_many :messages
-  has_many :recipes
-  has_many :recipe_reviews
-  has_many :bookmarks
-  has_many :bookmark_recipes,through: :bookmarks, source: :recipe
+  has_many :messages, dependent: :destroy
+  has_many :recipes, dependent: :destroy
+  has_many :recipe_reviews, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
+  has_many :bookmark_recipes,through: :bookmarks, source: :recipe, dependent: :destroy
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
-  has_many :refrigerator
-  has_many :relationships
-  has_many :followings, through: :relationships, source: :follow
-  has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'follow_id'
-  has_many :followers, through: :reverse_of_relationships, source: :user
+  has_many :relationships, dependent: :destroy
+  has_many :followings, through: :relationships, source: :follow, dependent: :destroy
+  has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'follow_id', dependent: :destroy
+  has_many :followers, through: :reverse_of_relationships, source: :user, dependent: :destroy
   ratyrate_rater
-  has_many :points
   has_many :sns_credentials, dependent: :destroy
 
   validates :sex, presence: true

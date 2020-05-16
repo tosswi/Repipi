@@ -24,6 +24,9 @@ class RecipesController < ApplicationController
     # @recipes=Recipe.all.includes(:user)
     @recipes_all=Recipe.all
     @recipe_images=RecipeImage.all
+    @recipe_bookmark=Recipe.all
+  # User.all.order(point: "desc").limit(6)
+  # @rank_items = OrderItem.find(OrderItem.group(:item_id).order('count(quantity) desc').limit(3).pluck(:id))
     @categories=Category.all
     @genres=Genre.all
     if params[:category_id]
@@ -37,7 +40,7 @@ class RecipesController < ApplicationController
   end
 
   def self.search(search)
-    if search # Controllerから渡されたパラメータが!= nilの場合は、titleカラムを部分一致検索
+    if search
       Recipe.where(['name LIKE ?', "%#{search}%"])
     else
       Recipe.all 
@@ -57,9 +60,11 @@ class RecipesController < ApplicationController
     if @recipe.save
       @recipe.user.point += 20
       @recipe.user.save
-      redirect_to recipes_path
+      flash[:success] = "レシピを投稿しました。"
+      redirect_to recipe_path(@recipe)
     else
-      render :new
+      flash.now[:danger] = "レシピの投稿に失敗しました。"
+      render :new 
     end
   end
   def edit
@@ -68,14 +73,17 @@ class RecipesController < ApplicationController
   def destroy
     @recipe = Recipe.find(params[:id])
     @recipe.destroy
-    redirect_to recipes_path, notice: "successfully delete genre!"
+    flash[:success] = "レシピを削除しました。"
+    redirect_to recipes_path
   end
   def update
     @recipe=Recipe.find(params[:id])
     if @recipe.update(recipe_params)
-      redirect_to recipes_path
+      flash[:success] = "レシピの編集しました。"
+      redirect_to recipe_path(@recipe)
     else
-      render :new
+      flash.now[:danger] = "レシピの編集に失敗しました。"
+      render :edit
     end
   end
   def bookmarks
@@ -84,7 +92,7 @@ class RecipesController < ApplicationController
     @recipes = current_user.bookmark_recipes.includes(:user)
   end
   private
-  def recipe_params
+  def recipe_params #imageはプロフィール画像
     params.require(:recipe).permit(:name,:content,:material,:quantity,:human,:playtime,:image,:genre_id,:user_id,:category_id,:is_recipe_status, recipe_images_attributes: [:recipe_image])
   end
   def set_genres
@@ -93,7 +101,7 @@ class RecipesController < ApplicationController
   def set_categories
     @categories = Category.all
   end
-  def recipe_image_params
+  def recipe_image_params #レシピ画像
     params.require(:recipe_image).permit(:recipe_image)
   end
 end

@@ -24,6 +24,7 @@
   さんの投稿 <% end %> </strong>
 にコメントしました。<br>
 
+<%#link付コメント%>
 <p class="text-muted.mb-0">
   <%= RecipeReview.find_by(id: notification.recipe_review_id)&.recipe_review%>
 </p>

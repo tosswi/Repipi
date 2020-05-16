@@ -1,8 +1,7 @@
 <div class="main-top">
   <div class="main-visual">
     <div class="main-visual-content">
-      <p class="main-visual-name">aaaaaaaRePiPi</p>
-      <p class="main-visual-text">新自炊時代に乗り遅れるな</p>
+      <p class="main-visual-name">RePiPi</p>
     </div>
   </div>
   <div class="setting">
@@ -29,6 +28,12 @@
   </div>
   <div class="new_recipeindex">
     <div class="new_recipe_content">
+
+
+      <ul class="bxslider">
+        <li><%= image_tag Recipe.find(1).recipe_images[0].recipe_image.to_s, class:"recipe_showimage" %></li>
+        <li><%= image_tag Recipe.find(2).recipe_images[0].recipe_image.to_s, class:"recipe_showimage" %></li>
+      </ul>
       <h3 class="fas fa-cookie">新着レシピ</h3><br>
       <%= link_to recipe_path(@recipe) do %>
       <td><%= image_tag Recipe.find(1).recipe_images[0].recipe_image.to_s, class:"recipe_showimage" %></td>
