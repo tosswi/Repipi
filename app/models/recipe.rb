@@ -5,6 +5,8 @@ class Recipe < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :notifications, dependent: :destroy
   has_many :recipe_reviews,dependent: :destroy
+  has_many :materials
+  accepts_nested_attributes_for :materials
   enum human: { 一人分: 0, 二人分: 1 ,三人分: 2, 四人分: 3 }
   belongs_to :user
   belongs_to :genre

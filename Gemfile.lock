@@ -109,6 +109,7 @@ GEM
     chromedriver-helper (2.1.1)
       archive-zip (~> 0.10)
       nokogiri (~> 1.8)
+    cocoon (1.2.14)
     coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -587,6 +588,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   carrierwave
   chromedriver-helper
+  cocoon
   coffee-rails (~> 4.2)
   devise
   dotenv-rails

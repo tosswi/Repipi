@@ -86,6 +86,7 @@ gem 'bxslider-rails'
 gem 'fog'
 gem 'ed25519'
 gem 'bcrypt_pbkdf'
+gem 'cocoon'
 gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
