@@ -7,6 +7,7 @@ class RecipesController < ApplicationController
 
   def new
     @recipe=Recipe.new
+    @recipe.materials.build
     @recipe.recipe_images.build
     @genres = Genre.all
     @categories = Category.all
@@ -93,7 +94,7 @@ class RecipesController < ApplicationController
   end
   private
   def recipe_params #imageはプロフィール画像
-    params.require(:recipe).permit(:name,:content,:material,:quantity,:human,:playtime,:image,:genre_id,:user_id,:category_id,:is_recipe_status, recipe_images_attributes: [:recipe_image])
+    params.require(:recipe).permit(:name,:content,:material,:quantity,:human,:playtime,:image,:genre_id,:user_id,:category_id,:is_recipe_status, recipe_images_attributes: [:recipe_image], materials_attributes: [:id,:name,:quantity])
   end
   def set_genres
     @genres = Genre.all

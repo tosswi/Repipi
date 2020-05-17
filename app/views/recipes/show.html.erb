@@ -31,7 +31,10 @@
         </tr>
         <tr>
           <th>材料</th>
-          <td style="display:table-cell; width:100px; white-space:wrap"><%= @recipe.material %></td>
+          <td><% @recipe.materials.each do |f|%>
+            <%=  f.name %>
+            <%= f.quantity %></td>
+          <% end %>
         </tr>
         レビュー :
         <p><%= rating_for @recipe, 'recipe', disable_after_rate: false %> </p>

@@ -37,19 +37,33 @@
           <%= f.label :レシピ名 %>
           <%= f.text_field :name,:placeholder => "チャーハン" %>
         </div>
-        <div class="field row">
-          <%= f.label :材料 %>
-          <%= f.text_area :material ,:placeholder => "卵：2個、ネギ一本、オイスターソース：大さじ1" %>
-        </div>
+        <table class="table-type-b" , id="detail-association-insertion-point">
+          <%= f.fields_for :materials do | material | %>
+          <%= render 'material_fields', f: material %>
+          <% end %>
+        </table>
+        <div class="tit-group">
+          <p class="tit-group_btn">
+            <%= link_to_add_association '記入欄を追加', f, :materials,
+              class: 'btn-type-b',
+              data: {
+              association_insertion_node: '#detail-association-insertion-point',
+              association_insertion_method: 'append'
+              }
+            %>
+          </p>
+        </div><!-- /tit-group -->
+
+
         <div class="field row">
           <%= f.label :human %>
           <%= f.select :human ,Recipe.humen.keys.to_a, {}%>
         </div>
-        <%= f.collection_select :genre_id, @genres, :id, :name %>
-        <%= f.collection_select :category_id, @categories, :id, :name %>
+        ジャンルを選択<%= f.collection_select :genre_id, @genres, :id, :name %><br>
+        カテゴリーを選択<%= f.collection_select :category_id, @categories, :id, :name %>
         <div class="field content">
           <%= f.label :content %>
-          <%= f.text_area :content,:placeholder => "作り方", :size=>"30x10"%>
+          <%= f.text_area :content,:placeholder => "作り方", :size=>"60x10"%>
         </div>
         <div class="actions row">
           <%= f.submit class: "btn btn-primary col-xs-12" %>

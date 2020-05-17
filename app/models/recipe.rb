@@ -5,7 +5,7 @@ class Recipe < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :notifications, dependent: :destroy
   has_many :recipe_reviews,dependent: :destroy
-  has_many :materials
+  has_many :materials, dependent: :destroy
   accepts_nested_attributes_for :materials
   enum human: { 一人分: 0, 二人分: 1 ,三人分: 2, 四人分: 3 }
   belongs_to :user
@@ -15,7 +15,6 @@ class Recipe < ApplicationRecord
   ratyrate_rateable "recipe"
 
   validates :name, presence: true
-  validates :material, presence: true
   validates :content, presence: true
   validates :recipe_images, presence: true
 
