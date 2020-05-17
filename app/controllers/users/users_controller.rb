@@ -1,6 +1,7 @@
 class Users::UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :allergy_string, only: [:create, :update]
+  before_action :correct_user, only: [:edit, :update]
+
   def show
     @user=User.find(params[:id])
     @recipes=User.find(params[:id]).recipes.order(id: "DESC").page(params[:page]).per(4)
@@ -20,6 +21,8 @@ class Users::UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to user_path(@user.id)
     else
+      @genres=Genre.all
+      @categories=Category.all
       render :edit
     end
   end
@@ -63,5 +66,8 @@ class Users::UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name,:nickname,:sex,:phone_number,:image,allergy:[])
   end
-
+  def correct_user
+      @user = User.find(params[:id])
+      redirect_to(root_url) unless current_user?(@user)
+    end
 end

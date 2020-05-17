@@ -17,6 +17,8 @@ class Recipe < ApplicationRecord
   validates :name, presence: true
   validates :content, presence: true
   validates :recipe_images, presence: true
+  validates :name,  length: { maximum: 30 }
+  validates :name,  length: { maximum: 2000 }
 
 
 

@@ -4,6 +4,7 @@
             <%= render 'recipes/search', genre: @genres,category: @categories %>
         </div>
         <div class="col-xs-10">
+            <%= render 'layouts/error', model:@user %>
             <tr><%= attachment_image_tag @user, :image, size: '100x100',format: "jpeg", fallback: "no_image.jpg" %></tr>
             <%= form_for @user ,url:user_path(@user.id) do |f| %>
             <%= f.label :image, "プロフィール画像を選択"%>

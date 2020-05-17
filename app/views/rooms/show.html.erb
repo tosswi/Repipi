@@ -1,11 +1,13 @@
 <div class="container">
-  <%= link_to "<<チャット一覧に戻る", rooms_path %>
-  <h1><%= "Chat Room #{@room.id}" %></h1>
-  <h4 class="border"><%= "Your Nickname: #{current_user&.nickname}" %></h4>
-  <div id='messages' data-room_id="<%= @room.id %>">
-    <%= render @messages %>
+  <div class="row">
+    <div class="col-xs-2">
+      <%= link_to "<<チャット一覧に戻る", rooms_path %>
+      <h1><%= "Chat Room #{@room.id}" %></h1>
+      <h4 class="border"><%= "Your Nickname: #{current_user&.nickname}" %></h4>
+      <div id='messages' data-room_id="<%= @room.id %>">
+        <%= render @messages %>
+      </div>
+      <%= text_field_tag :content, nil, data: { behavior: 'room_speaker' },placeholder: 'ここに記述' %>
+    </div>
   </div>
-
-  <%= text_field_tag :content, nil, data: { behavior: 'room_speaker' },placeholder: 'ここに記述' %>
-
 </div>

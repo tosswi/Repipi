@@ -19,6 +19,9 @@ class ApplicationController < ActionController::Base
         root_path
       end
     end
+    def current_user?(user)
+      user == current_user
+    end
   protected
   def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up, keys: [:name,:email,:nickname,:sex,:allergy, :phone_number, :image])

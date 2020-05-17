@@ -2,9 +2,10 @@
   <div class="row">
     <div class="col-xs-2">
       <%= render 'recipes/search', genre: @genres,category: @categories %>
-      <tr><%= attachment_image_tag @user, :image, size: '100x100',format: "jpeg", fallback: "no_image.jpg" %></tr>
+
     </div>
     <div class="col-xs-5">
+      <th><%= attachment_image_tag @user, :image, size: '100x100',format: "jpeg", fallback: "no_image.jpg" %></th></br>
       <th>名前</th>
       <td><%= @user.name %></td><br>
       <th>ニックネーム</th>
@@ -48,7 +49,6 @@
         </td><br>
       </tr>
       <% if @user ==current_user %>
-      <%= link_to "パスワードを変更する", edit_user_password_path %><br>
       <%= link_to "プロフィールを編集する",edit_user_path(@user.id) %><br>
       <% end %>
     </div>

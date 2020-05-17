@@ -2,6 +2,7 @@
     <div class="col-xs-8">
         <h2>会員詳細画面</h2>
         <%= form_for @user, url:admins_user_path(@user.id) do |f| %>
+        <%= render 'layouts/error', model:@user %>
         <table class="table table-hover table-borderless">
             <tr>
             <tr>

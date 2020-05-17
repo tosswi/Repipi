@@ -19,7 +19,12 @@ class User < ApplicationRecord
   ratyrate_rater
   has_many :sns_credentials, dependent: :destroy
 
-  validates :sex, presence: true
+  validates :name, presence: true
+  validates :nickname, presence: true,  length: { maximum: 20 },uniqueness: true
+  validates_format_of :nickname, with: /\A[a-zA-Z0-9_\.]*\z/ , :multiline => true
+  validates :phone_number, presence: true 
+  validates :email,  length: { maximum: 50 }
+  validates_format_of :name, with: /\A[a-zA-Z0-9_\.]*\z/ , :multiline => true
   
   def user_rank_update(user)
     case user.point
@@ -81,5 +86,6 @@ class User < ApplicationRecord
   def active_for_authentication?
     super && (self.is_member_status == false)
   end
+
 
 end

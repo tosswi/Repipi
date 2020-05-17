@@ -1,8 +1,10 @@
 class RecipesController < ApplicationController
   before_action :set_genres, only: [:index, :new, :edit, :create,:update]
   before_action :set_categories, only: [:index, :new, :edit, :create,:update]
+  before_action :authenticate_user!, except:[:index]
+  before_action :correct_user, only: [:edit, :update]
   def top
-    @recipes=Recipe.all
+    @recipes_all=Recipe.all
   end
 
   def new
@@ -104,5 +106,9 @@ class RecipesController < ApplicationController
   end
   def recipe_image_params #レシピ画像
     params.require(:recipe_image).permit(:recipe_image)
+  end
+  def correct_user
+    @recipe = Recipe.find(params[:id])
+    redirect_to(root_url) unless current_user?(@recipe.user)
   end
 end

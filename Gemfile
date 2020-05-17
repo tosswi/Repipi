@@ -87,6 +87,7 @@ gem 'fog'
 gem 'ed25519'
 gem 'bcrypt_pbkdf'
 gem 'cocoon'
+gem 'rails-i18n'
 gem 'dotenv-rails'
 group :production do
   gem 'mysql2'

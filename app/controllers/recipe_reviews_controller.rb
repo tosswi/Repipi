@@ -8,6 +8,11 @@ class RecipeReviewsController < ApplicationController
       @recipe.create_notification_recipe_review(current_user, @recipe_review.id)
       redirect_to recipe_path(@recipe)
     else
+      @recipe=Recipe.find(params[:recipe_id])
+      @recipe_reviews=@recipe.recipe_reviews
+      @recipe_images=@recipe.recipe_images
+      @genres=Genre.all
+      @categories=Category.all
       render '/recipes/show'
     end
   end
@@ -21,7 +26,7 @@ class RecipeReviewsController < ApplicationController
     if @recipe_review.update(recipe_review_params)
     redirect_to recipe_path(@recipe_review.recipe,@recipe_review)
     else
-      render '/recipes/show'
+      render :edit
     end
 
   end
