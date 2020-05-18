@@ -1,9 +1,0 @@
-        <ul class="bxslider"></ul>
-        <% @recipes_all.each do |recipe| %>
-        <li>
-            <%= link_to recipe_path(recipe) do %>
-            <%= image_tag recipe.recipe_images[0].recipe_image.to_s, class:"recipe_showimage" %>
-            <% end %>
-        </li>
-        <% end %>
-        </ul>

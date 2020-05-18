@@ -2,7 +2,6 @@
   <div class="row">
     <div class="col-xs-2">
       <%= render 'recipes/search', genre: @genres,category: @categories %>
-
     </div>
     <div class="col-xs-5">
       <th><%= attachment_image_tag @user, :image, size: '100x100',format: "jpeg", fallback: "no_image.jpg" %></th></br>
@@ -70,7 +69,12 @@
               <td><%= link_to recipe.name,recipe_path(recipe) %></td>
               <td>
                 <%= image_tag recipe.recipe_images[0].recipe_image.to_s, class:"recipe_user_showimage" %></td>
-              <td style="display:table-cell; width:200px" ;><%= recipe.material%></td>
+              <td style="display:table-cell; width:200px" ;>
+                <% @recipe_materials.each do |f|%>
+                <%= f.name %>
+                <%= f.quantity %><br>
+                <% end %>
+              </td>
               <div class="search_g_and_c">
                 <td style="display:table-cell; width:200px"><%= recipe.created_at.strftime('%Y年%m月%d日') %></td>
               </div>

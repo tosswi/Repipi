@@ -8,6 +8,8 @@ class Users::UsersController < ApplicationController
     @genres = Genre.all
     @categories = Category.all
     @users=User.all
+    @recipe=Recipe.find(params[:id])
+    @recipe_materials=@recipe.materials
   end
 
   def edit
@@ -33,6 +35,8 @@ class Users::UsersController < ApplicationController
     @user_weekrank=@user_pointrank.where("updated_at >= ?", Time.zone.now.beginning_of_day)
     @q = User.ransack(params[:q])
     @users = @q.result(distinct: true).page(params[:page]).per(3)
+  end
+  def explanation
   end
   def following
       @user  = User.find(params[:id])

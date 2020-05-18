@@ -2,15 +2,21 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-2">
+      <% if @recipe.user == current_user  %>
+      <%= link_to "Destroy", recipe_path(@recipe.id), method: :delete , class: "btn btn-danger",data: {confirm: '本当に削除しますか？'} %>
+      <%= link_to '編集する',edit_recipe_path(@recipe), class: "btn btn-primary"  %>
+      <% end %>
       <%= render 'recipes/search', genre: @genres,category: @categories %>
     </div>
-    <div class="col-xs-3">
+    <div class="col-xs-5">
       <tr>
         <th>料理画像</th>
         <td>
           <% @recipe_images.each do |f|%>
-          <div class="recipe-image-show">
-            <%= image_tag f.recipe_image.url if f.recipe_image %>
+          <div class="flex_test-box">
+            <div class="recipe-image-show">
+              <%= image_tag f.recipe_image.url if f.recipe_image %>
+            </div>
           </div>
           <% end %>
         </td>
@@ -50,12 +56,12 @@
             <i class="fa fa-heart-o" aria-hidden="true"></i>
             <% @recipe.bookmarks %> ブックマークする
             <% end %>
-
           </li>
           <% end %>
-
       </table>
     </div>
+  </div>
+  <div class="row">
     <div class="col-xs-2">
       <%= form_for @recipe_review,url:recipe_recipe_reviews_path(@recipe) do |f|%>
       <%= render 'layouts/error', model:@recipe_review %>
@@ -63,22 +69,22 @@
       <%= f.text_field :recipe_comment %>
       <%= f.submit '投稿する' %>
       <% end %>
-      <table>
+      <table class="table table-bordered">
         <thead>
           <tr>
-            <th>名前</th>
-            <th>コメント</th>
-            <th colspan="1"></th>
+            <th width="150">名前</th>
+            <th width="200">コメント</th>
+            <th width="100"></th>
           </tr>
         </thead>
         <tbody>
           <% @recipe_reviews.each do |review| %>
-          <tr>
+          <tr class="table-success">
             <td><%= review.user.name %></td>
             <td><%= review.recipe_comment %></td>
             <% if current_user == review.user %>
             <td>
-              <%= link_to 'Edit', edit_recipe_recipe_reviews_path(review), class: 'btn-sm btn-primary' %>
+              <%= link_to '編集する', edit_recipe_recipe_reviews_path(review), class: 'btn-sm btn-primary' %>
             </td>
             <% end %>
           </tr>
@@ -88,7 +94,4 @@
     </div>
   </div>
 </div>
-<% if @recipe.user == current_user  %>
-<%= link_to "Destroy", recipe_path(@recipe.id), method: :delete , class: "btn btn-danger",data: {confirm: '本当に削除しますか？'} %>
-<%= link_to '編集する',edit_recipe_path(@recipe), class: "btn btn-primary"  %>
-<% end %>
+</div>

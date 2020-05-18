@@ -2,6 +2,7 @@
 <html>
 
 <head>
+  <%=favicon_link_tag('favicon.ico') %>
   <title>Repipi</title>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -32,35 +33,24 @@
       <li><%= image_tag 'logo.png', class:'hum-logo' %></li>
       <nav class="navbar navbar-light">
         <div class="navbar-expand-lg navbar-collapse">
-          <ul class="navbar-nav">
-            <li class="fas fa-desktop"><%= link_to 'トップ', root_path, class: "btn btn-default" %></li>
-            <li class="fas fa-user-circle"><%= link_to 'マイページ', user_path(current_user), class: "btn btn-default" %>
-            </li>
-            <li class="far fa-bell"><%= link_to ' 通知一覧', notifications_path, class: "btn btn-default" %></li>
-            <li class="fas fa-cookie-bite"><%= link_to ' レシピ一覧', recipes_path, class: "btn btn-default" %></li>
-            <li class="fas fa-sms"><%= link_to ' チャットルーム一覧', rooms_path, class: "btn btn-default" %></li>
 
-            <li>
-              <dl class="searchbox">
-                <%= search_form_for @search, url: recipes_path do |f| %>
-                <dt><%= f.text_field :name_cont ,placeholder: 'レシピ名を検索' %></dt>
-                <dd><%= f.submit ("検索") , class: 'search-btn'%></dd>
-                <% end %>
-              </dl>
-            </li>
-          </ul>
+          <dl class="searchbox">
+            <%= search_form_for @search, url: recipes_path do |f| %>
+            <dt><%= f.text_field :name_cont ,placeholder: 'レシピ名を検索' %></dt>
+            <dd><%= f.submit ("検索") , class: 'search-btn'%></dd>
+            <% end %>
+          </dl>
           <div class="flash">
             <% flash.each do |message_type, message| %>
             <%= message %>
             <% end %>
           </div>
-
+        </div>
+        <div class="hamburger" id="open_nav">
+          <%= image_tag 'hamburger.png',class:"hamburger-image" %>
         </div>
       </nav>
     </header>
-    <div class="hamburger" id="open_nav">
-      <%= image_tag 'hamburger.png',class:"hamburger-image" %>
-    </div>
     <% else %>
     <header class="navbar navbar-fixed-top">
       <nav class="navbar navbar-light">
@@ -78,15 +68,20 @@
   </div>
   <footer>
     <div class="footer-text">
-      nhw,cfejav.
+      2020@Repipi
     </div>
   </footer>
   <nav id="nav">
     <%= image_tag 'logo.png', class:'hum-logo1' %>
     <ul>
+      <li class="fas fa-desktop"><%= link_to 'トップ', root_path, class: "btn btn-default" %></li>
+      <li class="far fa-bell"> <%= link_to '通知',notifications_path, class: "btn btn-default" %></li>
+      <li class="fas fa-cookie-bite"><%= link_to ' レシピ一覧', recipes_path, class: "btn btn-default" %></li>
+      <li class="fas fa-user-circle"><%= link_to 'マイページ', user_path(current_user), class: "btn btn-default" %>
       <li class="fas fa-bookmark"><%= link_to 'ブックマーク', bookmarks_recipes_path, class: "btn btn-default" %></li>
       <li class="fas fa-cookie"><%= link_to 'レシピ投稿', new_recipe_path, class: "btn btn-default" %></li>
       <li class="fas fa-users"><%= link_to 'ユーザー一覧', users_path, class: "btn btn-default" %></li>
+      <li class="fas fa-sms"><%= link_to ' チャット', rooms_path, class: "btn btn-default" %></li>
       <li class="fas fa-sign-out-alt"><a rel="nofollow" data-method="delete" href="/users/sign_out" ,
           class="btn btn-default">ログアウト</a></li>
     </ul>

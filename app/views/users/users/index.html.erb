@@ -8,8 +8,8 @@
         <%= f.search_field :name_cont,placeholder: 'ユーザー検索' %>
         <%= f.submit "検索" %>
         <% end %>
-        <table>
-          <thead class="table table-borderless">
+        <table class="table">
+          <thead class="table table-striped">
             <tr>
               <th>名前</th>
               <th colspan="1"></th>
@@ -25,10 +25,11 @@
               <% end %>
           </tbody>
         </table>
+        <%= paginate @users %>
       </div>
       <div class="col-xs-4">
         <div class="users_index">
-          <table class="table table-borderless">
+          <table class="table table-hover">
             <h2>人気ランキング</h2>
             <thead>
               <tr>
@@ -49,22 +50,7 @@
           </table>
         </div>
       </div>
-      <div class="col-xs-4">
-
-        <h3>会員詳細</h3>
-        <p>レギュラー会員：0pt~29pt</p>
-        <p>シルバー会員：30pt~99pt</p>
-        <p>ゴールド会員：100pt~499pt</p>
-        <p>プラチナ会員：500pt~999pt</p>
-        <p>ダイヤモンド会員：1000pt~9999pt</p>
-
-        <h3>ポイント詳細</h3>
-        <p>レシピ投稿：10pt</p>
-        <p>ブックマーク：5pt</p>
-        <p>フォロー：3pt</p>
-
-      </div>
+      <%=link_to 'points詳細',users_explanation_path %>
     </div>
   </div>
 </div>
-<%= paginate @users %>

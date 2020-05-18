@@ -6,7 +6,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @categories.each do |f|%>
+          <% genre.each do |f|%>
           <tr>
             <td><%= link_to f.name ,recipes_path(category_id: f.id) %></td>
           </tr>
@@ -20,7 +20,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @genres.each do |f|%>
+          <% genre.each do |f|%>
           <tr>
             <td><%= link_to f.name ,recipes_path(genre_id: f.id) %></td>
           </tr>

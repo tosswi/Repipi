@@ -7,10 +7,11 @@ Rails.application.routes.draw do
     get 'confirm' => 'users#confirm'
     patch 'hide' => 'users#hide'
     put 'hide' => 'users#hide'
+    get 'explanation' => 'users#explanation'
 end
   devise_for :users, controllers: {
       sessions: 'users/sessions',
-      registrations: 'users/registrations',
+      registration: 'users/registrations',
       passwords: 'users/passwords',
       omniauth_callbacks: 'users/omniauth_callbacks'
     }
