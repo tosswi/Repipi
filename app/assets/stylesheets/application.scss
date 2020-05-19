@@ -17,6 +17,12 @@
 @import "bootstrap";
 @import "*";
 
+
+.mypage {
+    float: left;
+    padding-left: 20px;
+}
+
 .searchbox {
     float: left;
 }
@@ -102,4 +108,8 @@
 
 .followindex {
     text-align: center;
+}
+
+.bxslider {
+    margin: o auto;
 }

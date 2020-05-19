@@ -69,6 +69,8 @@ class Recipe < ApplicationRecord
       self.bookmarks.where(user_id: user.id).exists?
   end
 
+
+
   
 
 

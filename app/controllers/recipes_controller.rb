@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
   before_action :set_genres, only: [:index, :new, :edit, :create,:update]
   before_action :set_categories, only: [:index, :new, :edit, :create,:update]
-  before_action :authenticate_user!, except:[:index]
+  before_action :authenticate_user!, except:[:index,:top]
   before_action :correct_user, only: [:edit, :update]
   def top
     @recipes_all=Recipe.all
@@ -27,7 +27,7 @@ class RecipesController < ApplicationController
     # @recipes=Recipe.all.includes(:user)
     @recipes_all=Recipe.all
     @recipe_images=RecipeImage.all
-    @recipe_bookmark=Recipe.all
+    @recipes_bookmark = Recipe.find(Bookmark.group(:recipe_id).order('count(recipe_id) desc').limit(5).pluck(:recipe_id))
   # User.all.order(point: "desc").limit(6)
   # @rank_items = OrderItem.find(OrderItem.group(:item_id).order('count(quantity) desc').limit(3).pluck(:id))
     @categories=Category.all

@@ -8,12 +8,11 @@ class Users::UsersController < ApplicationController
     @genres = Genre.all
     @categories = Category.all
     @users=User.all
-    @recipe=Recipe.find(params[:id])
-    @recipe_materials=@recipe.materials
+    
   end
 
   def edit
-    @user=User.find(params[:id])
+    @user = User.find(params[:id])
     @genres = Genre.all
     @categories = Category.all
   end

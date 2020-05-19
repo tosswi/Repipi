@@ -70,9 +70,9 @@
               <td>
                 <%= image_tag recipe.recipe_images[0].recipe_image.to_s, class:"recipe_user_showimage" %></td>
               <td style="display:table-cell; width:200px" ;>
-                <% @recipe_materials.each do |f|%>
-                <%= f.name %>
-                <%= f.quantity %><br>
+                <% recipe.materials.each do |material| %>
+                <%= material.name %>
+                <%= material.quantity %><br>
                 <% end %>
               </td>
               <div class="search_g_and_c">

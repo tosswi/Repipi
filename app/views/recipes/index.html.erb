@@ -10,29 +10,24 @@
         <div class="flex_test-box">
           <% @search_recipes.each do |recipe|%>
           <%= link_to recipe_path(recipe) do %>
-          <%= image_tag recipe.recipe_images[0].recipe_image.to_s, class:"recipe_showimage" %><br>
+          <%= image_tag recipe.recipe_images[0].recipe_image.to_s, class:"recipe_showimage_search" %><br>
           <p><%= recipe.name %></p>
           <% end %>
           </tr>
           <% end %>
         </div>
       </div>
-
       <div class='p-top__paginate'>
         <%= paginate @search_recipes %>
       </div>
     </div>
-
   </div>
-
   <div class="row">
     <div class="col-xs-2">
-
       <p>aaaaaaaaaaaaaaaaa</p>
     </div>
     <div class="col-xs-10">
       <div class="table-responsive">
-
         <ul class="bxslider">
           <% @recipes_all.each do |recipe| %>
           <li>
@@ -42,8 +37,19 @@
           </li>
           <% end %>
         </ul>
-
       </div>
+    </div>
+  </div>
+  <div class="row">
+    <h2 class="recipe-rank">人気ランキング TOP5位</h2>
+    <div class="flex_test-box">
+      <% @recipes_bookmark.each do |recipe| %>
+      <li>
+        <%= link_to recipe_path(recipe) do %>
+        <%= image_tag recipe.recipe_images[0].recipe_image.to_s, class:"recipe_showimage_search" %>
+        <% end %>
+      </li>
+      <% end %>
     </div>
   </div>
 </div>

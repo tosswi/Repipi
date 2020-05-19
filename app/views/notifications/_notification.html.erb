@@ -6,8 +6,7 @@
 <strong>
   <%= visitor_user.name %>
   <% end %>さんが</strong>
-
-
+<%= notification.created_at.strftime('%Y年%m月%d日 %H時%M分に').upcase %>
 <% case notification.action %>
 <% when 'follow' then %>
 <%= "あなたをフォローしました" %><br>
@@ -30,9 +29,4 @@
 </p>
 
 <% end %>
-
-
-<div class="small.text-muted.text-right">
-  <%= notification.created_at.strftime('%Y年%m月%d日 %H時%M分に').upcase %>
-</div>
 <% end %>

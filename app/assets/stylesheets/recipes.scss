@@ -189,6 +189,15 @@ header ul li {
   border-radius: 50%;
 }
 
+.logo-image-prof {
+  height: 300px;
+  width: 300px;
+  margin: 2px 2px;
+  color: gray;
+  margin-left: 110px;
+  border-radius: 50%;
+}
+
 .recipe_showimage1 {
   width: 60%;
   height: 200px;
@@ -220,6 +229,14 @@ header ul li {
   margin: 16px auto 0;
   display: flex;
   flex-wrap: wrap;
+}
+
+.new_recipeindex {
+  text-align: center;
+}
+
+.new_recipe_content {
+  text-align: center;
 }
 
 //プレビュー表示欄のCSS
@@ -362,6 +379,7 @@ header ul li {
 
 
 #wrapper {
+  margin: 0 auto;
   min-height: 100vh;
   position: relative;
   /*←相対位置*/
@@ -413,6 +431,13 @@ p {
 
 
 }
+
+.recipe_showimage_search {
+  height: 180px;
+  width: 200px;
+  padding-left: 20px;
+}
+
 
 .p-top {
   min-width: 960px;
@@ -477,6 +502,11 @@ p {
   width: 180px;
 }
 
+.recipe-rank {
+  text-align: center;
+  margin: 0 auto;
+}
+
 
 
 .flex_test-box {
@@ -485,6 +515,7 @@ p {
   padding: 5px;
   /* 余白指定 */
   display: flex;
+  margin: 0 auto;
   /* フレックスボックスにする */
 }
 
@@ -517,6 +548,59 @@ p {
   text-align: left;
 }
 
+.profile {
+  width: 100%;
+  padding-bottom: 90px;
+  background-color: #ECEFF1;
+}
+
+.profile-content {
+  width: 1024px;
+  margin: 0 auto;
+}
+
+.content-name-prof {
+  font-size: 32px;
+  color: #000000;
+  padding-top: 90px;
+  text-align: center;
+}
+
+.pro-image {
+  width: 512px;
+  float: left;
+  margin-top: 30px;
+}
+
+.profile-image {
+  height: 250px;
+  width: 250px;
+  margin: auto 128px;
+  border-radius: 50%;
+}
+
+.profile-text {
+  float: left;
+  margin-top: 30px;
+}
+
+.content-text-prof {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 16px;
+  color: #000000;
+}
+
+strong {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.profile-text p {
+  font-size: 16px;
+  color: #000000;
+  margin-bottom: 20px;
+}
 
 
 
