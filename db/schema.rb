@@ -197,7 +197,7 @@ ActiveRecord::Schema.define(version: 2020_05_19_123207) do
     t.string "phone_number"
     t.string "image_id"
     t.integer "point", default: 0
-    t.string "rank"
+    t.string "rank", default: "レギュラー会員"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "is_member_status", default: false, null: false
