@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_17_015702) do
+ActiveRecord::Schema.define(version: 2020_05_19_123207) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -49,6 +49,15 @@ ActiveRecord::Schema.define(version: 2020_05_17_015702) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "entries", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "room_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_entries_on_room_id"
+    t.index ["user_id"], name: "index_entries_on_user_id"
   end
 
   create_table "genres", force: :cascade do |t|
@@ -131,7 +140,6 @@ ActiveRecord::Schema.define(version: 2020_05_17_015702) do
 
   create_table "recipe_reviews", force: :cascade do |t|
     t.text "recipe_comment"
-    t.float "recipe_review"
     t.integer "user_id"
     t.integer "recipe_id"
     t.datetime "created_at", null: false
@@ -142,10 +150,8 @@ ActiveRecord::Schema.define(version: 2020_05_17_015702) do
     t.string "name"
     t.text "content"
     t.text "material"
-    t.integer "quantity"
     t.integer "human"
     t.time "playtime"
-    t.string "image_id"
     t.integer "genre_id"
     t.integer "user_id"
     t.integer "category_id"
@@ -188,7 +194,6 @@ ActiveRecord::Schema.define(version: 2020_05_17_015702) do
     t.string "name"
     t.string "nickname"
     t.integer "sex"
-    t.string "allergy"
     t.string "phone_number"
     t.string "image_id"
     t.integer "point", default: 0

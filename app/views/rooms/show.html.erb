@@ -1,13 +1,36 @@
 <div class="container">
-  <div class="row">
-    <div class="col-xs-2">
-      <%= link_to "<<チャット一覧に戻る", rooms_path %>
-      <h1><%= "Chat Room #{@room.id}" %></h1>
-      <h4 class="border"><%= "Your Nickname: #{current_user&.nickname}" %></h4>
-      <div id='messages' data-room_id="<%= @room.id %>">
-        <%= render @messages %>
-      </div>
-      <%= text_field_tag :content, nil, data: { behavior: 'room_speaker' },placeholder: 'ここに記述' %>
-    </div>
+  <h4>参加者</h4>
+  <% @entries.each do |entry| %>
+  <h5><strong><a href="/users/<%= entry.user.id %>"><%= entry.user.email%>さん</a></strong></h5>
+  <% end %>
+  <hr>
+  <% if @messages.present? %>
+  <table>
+    <thead>
+      <tr>
+        <th>投稿者</th>
+        <th>内容</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @messages.each do |message| %>
+      <tr>
+        <td width=20%><%= message.user.nickname%>さん</td>
+        <td width=80%><strong><%= message.content %></strong></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% else %>
+  <h3 class="text-center">メッセージはまだありません</h3>
+  <% end %>
+  <%= form_for @message do |f| %>
+  <div class="field content">
+    <%= f.text_area :content, :placeholder => "メッセージを入力して下さい" ,class: "form-control" %>
   </div>
+  <%= f.hidden_field :room_id, :value => @room.id %>
+  <br>
+  <%= f.submit "送信" %>
+  <% end %>
+  <%= link_to "ユーザー一覧に戻る", users_path %>
 </div>

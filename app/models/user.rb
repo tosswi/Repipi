@@ -18,7 +18,8 @@ class User < ApplicationRecord
   has_many :followers, through: :reverse_of_relationships, source: :user, dependent: :destroy
   ratyrate_rater
   has_many :sns_credentials, dependent: :destroy
-
+  has_many :messages, dependent: :destroy
+  has_many :entries, dependent: :destroy
   validates :name, presence: true
   validates :nickname, presence: true,  length: { maximum: 20 },uniqueness: true
   validates_format_of :nickname, with: /\A[a-zA-Z0-9_\.]*\z/ , :multiline => true

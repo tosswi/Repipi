@@ -1,37 +1,27 @@
-<%= form_for (@recipe) do |f| %>
-<div class="col-xs-10">
-    <%= render 'layouts/error', model:@recipe %>
-    <div class="sell__block__form">
-        <div class="sell__block__form__upload">
-            <h3 class="sell__block__form__upload__head">
-                出品画像<span class=".require">必須</span>
-            </h3>
-            <div class="item-num-0#image-box__container"></div>
+<div class="row">
+    <div class="col-xs-10">
+        <%= render 'layouts/error', model:@recipe %>
+        <div class="sell__block__form">
+            <%= form_for (@recipe) do |f| %>
             <p>最大5枚までアップロードできます</p>
-            <div class="post__drop__box__container">
-                <div class="prev-content">
-                    <div class="label-content">
-                        <label for="item_images_attributes_0_image" class="abel-box" id="label-box--0">
-                            <pre class="label-box__text-visible">クリックしてファイルをアップロード</pre>
-                        </label>
-                        <div class="hidden-content">
-                            <%= f.fields_for :recipe_images do |i| %>
-                            <%= i.file_field :recipe_image, class: "hidden-field" %>
-                            <input class="hidden-field" type="file"
-                                name="recipe[recipe_images_attributes][1][recipe_image]"
-                                id="recipe_images_attributes_1_image">
-                            <input class="hidden-field" type="file"
-                                name="recipe[recipe_images_attributes][2][recipe_image]"
-                                id="recipe_images_attributes_2_image">
-                            <input class="hidden-field" type="file"
-                                name="recipe[recipe_images_attributes][3][recipe_image]"
-                                id="recipe_images_attributes_3_image">
-                            <% end %>
-                        </div>
-                    </div>
+            <div class="label-content">
+                <div class="hidden-content">
+                    <%= f.fields_for :recipe_images do |i| %>
+                    <%= i.file_field :recipe_image, class: "hidden-field" %><br>
+                    <input class="hidden-field" type="file" name="recipe[recipe_images_attributes][1][recipe_image]"
+                        id="recipe_images_attributes_1_image"><br>
+                    <input class="hidden-field" type="file" name="recipe[recipe_images_attributes][2][recipe_image]"
+                        id="recipe_images_attributes_2_image"><br>
+                    <input class="hidden-field" type="file" name="recipe[recipe_images_attributes][3][recipe_image]"
+                        id="recipe_images_attributes_3_image">
+                    <% end %>
                 </div>
             </div>
         </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-6">
         <div class="field row">
             <%= f.label :レシピ名 %>
             <%= f.text_field :name,:placeholder => "チャーハン" %>
@@ -65,6 +55,6 @@
         <div class="actions row">
             <%= f.submit class: "btn btn-primary col-xs-12" %>
         </div>
+        <% end %>
     </div>
 </div>
-<% end %>

@@ -34,11 +34,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :name
       t.string :nickname
       t.integer :sex
-      t.string :allergy
       t.string :phone_number
       t.string :image_id
       t.integer :point,default: 0
-      t.string :rank
+      t.string :rank,default: "レギュラー会員"
       t.timestamps null: false
     end
 

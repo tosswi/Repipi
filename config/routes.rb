@@ -43,6 +43,7 @@ end
     resource :recipe_reviews,only: [:create,:destroy,:edit,:update]
   end
   resources :refrigerators,only: [:new,:index,:create,:edit,:destroy,:update]
+  resources :messages, :only => [:create]
   resources :rooms,only: [:index,:show,:create,:destroy]
   resources :relationships,only: [:index,:create,:destroy]
 
