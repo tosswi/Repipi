@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :recipes, dependent: :destroy
   has_many :recipe_reviews, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
+  #throughオプションでユーザーがブックマークした投稿を直接アソシエーションで取得
   has_many :bookmark_recipes,through: :bookmarks, source: :recipe, dependent: :destroy
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy

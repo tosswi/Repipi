@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   get 'rooms/show'
   post '/rate' => 'rater#create', :as => 'rate'
   delete 'notifications/destroy_all' => 'notifications#destroy_all'
+  post 'follow/:id' => 'relationships#follow', as: 'follow' # フォローする
+delete 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow' # フォロー外す
   namespace :users do
     get 'confirm' => 'users#confirm'
     patch 'hide' => 'users#hide'
@@ -46,9 +48,5 @@ end
   resources :messages, :only => [:create]
   resources :rooms,only: [:index,:show,:create,:destroy]
   resources :relationships,only: [:index,:create,:destroy]
-
-post 'follow/:id' => 'relationships#follow', as: 'follow' # フォローする
-delete 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow' # フォロー外す
-
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

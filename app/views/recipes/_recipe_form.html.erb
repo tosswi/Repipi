@@ -30,7 +30,7 @@
     カテゴリーを選択<%= f.collection_select :category_id, @categories, :id, :name %>
     <div class="field content">
         <%= f.label :content %>
-        <%= f.text_area :content,:placeholder => "作り方", :size=>"60x10"%>
+        <%= f.text_area :content,:placeholder => "作り方", :size=>"100x10"%>
     </div>
     <div class="actions row">
         <%= f.submit class: "btn btn-primary col-xs-12" %>

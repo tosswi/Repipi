@@ -67,11 +67,4 @@ class Recipe < ApplicationRecord
   def bookmark_by?(user)
       self.bookmarks.where(user_id: user.id).exists?
   end
-
-
-
-  
-
-
-
 end

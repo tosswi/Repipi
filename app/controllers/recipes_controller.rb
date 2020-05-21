@@ -23,12 +23,9 @@ class RecipesController < ApplicationController
     @recipe_images=@recipe.recipe_images
   end
   def  index
-    # @recipes=Recipe.all.includes(:user)
     @recipes_all=Recipe.all
     @recipe_images=RecipeImage.all
     @recipes_bookmark = Recipe.find(Bookmark.group(:recipe_id).order('count(recipe_id) desc').limit(5).pluck(:recipe_id))
-  # User.all.order(point: "desc").limit(6)
-  # @rank_items = OrderItem.find(OrderItem.group(:item_id).order('count(quantity) desc').limit(3).pluck(:id))
     @categories=Category.all
     @genres=Genre.all
     if params[:category_id]
@@ -55,11 +52,9 @@ class RecipesController < ApplicationController
   end
 
   def create
-    @recipe=Recipe.new(recipe_params)
-    @recipe.user_id = current_user.id
     @genres = Genre.all
     @categories = Category.all
-    if @recipe.save
+    if @recipe=Recipe.create(recipe_params)
       @recipe.user.point += 20
       @recipe.user.save
       flash[:success] = "レシピを投稿しました。"
@@ -95,7 +90,7 @@ class RecipesController < ApplicationController
   end
   private
   def recipe_params #imageはプロフィール画像
-    params.require(:recipe).permit(:name,:content,:material,:quantity,:human,:playtime,:image,:genre_id,:user_id,:category_id,:is_recipe_status, recipe_images_attributes: [:recipe_image], materials_attributes: [:id,:name,:quantity,:_destroy])
+    params.require(:recipe).permit(:name,:content,:material,:quantity,:human,:playtime,:image,:genre_id,:user_id,:category_id,:is_recipe_status, recipe_images_attributes: [:recipe_image], materials_attributes: [:id,:name,:quantity,:_destroy]).merge(:user_id => current_user.id)
   end
   def recipe_image_params #レシピ画像
     params.require(:recipe_image).permit(:recipe_image)

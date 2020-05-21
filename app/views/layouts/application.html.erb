@@ -33,7 +33,6 @@
       <li><%= image_tag 'logo.png', class:'hum-logo' %></li>
       <nav class="navbar navbar-light">
         <div class="navbar-expand-lg navbar-collapse">
-
           <dl class="searchbox">
             <%= search_form_for @search, url: recipes_path do |f| %>
             <dt><%= f.text_field :name_cont ,placeholder: 'レシピ名を検索' %></dt>
