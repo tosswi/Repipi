@@ -14,7 +14,9 @@ class User < ApplicationRecord
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
   has_many :relationships, dependent: :destroy
   has_many :followings, through: :relationships, source: :follow, dependent: :destroy
+  #ペアで重複するものが保存されないようにする
   has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'follow_id', dependent: :destroy
+
   has_many :followers, through: :reverse_of_relationships, source: :user, dependent: :destroy
   ratyrate_rater
   has_many :sns_credentials, dependent: :destroy
@@ -44,12 +46,14 @@ class User < ApplicationRecord
   end
 
   def follow(other_user)
+    #self=自分,身つかなければcreate
     unless self == other_user
       self.relationships.find_or_create_by(follow_id: other_user.id)
     end
   end
 
   def unfollow(other_user)
+    #other_user.idがfollow_idで見つかれば消す
     relationship = self.relationships.find_by(follow_id: other_user.id)
     relationship.destroy if relationship
   end
@@ -69,21 +73,21 @@ class User < ApplicationRecord
       notification.save if notification.valid?
       end
     end
-  def self.find_for_oauth(auth)
-    user = User.where(uid: auth.uid, provider: auth.provider).first
+  # def self.find_for_oauth(auth)
+  #   user = User.where(uid: auth.uid, provider: auth.provider).first
 
-    unless user
-      user = User.create(
-        uid:      auth.uid,
-        provider: auth.provider,
-        email:    auth.info.email,
-        name:  auth.info.name,
-        password: Devise.friendly_token[0, 20],
-        image:  auth.info.image
-      )
-      end
-    user
-  end
+  #   unless user
+  #     user = User.create(
+  #       uid:      auth.uid,
+  #       provider: auth.provider,
+  #       email:    auth.info.email,
+  #       name:  auth.info.name,
+  #       password: Devise.friendly_token[0, 20],
+  #       image:  auth.info.image
+  #     )
+  #     end
+  #   user
+  # end
   def active_for_authentication?
     super && (self.is_member_status == false)
   end

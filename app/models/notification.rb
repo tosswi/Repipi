@@ -1,4 +1,5 @@
 class Notification < ApplicationRecord
+  # デフォルトの並び順を「作成日時の降順」で指定
   default_scope -> { order(created_at: :desc) }
   belongs_to :recipe, optional: true
   belongs_to :recipe_review, optional: true

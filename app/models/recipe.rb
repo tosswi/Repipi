@@ -1,5 +1,4 @@
 class Recipe < ApplicationRecord
-  attachment :image
   has_many :recipe_images, dependent: :destroy
   accepts_nested_attributes_for :recipe_images
   has_many :bookmarks, dependent: :destroy

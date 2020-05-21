@@ -51,11 +51,11 @@
       <% if @user ==current_user %>
       <%= link_to "プロフィールを編集する",edit_user_path(@user.id) %><br>
       <% end %>
-      <% if @user.id == current_user.id %>
-      <% else %>
+      <% unless @user.id == current_user.id %>
       <% if @isRoom == true %>
       <p class="btn btn-light"><a href="/rooms/<%= @roomId %>">チャットへ移動</a>
         <% else %>
+        <%# 親モデルにform_forインスタンス変数、子モデルにfields_forインスタンス変数 %>
         <%= form_for @room do |f| %>
         <%= fields_for @entry do |e| %>
         <%= e.hidden_field :user_id, :value=> @user.id %>

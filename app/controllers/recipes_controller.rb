@@ -1,6 +1,4 @@
 class RecipesController < ApplicationController
-  before_action :set_genres, only: [:index, :new, :edit, :create,:update]
-  before_action :set_categories, only: [:index, :new, :edit, :create,:update]
   before_action :authenticate_user!, except:[:index,:top]
   before_action :correct_user, only: [:edit, :update]
   def top
@@ -9,6 +7,7 @@ class RecipesController < ApplicationController
 
   def new
     @recipe=Recipe.new
+    # buildで最初から空の明細が1つ表示させれる
     @recipe.materials.build
     @recipe.recipe_images.build
     @genres = Genre.all
@@ -96,13 +95,7 @@ class RecipesController < ApplicationController
   end
   private
   def recipe_params #imageはプロフィール画像
-    params.require(:recipe).permit(:name,:content,:material,:quantity,:human,:playtime,:image,:genre_id,:user_id,:category_id,:is_recipe_status, recipe_images_attributes: [:recipe_image], materials_attributes: [:id,:name,:quantity])
-  end
-  def set_genres
-    @genres = Genre.all
-  end
-  def set_categories
-    @categories = Category.all
+    params.require(:recipe).permit(:name,:content,:material,:quantity,:human,:playtime,:image,:genre_id,:user_id,:category_id,:is_recipe_status, recipe_images_attributes: [:recipe_image], materials_attributes: [:id,:name,:quantity,:_destroy])
   end
   def recipe_image_params #レシピ画像
     params.require(:recipe_image).permit(:recipe_image)

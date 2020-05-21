@@ -15,22 +15,13 @@
         <%= f.label :レシピ名 %>
         <%= f.text_field :name,:placeholder => "チャーハン" %>
     </div>
-    <table class="table-type-b" , id="detail-association-insertion-point">
+    <table class="table-type-b">
+        <%#  fields_forでform_for内で異なるモデルを編集できるようになる %>
         <%= f.fields_for :materials do | material | %>
         <%= render 'material_fields', f: material %>
         <% end %>
     </table>
-    <div class="tit-group">
-        <p class="tit-group_btn">
-            <%= link_to_add_association '記入欄を追加', f, :materials,
-              class: 'btn-type-b',
-              data: {
-              association_insertion_node: '#detail-association-insertion-point',
-              association_insertion_method: 'append'
-              }
-            %>
-        </p>
-    </div><!-- /tit-group -->
+    <p> <%= link_to_add_association '記入欄を追加', f, :materials,class: 'btn-type-b'%></p>
     <div class="field row">
         <%= f.label :human %>
         <%= f.select :human ,Recipe.humen.keys.to_a, {}%>
