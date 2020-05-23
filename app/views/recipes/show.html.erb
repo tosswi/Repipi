@@ -12,10 +12,11 @@
       <tr>
         <th>料理画像</th>
         <td>
+          <%= @recipe_images.inspect %>
           <% @recipe_images.each do |f|%>
           <div class="flex_test-box">
             <div class="recipe-image-show">
-              <%= image_tag f.recipe_image.url if f.recipe_image %>
+              <%= image_tag f.recipe_image.url if f.recipe_image.present? %>
             </div>
           </div>
           <% end %>

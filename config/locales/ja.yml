@@ -11,6 +11,7 @@ ja:
         phone_number: 電話番号
         email: メール
         password: パスワード
+        password_confirmation: "パスワードの確認"
       recipe:
         name: レシピ名
         content: 作り方

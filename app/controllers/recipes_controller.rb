@@ -7,9 +7,9 @@ class RecipesController < ApplicationController
 
   def new
     @recipe=Recipe.new
-    # buildで最初から空の明細が1つ表示させれる
+    # buildで最初から空のformが1つ表示させれる
     @recipe.materials.build
-    @recipe.recipe_images.build
+    4.times{@recipe.recipe_images.build}
     @genres = Genre.all
     @categories = Category.all
   end
@@ -45,27 +45,32 @@ class RecipesController < ApplicationController
       Recipe.all 
     end
   end
-  
-  def upload_file
-    recipe = Recipe.find_by_id(params[:id])
-    @recipe_images = recipe_images.create(recipe_params)
-  end
 
   def create
+    @recipe=Recipe.new(recipe_params)
     @genres = Genre.all
     @categories = Category.all
-    if @recipe=Recipe.create(recipe_params)
+    @recipe.user_id = current_user.id
+    if @recipe.save
       @recipe.user.point += 20
       @recipe.user.save
       flash[:success] = "レシピを投稿しました。"
       redirect_to recipe_path(@recipe)
     else
+      4.times{@recipe.recipe_images.build}
       flash.now[:danger] = "レシピの投稿に失敗しました。"
       render :new 
     end
   end
   def edit
     @recipe=Recipe.find(params[:id])
+    4.times do |i|
+      if @recipe.recipe_images[i].blank?
+        @recipe.recipe_images.build
+      end
+    end
+    @genres=Genre.all
+    @categories=Category.all
   end
   def destroy
     @recipe = Recipe.find(params[:id])
@@ -75,12 +80,15 @@ class RecipesController < ApplicationController
   end
   def update
     @recipe=Recipe.find(params[:id])
+    @recipe.recipe_images.destroy_all
     if @recipe.update(recipe_params)
       flash[:success] = "レシピの編集しました。"
       redirect_to recipe_path(@recipe)
     else
+      @genres = Genre.all
+      @categories = Category.all
       flash.now[:danger] = "レシピの編集に失敗しました。"
-      render :edit
+      redirect_to edit_recipe_path(@recipe)
     end
   end
   def bookmarks
@@ -90,11 +98,9 @@ class RecipesController < ApplicationController
   end
   private
   def recipe_params #imageはプロフィール画像
-    params.require(:recipe).permit(:name,:content,:material,:quantity,:human,:playtime,:image,:genre_id,:user_id,:category_id,:is_recipe_status, recipe_images_attributes: [:recipe_image], materials_attributes: [:id,:name,:quantity,:_destroy]).merge(:user_id => current_user.id)
+    params.require(:recipe).permit(:name,:content,:material,:quantity,:human,:playtime,:image,:genre_id,:user_id,:category_id,:is_recipe_status, recipe_images_attributes: [:id,:recipe_image], materials_attributes: [:id,:name,:quantity,:_destroy])
   end
-  def recipe_image_params #レシピ画像
-    params.require(:recipe_image).permit(:recipe_image)
-  end
+
   def correct_user
     @recipe = Recipe.find(params[:id])
     redirect_to(root_url) unless current_user?(@recipe.user)

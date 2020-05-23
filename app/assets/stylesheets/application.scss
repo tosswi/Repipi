@@ -17,6 +17,15 @@
 @import "bootstrap";
 @import "*";
 
+element.style {
+    display: block;
+}
+
+
+
+.new_user {
+    display: block;
+}
 
 .mypage {
     float: left;
@@ -80,6 +89,7 @@
     padding: 0 1em;
     max-width: 370px;
     text-align: center;
+    display: block;
 
     h2 {
         text-align: center;
@@ -90,8 +100,6 @@
 .form-item {
     margin-bottom: 0.75em;
     width: 100%;
-
-
 }
 
 .field {
