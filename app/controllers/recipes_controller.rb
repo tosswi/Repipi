@@ -3,6 +3,7 @@ class RecipesController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
   def top
     @recipes_all=Recipe.all
+
   end
 
   def new
@@ -80,7 +81,6 @@ class RecipesController < ApplicationController
   end
   def update
     @recipe=Recipe.find(params[:id])
-    @recipe.recipe_images.destroy_all
     if @recipe.update(recipe_params)
       flash[:success] = "レシピの編集しました。"
       redirect_to recipe_path(@recipe)
@@ -97,7 +97,7 @@ class RecipesController < ApplicationController
     @recipes = current_user.bookmark_recipes.includes(:user)
   end
   private
-  def recipe_params #imageはプロフィール画像
+  def recipe_params
     params.require(:recipe).permit(:name,:content,:material,:quantity,:human,:playtime,:image,:genre_id,:user_id,:category_id,:is_recipe_status, recipe_images_attributes: [:id,:recipe_image], materials_attributes: [:id,:name,:quantity,:_destroy])
   end
 

@@ -8,6 +8,7 @@
   <table>
     <thead>
       <tr>
+        <th>説明画像</th>
         <th>投稿者</th>
         <th>内容</th>
       </tr>
@@ -15,6 +16,7 @@
     <tbody>
       <% @messages.each do |message| %>
       <tr>
+        <td><%= attachment_image_tag message, :image, size: '100x100',format: "jpeg" %></td>
         <td width=20%><%= message.user.nickname%>さん</td>
         <td width=80%><strong><%= message.content %></strong></td>
       </tr>
@@ -25,6 +27,8 @@
   <h3 class="text-center">メッセージはまだありません</h3>
   <% end %>
   <%= form_for @message do |f| %>
+  <%= f.label :image, "画像を選択"%>
+  <%= f.attachment_field :image, class: "image_form" %><br>
   <div class="field content">
     <%= f.text_area :content, :placeholder => "メッセージを入力して下さい" ,class: "form-control" %>
   </div>

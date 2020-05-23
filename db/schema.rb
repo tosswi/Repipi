@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_19_123207) do
+ActiveRecord::Schema.define(version: 2020_05_23_144626) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 2020_05_19_123207) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.integer "room_id"
+    t.string "image_id"
     t.index ["room_id"], name: "index_messages_on_room_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
