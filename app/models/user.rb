@@ -74,21 +74,7 @@ class User < ApplicationRecord
       notification.save if notification.valid?
       end
     end
-  # def self.find_for_oauth(auth)
-  #   user = User.where(uid: auth.uid, provider: auth.provider).first
-
-  #   unless user
-  #     user = User.create(
-  #       uid:      auth.uid,
-  #       provider: auth.provider,
-  #       email:    auth.info.email,
-  #       name:  auth.info.name,
-  #       password: Devise.friendly_token[0, 20],
-  #       image:  auth.info.image
-  #     )
-  #     end
-  #   user
-  # end
+    
   def active_for_authentication?
     super && (self.is_member_status == false)
   end

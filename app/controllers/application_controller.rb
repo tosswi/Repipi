@@ -10,7 +10,6 @@ class ApplicationController < ActionController::Base
       end
     end
 
-
     def after_sign_out_path_for(resource)
       case resource
       when :admin
@@ -19,6 +18,7 @@ class ApplicationController < ActionController::Base
         root_path
       end
     end
+
     def current_user?(user)
       user == current_user
     end

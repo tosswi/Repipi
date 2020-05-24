@@ -8,7 +8,7 @@
   <table>
     <thead>
       <tr>
-        <th>説明画像</th>
+        <th colspan="1"></th>
         <th>投稿者</th>
         <th>内容</th>
       </tr>
@@ -16,7 +16,11 @@
     <tbody>
       <% @messages.each do |message| %>
       <tr>
-        <td><%= attachment_image_tag message, :image, size: '100x100',format: "jpeg" %></td>
+        <td>
+          <div class="message-image">
+            <%= attachment_image_tag message, :image, size: '100x100',format: "jpeg" %>
+          </div>
+        </td>
         <td width=20%><%= message.user.nickname%>さん</td>
         <td width=80%><strong><%= message.content %></strong></td>
       </tr>

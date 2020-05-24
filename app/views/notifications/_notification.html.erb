@@ -10,6 +10,8 @@
 <% case notification.action %>
 <% when 'follow' then %>
 <%= "あなたをフォローしました" %><br>
+<% when 'message' then %>
+<%= "あなたにメッセージを送りました" %><br>
 <% when 'bookmark' then %>
 <%=link_to 'あなたの投稿', notification.recipe, style: "font-weight: bold;" %>
 <%="にいいねしました" %><br>
@@ -22,11 +24,6 @@
 <strong><%=notification.recipe.user.name%>
   さんの投稿 <% end %> </strong>
 にコメントしました。<br>
-
-<%#link付コメント%>
-<p class="text-muted.mb-0">
-  <%= RecipeReview.find_by(id: notification.recipe_review_id)&.recipe_review%>
-</p>
 
 <% end %>
 <% end %>
