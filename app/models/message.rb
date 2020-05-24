@@ -3,7 +3,7 @@ class Message < ApplicationRecord
   belongs_to :room
   attachment :image
   has_many :notifications, dependent: :destroy
-  validates :content, presence: true
+  validates :content,length: { maximum: 1000 } ,presence: true
   scope :recent, -> { order(created_at: :desc)}
 
   def save_notification_message!(current_user, message_id, visitor_id)

@@ -10,14 +10,13 @@ class Recipe < ApplicationRecord
   belongs_to :user
   belongs_to :genre
   belongs_to :category
-  has_many :points
   ratyrate_rateable "recipe"
 
   validates :name, presence: true
   validates :content, presence: true
   validates :recipe_images, presence: true
   validates :name,  length: { maximum: 30 }
-  validates :name,  length: { maximum: 2000 }
+  validates :content,  length: { maximum: 2000 }
 
 
 

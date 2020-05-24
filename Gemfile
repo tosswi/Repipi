@@ -89,6 +89,10 @@ gem 'bcrypt_pbkdf'
 gem 'cocoon'
 gem 'rails-i18n'
 gem 'dotenv-rails'
+gem 'capybara', '>= 2.15'
+gem 'rspec-rails'
+gem "factory_bot_rails"
+gem 'faker'
 group :production do
   gem 'mysql2'
 end
