@@ -2,18 +2,29 @@
   <div class="row">
     <div class="col-xs-2">
       <%= form_for @genre, url:admins_genres_path do |f| %>
+      <%= render 'layouts/error', model:@category %>
       <div class="field row">
-        <%= f.label :ジャンル %>
+        <%= f.label :カテゴリー %>
         <%= f.text_field :name %>
         <%= f.submit "追加", class: "btn btn-primary" %>
       </div>
       <% end %>
-      <% @genres.each do |genre|%>
-      <tr>
-        <td><%= genre.name %></td>
-        <td><%= link_to "編集する", edit_admins_genre_path(genre.id) ,class: "btn btn-primary"%></td>
-      </tr>
-      <% end %>
+      <table>
+        <thead>
+          <tr>
+            <th>カテゴリー名</th>
+            <th colspan="1"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @genres.each do |genre|%>
+          <tr>
+            <td><%= category.name %></td>
+            <td><%= link_to "編集する", edit_admins_category_path(category.id) ,class: "btn btn-primary"%></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

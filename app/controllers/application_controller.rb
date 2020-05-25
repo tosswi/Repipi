@@ -35,6 +35,6 @@ class ApplicationController < ActionController::Base
     #ransack
   def set_search
     @search = Recipe.ransack(params[:q]) 
-    @recipes = @search.result.page(params[:page]).per(4)
+    @recipes = @search.result.order(id: "DESC").page(params[:page]).per(4)
   end
 end

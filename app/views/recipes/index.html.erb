@@ -30,12 +30,12 @@
           </li>
           <% end %>
         </ul>
-        <h2 class="recipe-rank">人気ランキング TOP3位</h2>
+        <h3 class="recipe-rank">人気ランキング TOP3位</h3>
         <div class="flex_test-box">
           <% @recipes_bookmark.each do |recipe| %>
           <li>
             <%= link_to recipe_path(recipe) do %>
-            <%= image_tag recipe.recipe_images[0].recipe_image.to_s, class:"recipe_showimage_search" %>
+            <%= image_tag recipe.recipe_images[0].recipe_image.to_s, class:"recipe_showimage_search1" %>
             <% end %>
           </li>
           <% end %>

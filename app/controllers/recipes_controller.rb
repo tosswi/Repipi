@@ -32,11 +32,11 @@ class RecipesController < ApplicationController
     @genres=Genre.all
     if params[:category_id]
     @category=Category.find(params[:category_id])
-    @recipes = @category.recipes.page(params[:page]).per(4)
+    @recipes = @category.recipes.order(id: "DESC").page(params[:page]).per(4)
   end
     if params[:genre_id]
     @genre=Genre.find(params[:genre_id])
-    @recipes = @genre.recipes.page(params[:page]).per(4)
+    @recipes = @genre.recipes.order(id: "DESC").page(params[:page]).per(4)
   end
   end
 
