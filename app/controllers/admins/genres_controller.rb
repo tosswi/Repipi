@@ -1,4 +1,5 @@
 class Admins::GenresController < ApplicationController
+  before_action :authenticate_admin!
   def create
     @genre=Genre.new(genre_params)
     if @genre.save

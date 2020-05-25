@@ -1,7 +1,8 @@
-<h2>レジピ 詳細画面</h2>!
+<h2>レジピ 詳細画面</h2>
 <div class="container">
     <div class="row">
         <div class="col-xs-2">
+            <%= link_to "Destroy", admins_recipe_path(@recipe.id), method: :delete ,class: "btn btn-danger" %>
             <table class="table table-borderless">
                 <tr>
                     <th>レシピ画像</th>
@@ -22,7 +23,11 @@
                 </tr>
                 <tr>
                     <th>材料</th>
-                    <td><%= @recipe.material %></td>
+                    <td><% @recipe.materials.each do |material|%>
+                        <%=  material.name %>
+                        <%= material.quantity %><br>
+                        <% end %>
+                    </td>
                 </tr>
                 <tr>
                     <th>料理手順</th>
@@ -50,7 +55,3 @@
         </table>
     </div>
 </div>
-</div>
-</div>
-<%= @recipe.bookmarks.count %>
-<%= link_to "Destroy", recipe_path(@recipe.id), method: :delete , class: "btn btn-danger" %>

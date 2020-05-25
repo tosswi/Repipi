@@ -1,4 +1,5 @@
 class Admins::RecipesController < ApplicationController
+    before_action :authenticate_admin!
     def show
         @recipe=Recipe.find(params[:id])
         @recipe_image=RecipeImage.find(params[:id])
