@@ -1,15 +1,17 @@
 class Recipe < ApplicationRecord
   has_many :recipe_images, dependent: :destroy
-  accepts_nested_attributes_for :recipe_images
   has_many :bookmarks, dependent: :destroy
   has_many :notifications, dependent: :destroy
   has_many :recipe_reviews,dependent: :destroy
   has_many :materials, dependent: :destroy
+  # newで複数画像投稿する必要がるため使用、下記materials同様
+  accepts_nested_attributes_for :recipe_images
   accepts_nested_attributes_for :materials
   enum human: { 一人分: 0, 二人分: 1 ,三人分: 2, 四人分: 3 }
   belongs_to :user
   belongs_to :genre
   belongs_to :category
+  # recipeを星評価
   ratyrate_rateable "recipe"
 
   validates :name, presence: true
@@ -18,17 +20,14 @@ class Recipe < ApplicationRecord
   validates :name,  length: { maximum: 30 }
   validates :content,  length: { maximum: 2000 }
 
-
-
-
   def create_notification_recipe_review(current_user, recipe_review_id)
     #distinctメソッド=重複レコードを1つにまとめる
-    # 自分以外にコメントしている人をすべて取得し、全員に通知を送る
+    # 自分以外にコメントしている人をすべて取得し、全員に通知を送る、distinctメソッドで自分以外のコメント重複行をまとめる
     temp_ids = RecipeReview.select(:user_id).where(recipe_id: id).where.not(user_id: current_user.id).distinct
     temp_ids.each do |temp_id|
       save_notification_recipe_review!(current_user, recipe_review_id, temp_id['user_id'])
     end
-    # 投稿者に通知を送る(1回目)
+    # 投稿者に通知を送る(1回目だけ)
     save_notification_recipe_review!(current_user, recipe_review_id, user_id) if temp_ids.blank?
   end
   def save_notification_recipe_review!(current_user, recipe_review_id, visited_id)
@@ -38,6 +37,7 @@ class Recipe < ApplicationRecord
       visited_id: visited_id,
       action: 'recipe_review'
     )
+    #自分自身なら既に通知済
         if notification.visitor_id == notification.visited_id
       notification.checked = true
     end
@@ -46,7 +46,8 @@ class Recipe < ApplicationRecord
 
 
   # すでに「ブックマーク」されているか検索,?はスペースホルダー、
-  def create_notification_bookmark!(current_user)
+  def create_notification_bookmark(current_user)
+    # visitor＝訪れた側
     temp = Notification.where(["visitor_id = ? and visited_id = ? and recipe_id = ? and action = ? ", current_user.id, user_id, id, 'bookmark'])
     #ブックマークされてないなら実行
       if temp.blank?

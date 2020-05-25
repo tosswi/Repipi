@@ -1,9 +1,8 @@
 class RecipesController < ApplicationController
-  before_action :authenticate_user!, except:[:index,:top]
+  before_action :authenticate_user!, except:[:index,:top,:show]
   before_action :correct_user, only: [:edit, :update]
   def top
     @recipes_all=Recipe.all
-
   end
 
   def new
@@ -14,6 +13,7 @@ class RecipesController < ApplicationController
     @genres = Genre.all
     @categories = Category.all
   end
+
   def show
     @genres=Genre.all
     @categories=Category.all
@@ -23,10 +23,11 @@ class RecipesController < ApplicationController
     @recipe_reviews=@recipe.recipe_reviews
     @recipe_images=@recipe.recipe_images
   end
+
   def  index
     @recipes_all=Recipe.all
     @recipe_images=RecipeImage.all
-    @recipes_bookmark = Recipe.find(Bookmark.group(:recipe_id).order('count(recipe_id) desc').limit(5).pluck(:recipe_id))
+    @recipes_bookmark = Recipe.find(Bookmark.group(:recipe_id).order('count(recipe_id) desc').limit(3).pluck(:recipe_id))
     @categories=Category.all
     @genres=Genre.all
     if params[:category_id]
@@ -73,12 +74,14 @@ class RecipesController < ApplicationController
     @genres=Genre.all
     @categories=Category.all
   end
+
   def destroy
     @recipe = Recipe.find(params[:id])
     @recipe.destroy
     flash[:success] = "レシピを削除しました。"
     redirect_to recipes_path
   end
+
   def update
     @recipe=Recipe.find(params[:id])
     if @recipe.update(recipe_params)
@@ -91,11 +94,13 @@ class RecipesController < ApplicationController
       redirect_to edit_recipe_path(@recipe)
     end
   end
+
   def bookmarks
     @genres = Genre.all
     @categories = Category.all
     @recipes = current_user.bookmark_recipes.includes(:user)
   end
+
   private
   def recipe_params
     params.require(:recipe).permit(:name,:content,:material,:quantity,:human,:playtime,:image,:genre_id,:user_id,:category_id,:is_recipe_status, recipe_images_attributes: [:id,:recipe_image], materials_attributes: [:id,:name,:quantity,:_destroy])

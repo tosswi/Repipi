@@ -13,6 +13,7 @@
                 <%= link_to "退会しない", edit_user_path(current_user), class: "btn btn-primary" %>
             </td>
             <td>
+                <%# is_member_statusがtrueに変更 %>
                 <%= link_to "退会する", users_hide_path(current_user), method: :put, data: {confirm: "本当に退会しますか?"}, class: "btn btn-danger" %>
             </td>
         </tr>

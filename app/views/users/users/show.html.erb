@@ -16,13 +16,13 @@
       <% if @user ==current_user %>
       <% case @user.rank %>
       <% when 'レギュラー会員' %>
-      <%= "シルバー会員まで" %><%= 30 - @user.point  %> pt<br>
+      <%= "シルバー会員まで" %><%= 100 - @user.point  %> pt<br>
       <% when 'シルバー会員' %>
-      <%= "ゴールド会員まで" %><%= 99 - @user.point  %> pt<br>
+      <%= "ゴールド会員まで" %><%= 299 - @user.point  %> pt<br>
       <% when 'ゴールド会員' %>
-      <%= "プラチナ会員まで"%><%= 1000 - @user.point  %>pt<br>
+      <%= "プラチナ会員まで"%><%= 999 - @user.point  %>pt<br>
       <% when 'プラチナ会員' %>
-      <%= "ダイヤモンド会員まで"%><%= 2000 - @user.point  %>pt<br>
+      <%= "ダイヤモンド会員まで"%><%= 2999 - @user.point  %>pt<br>
       <% end %>
       <% end %>
       <% end %>

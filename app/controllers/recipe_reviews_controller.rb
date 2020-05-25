@@ -1,5 +1,6 @@
 class RecipeReviewsController < ApplicationController
   before_action :authenticate_user!
+  before_action :correct_user, only: [:edit, :update]
   def create
     @recipe = Recipe.find(params[:recipe_id])
     @recipe_review = @recipe.recipe_reviews.new(recipe_review_params)
@@ -41,5 +42,10 @@ class RecipeReviewsController < ApplicationController
   private
   def recipe_review_params
     params.require(:recipe_review).permit(:recipe_comment,:recipe_review,:recipe_id,:user_id)
+  end
+
+  def correct_user
+    @recipe_review = RecipeReview.find(params[:recipe_id])
+    redirect_to(root_url) unless current_user?(@recipe_review.user)
   end
 end

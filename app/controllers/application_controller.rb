@@ -23,15 +23,16 @@ class ApplicationController < ActionController::Base
       user == current_user
     end
   protected
+    #deviseで利用出来るパラメーターの設定
   def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up, keys: [:name,:email,:nickname,:sex, :phone_number, :image])
   end
-  # データ更新時のパラメーターを設定する
+    #データ更新時のパラメーターを設定する
   def configure_account_update_params
     devise_parameter_sanitizer.permit(:account_update, keys: [:name,:email,:nickname,:sex,:phone_number, :image])
   end
   
-  #ransack
+    #ransack
   def set_search
     @search = Recipe.ransack(params[:q]) 
     @recipes = @search.result.page(params[:page]).per(4)

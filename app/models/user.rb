@@ -11,13 +11,14 @@ class User < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   #throughオプションでユーザーがブックマークした投稿を直接アソシエーションで取得
   has_many :bookmark_recipes,through: :bookmarks, source: :recipe, dependent: :destroy
+  # Notificationを通してactive_notificationsを使用する
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
   has_many :relationships, dependent: :destroy
+  # relationshipsを通してfollowsを使用する
   has_many :followings, through: :relationships, source: :follow, dependent: :destroy
   #ペアで重複するものが保存されないようにする
   has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'follow_id', dependent: :destroy
-
   has_many :followers, through: :reverse_of_relationships, source: :user, dependent: :destroy
   ratyrate_rater
   has_many :sns_credentials, dependent: :destroy
@@ -27,19 +28,19 @@ class User < ApplicationRecord
   validates :nickname, presence: true,  length: { maximum: 15 },uniqueness: true
   validates :phone_number, presence: true 
   validates :email,  length: { maximum: 50 }
-
   
+  # userのポイントによるランキング
   def user_rank_update(user)
     case user.point
-    when 0..29
+    when 0..99
       user.rank = "レギュラー会員"
-    when 30..99
+    when 100..299
       user.rank = "シルバー会員"
-    when 100..499
+    when 300..999
       user.rank = "ゴールド会員"
-    when 1000..1999
+    when 1000..2999
       user.rank = "プラチナ会員"
-    when 2000..9999
+    when 3000..9999
       user.rank = "ダイアモンド会員"
     end
     user.save
@@ -74,6 +75,7 @@ class User < ApplicationRecord
       end
     end
     
+    # userのis_member_statusがfalseならtrueを返す
   def active_for_authentication?
     super && (self.is_member_status == false)
   end

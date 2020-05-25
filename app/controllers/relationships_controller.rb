@@ -4,12 +4,12 @@ class RelationshipsController < ApplicationController
   current_user.follow(params[:follow_id])
   redirect_to root_path
   end
+  
   def unfollow
     current_user.unfollow(params[:follow_id])
     redirect_to root_path
   end
-  def index
-  end
+
   def create
     @user = User.find(params[:follow_id])
     following = current_user.follow(@user)
@@ -38,5 +38,4 @@ class RelationshipsController < ApplicationController
       redirect_to request.referer
     end
   end
-
 end

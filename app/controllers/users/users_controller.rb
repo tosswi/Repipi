@@ -7,24 +7,25 @@ class Users::UsersController < ApplicationController
     @recipes=User.find(params[:id]).recipes.order(id: "DESC").page(params[:page]).per(4)
     @genres = Genre.all
     @categories = Category.all
-    @users=User.all
     @currentUserEntry=Entry.where(user_id: current_user.id)
     @userEntry=Entry.where(user_id: @user.id)
+    # roomsが作成されている場合と作成されていない場合に分ける
     unless @user.id == current_user.id
       @currentUserEntry.each do |cu|
         @userEntry.each do |u|
+          # trueなら既に存在しており、作成されているroom_idを特定させる
           if cu.room_id == u.room_id then
             @isRoom = true
             @roomId = cu.room_id
           end
         end
       end
+      # なければroomを作る必要がある
       unless @isRoom
         @room = Room.new
         @entry = Entry.new
       end
     end
-    
   end
 
   def edit
