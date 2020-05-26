@@ -39,11 +39,17 @@
             <dd><%= f.submit ("検索") , class: 'search-btn'%></dd>
             <% end %>
           </dl>
-          <div class="mypage">
-            <%= link_to user_path(current_user) do%>
-            <li class="fas fa-user-circle fa-2x"></li>
-            <% end %>
-          </div>
+          <nav class="navbar navbar-light">
+            <div class="navbar-expand-lg navbar-collapse">
+              <ul class="navbar-nav">
+                <li class="fas fa-cookie-bite"><%= link_to ' レシピ一覧', recipes_path, class: "btn btn-default" %></li>
+                <li class="fas fa-users"><%= link_to 'ユーザー一覧', users_path, class: "btn btn-default" %></li>
+                <li class="fas fa-user-circle"><%= link_to 'マイページ',user_path(current_user), class: "btn btn-default"  %>
+                </li>
+                </li>
+              </ul>
+            </div>
+          </nav>
           <div class="flash">
             <% flash.each do |message_type, message| %>
             <%= message %>
@@ -61,6 +67,7 @@
         <div class="navbar-expand-lg navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
             <li class="fas fa-desktop"><%= link_to'TOP',root_path, class:"btn btn-default" %></li>
+            <li class="fas fa-cookie-bite"><%= link_to ' レシピ一覧', recipes_path, class: "btn btn-default" %></li>
             <li class="fas fa-plus"><%= link_to'新規登録',new_user_registration_path, class:"btn btn-default" %></li>
             <li class=" fas fa-sign-in-alt"><a href="/users/sign_in" , class="btn btn-default">ログイン</a></li>
           </ul>
@@ -81,10 +88,8 @@
     <ul>
       <li class="fas fa-desktop"><%= link_to 'トップ', root_path, class: "btn btn-default" %></li>
       <li class="far fa-bell"> <%= link_to '通知',notifications_path, class: "btn btn-default" %></li>
-      <li class="fas fa-cookie-bite"><%= link_to ' レシピ一覧', recipes_path, class: "btn btn-default" %></li>
       <li class="fas fa-bookmark"><%= link_to 'ブックマーク', bookmarks_recipes_path, class: "btn btn-default" %></li>
       <li class="fas fa-cookie"><%= link_to 'レシピ投稿', new_recipe_path, class: "btn btn-default" %></li>
-      <li class="fas fa-users"><%= link_to 'ユーザー一覧', users_path, class: "btn btn-default" %></li>
       <li class="fas fa-sign-out-alt"><a rel="nofollow" data-method="delete" href="/users/sign_out" ,
           class="btn btn-default">ログアウト</a></li>
     </ul>
