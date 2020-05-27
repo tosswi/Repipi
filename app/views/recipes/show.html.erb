@@ -41,7 +41,7 @@
         <%= link_to 'この投稿者のページを見る',user_path(@recipe.user), class: "btn btn-primary"  %><br>
         <% if current_user.present? %>
         レビュー :
-        <%= rating_for @recipe, 'recipe',  disable_after_rate: true, imdb_avg: true %>
+        <%#= rating_for @recipe, 'recipe',  disable_after_rate: true, imdb_avg: true %>
         <% if @recipe.bookmark_by?(current_user) %>
         <li>
           <%= link_to recipe_bookmarks_path(@recipe), method: :delete do %>
@@ -61,9 +61,9 @@
         </table>
         <%= form_for @recipe_review,url:recipe_recipe_reviews_path(@recipe) do |f|%>
         <%= render 'layouts/error', model:@recipe_review %>
-        <div id="star">
+        <div id="star" class="form-group">
           <%= f.label :rate %>
-          <%= f.hidden_field :rated, id: :review_star %>
+          <%= f.hidden_field :rate, id: :review_star %>
         </div>
         <%= f.label :recipe_comment %>
         <%= f.text_field :recipe_comment %>
@@ -95,5 +95,16 @@
 </div>
 </div>
 <script>
-
+  //   $('#star').raty({
+  //     size: 36,
+  //     starOff: "<%= asset_path('star-off.png') %>",
+  //     starOn: "<%= asset_path('star-on.png') %>",
+  //     starHalf: "<%= asset_path('star-half.png') %>",
+  //     scoreName: 'recipe_review[rate]',
+  //     half: true,
+  //   });
+  $('#star').raty({
+    path: '/assets/',
+    scoreName: 'recipe_review[rate]'
+  });
 </script>

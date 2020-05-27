@@ -41,7 +41,7 @@ class RecipeReviewsController < ApplicationController
   end
   private
   def recipe_review_params
-    params.require(:recipe_review).permit(:recipe_comment,:recipe_review,:rated,:recipe_id,:user_id)
+    params.require(:recipe_review).permit(:recipe_comment,:recipe_review,:rate,:recipe_id,:user_id)
   end
 
   def correct_user
