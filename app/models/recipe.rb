@@ -18,6 +18,9 @@ class Recipe < ApplicationRecord
   validates :name,  length: { maximum: 30 }
   validates :content,  length: { maximum: 2000 }
 
+
+
+
   def create_notification_recipe_review(current_user, recipe_review_id)
     #distinctメソッド=重複レコードを1つにまとめる
     # 自分以外にコメントしている人をすべて取得し、全員に通知を送る、distinctメソッドで自分以外のコメント重複行をまとめる

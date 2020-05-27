@@ -59,11 +59,12 @@
         <% end %>
         <% end %>
         </table>
+        トータル評価<strong><%= @review_ave %></strong><%= image_tag 'mid-star.png' %><br>
+        評価数<%= @recipe.recipe_reviews.count %>件
         <%= form_for @recipe_review,url:recipe_recipe_reviews_path(@recipe) do |f|%>
         <%= render 'layouts/error', model:@recipe_review %>
         <div id="star" class="form-group">
-          <%= f.label :rate %>
-          <%= f.hidden_field :rate, id: :review_star %>
+          評価<%= f.hidden_field :rate, id: :review_star %>
         </div>
         <%= f.label :recipe_comment %>
         <%= f.text_field :recipe_comment %>
@@ -95,16 +96,19 @@
 </div>
 </div>
 <script>
-  //   $('#star').raty({
-  //     size: 36,
-  //     starOff: "<%= asset_path('star-off.png') %>",
-  //     starOn: "<%= asset_path('star-on.png') %>",
-  //     starHalf: "<%= asset_path('star-half.png') %>",
-  //     scoreName: 'recipe_review[rate]',
-  //     half: true,
-  //   });
   $('#star').raty({
     path: '/assets/',
     scoreName: 'recipe_review[rate]'
+  });
+</script>
+<script>
+  $("star-rate-<%=@recipe.id %>").raty({
+    size: 36,
+    starOff: "<%= asset_path('star-off.png') %>",
+    starOn: "<%= asset_path('star-on.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    half: true,
+    readOnly: true,
+    score: "<%= @recipe.recipe_reviews.average(:rate).to_f.round(1) %> "
   });
 </script>

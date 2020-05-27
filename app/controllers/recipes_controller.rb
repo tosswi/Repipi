@@ -22,6 +22,7 @@ class RecipesController < ApplicationController
     @recipe_image=RecipeImage.find(params[:id])
     @recipe_reviews=@recipe.recipe_reviews
     @recipe_images=@recipe.recipe_images
+    @review_ave = @recipe.recipe_reviews.average(:rate)
   end
 
   def  index
