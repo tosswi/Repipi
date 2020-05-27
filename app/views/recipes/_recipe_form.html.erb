@@ -1,33 +1,31 @@
 <div class="col-xs-10">
-    <%= render 'layouts/error', model:@recipe %>
-    <%= form_for (@recipe) do |f| %>
+  <%= render 'layouts/error', model:@recipe %>
+  <%= form_for (@recipe) do |f| %>
     <p>最大4枚までアップロードできます</p>
     <%= f.fields_for :recipe_images do |i| %>
-    <%= i.file_field :recipe_image, class: "hidden-field" %><br>
+      <%= i.file_field :recipe_image, class: "hidden-field" %><br>
     <% end %>
     <div class="field row">
-        <%= f.label :レシピ名 %>
-        <%= f.text_field :name,:placeholder => "チャーハン" %>
+      <%= f.label :レシピ名 %>
+      <%= f.text_field :name,:placeholder => "チャーハン" %>
     </div>
     <table class="table-type-b">
-        <%#  fields_forでform_for内で異なるモデルを編集できるようになる %>
-        <%= f.fields_for :materials do | material | %>
+      <%#  fields_forでform_for内で異なるモデルを編集できるようになる %>
+      <%= f.fields_for :materials do | material | %>
         <%= render 'material_fields', f: material %>
-        <% end %>
+      <% end %>
     </table>
     <p> <%= link_to_add_association '記入欄を追加', f, :materials,class: 'btn-type-b'%></p>
     <div class="field row">
-        <%= f.select :human ,Recipe.humen.keys.to_a, {}%>
+      <%= f.select :human ,Recipe.humen.keys.to_a, {}%>
     </div>
     ジャンルを選択<%= f.collection_select :genre_id, @genres, :id, :name %><br>
     カテゴリーを選択<%= f.collection_select :category_id, @categories, :id, :name %>
     <div class="field content">
-
-        <%= f.text_area :content,:placeholder => "作り方を記入してください", :size=>"100x10"%>
+      <%= f.text_area :content,:placeholder => "作り方を記入してください", :size=>"100x10"%>
     </div>
     <div class="actions row">
-        <%= f.submit class: "btn btn-primary col-xs-12" %>
+      <%= f.submit class: "btn btn-primary col-xs-12" %>
     </div>
-    <% end %>
-
+  <% end %>
 </div>

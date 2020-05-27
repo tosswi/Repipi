@@ -18,9 +18,6 @@ class Recipe < ApplicationRecord
   validates :name,  length: { maximum: 30 }
   validates :content,  length: { maximum: 2000 }
 
-
-
-
   def create_notification_recipe_review(current_user, recipe_review_id)
     #distinctメソッド=重複レコードを1つにまとめる
     # 自分以外にコメントしている人をすべて取得し、全員に通知を送る、distinctメソッドで自分以外のコメント重複行をまとめる
@@ -31,6 +28,7 @@ class Recipe < ApplicationRecord
     # 投稿者に通知を送る(1回目だけ)
     save_notification_recipe_review!(current_user, recipe_review_id, user_id) if temp_ids.blank?
   end
+
   def save_notification_recipe_review!(current_user, recipe_review_id, visited_id)
     notification = current_user.active_notifications.new(
       recipe_id: id,
@@ -40,9 +38,9 @@ class Recipe < ApplicationRecord
     )
     #自分自身なら既に通知済
         if notification.visitor_id == notification.visited_id
-      notification.checked = true
-    end
-    notification.save if notification.valid?
+          notification.checked = true
+        end
+          notification.save if notification.valid?
   end
 
 
@@ -62,7 +60,7 @@ class Recipe < ApplicationRecord
             notification.checked = true
         end
           notification.save if notification.valid?
-      end
+        end
   end
 
   def bookmark_by?(user)

@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_search
+  
     def after_sign_in_path_for(resource)
       case resource
       when Admin
@@ -22,6 +23,7 @@ class ApplicationController < ActionController::Base
     def current_user?(user)
       user == current_user
     end
+
   protected
     #deviseで利用出来るパラメーターの設定
   def configure_permitted_parameters
@@ -31,7 +33,6 @@ class ApplicationController < ActionController::Base
   def configure_account_update_params
     devise_parameter_sanitizer.permit(:account_update, keys: [:name,:email,:nickname,:sex,:phone_number, :image])
   end
-  
     #ransack
   def set_search
     @search = Recipe.ransack(params[:q]) 

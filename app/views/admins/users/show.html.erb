@@ -1,33 +1,46 @@
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-2">
-                <tr>
-                    <th><%= attachment_image_tag @user, :image, size: '100x100',format: "jpeg", fallback: "no_image.jpg" %>
-                    </th>
-                    <th>名前</th>
-                    <td><%= @user.name %></td><br>
-                    <th>ニックネーム</th>
-                    <td><%= @user.nickname %></td><br>
-                    <th>性別</th><%= @user.sex %><br>
-                </tr>
-            </div>
-            <div class="col-xs-10">
-                <table class="table table-borderless">
-                    <thead>
-                        <tr>
-                            <th>レシピ名</th>
-                        </tr>
-                    </thead>
-                    <% @user.recipes.each do |recipe|%>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <%= link_to recipe.name ,admins_recipe_path(recipe) %>
-                            </td>
-                        </tr>
-                        <% end %>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-2">
+      <tr>
+        <th>
+          <%= attachment_image_tag @user, :image, size: '100x100',format: "jpeg", fallback: "no_image.jpg" %>
+        </th>
+        <th>
+          名前
+        </th>
+        <td>
+          <%= @user.name %>
+          </td><br>
+        <th>
+          ニックネーム
+        </th>
+        <td>
+          <%= @user.nickname %>
+        </td><br>
+        <th>
+          性別
+        </th>
+          <%= @user.sex %>
+        <br>
+      </tr>
     </div>
+    <div class="col-xs-10">
+      <table class="table table-borderless">
+        <thead>
+          <tr>
+            <th>レシピ名</th>
+          </tr>
+        </thead>
+        <tbody>
+           <% @user.recipes.each do |recipe|%>
+              <tr>
+                <td>
+                  <%= link_to recipe.name ,admins_recipe_path(recipe) %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+      </table>
+    </div>
+  </div>
+</div>

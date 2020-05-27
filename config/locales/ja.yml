@@ -17,4 +17,5 @@ ja:
         content: 作り方
         recipe_images: 画像
       recipe_review:
+        rate: 評価
         recipe_comment: コメント

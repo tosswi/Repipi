@@ -25,12 +25,12 @@ class RecipeReviewsController < ApplicationController
   def update
     @recipe_review=RecipeReview.find(params[:recipe_id])
     if @recipe_review.update(recipe_review_params)
-    redirect_to recipe_path(@recipe_review.recipe,@recipe_review)
+      redirect_to recipe_path(@recipe_review.recipe,@recipe_review)
     else
       render :edit
     end
-
   end
+  
   def destroy
     @recipe_review = RecipeReview.find(params[:recipe_id])
     if @recipe_review.user != current_user
@@ -39,7 +39,9 @@ class RecipeReviewsController < ApplicationController
     @recipe_review.destroy
     redirect_to recipe_path(@recipe_review.recipe,@recipe_review)
   end
+
   private
+
   def recipe_review_params
     params.require(:recipe_review).permit(:recipe_comment,:recipe_review,:rate,:recipe_id,:user_id)
   end

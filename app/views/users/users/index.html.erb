@@ -4,9 +4,9 @@
       <div class="col-xs-4">
         <h2>友達検索</h2>
         <%= search_form_for @q do |f| %>
-        <%= f.label :name, "Keyword" %>
-        <%= f.search_field :name_cont,placeholder: 'ユーザー検索' %>
-        <%= f.submit "検索" %>
+          <%= f.label :name, "Keyword" %>
+          <%= f.search_field :name_cont,placeholder: 'ユーザー検索' %>
+          <%= f.submit "検索" %>
         <% end %>
         <table class="table">
           <thead class="table table-striped">
@@ -40,11 +40,11 @@
             </thead>
             <tbody>
               <% @user_pointrank.first(10).each do |user| %>
-              <tr>
-                <td><%= link_to user.name,user_path(user) %></td>
-                <td><%= user.rank %></td>
-                <td><%= user.point %></td>
-              </tr>
+                <tr>
+                  <td><%= link_to user.name,user_path(user) %></td>
+                  <td><%= user.rank %></td>
+                  <td><%= user.point %></td>
+                </tr>
               <% end %>
             </tbody>
           </table>

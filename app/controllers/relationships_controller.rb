@@ -1,8 +1,8 @@
 class RelationshipsController < ApplicationController
   before_action :authenticate_user!
   def follow
-  current_user.follow(params[:follow_id])
-  redirect_to root_path
+    current_user.follow(params[:follow_id])
+    redirect_to root_path
   end
   
   def unfollow

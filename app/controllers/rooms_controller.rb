@@ -18,9 +18,10 @@ class RoomsController < ApplicationController
       redirect_back(fallback_location: root_path)
     end
   end
+
   private
+
   def entry_params
     params.require(:entry).permit(:user_id, :room_id).merge(:room_id => @room.id)
   end
-
 end

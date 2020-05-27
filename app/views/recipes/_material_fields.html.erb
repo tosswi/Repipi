@@ -1,8 +1,8 @@
 <tr class="nested-fields"><%# gem 'cocoon'このクラスを認識してその中にある要素を複製して動的に追加してくれる %>
-    <th width="20%">材料</th>
-    <td>
-        <%= f.text_field :name,placeholder: "例:卵", class:"input-txt size-m" %>
-        <%= f.text_field :quantity, class:"input-txt size-s", min:"0",placeholder: "2個" %>
-        <%= link_to_remove_association '削除', f, class: 'bg-orange btn-type-s' %>
-    </td>
+  <th width="20%">材料</th>
+  <td>
+    <%= f.text_field :name,placeholder: "例:卵", class:"input-txt size-m" %>
+    <%= f.text_field :quantity, class:"input-txt size-s", min:"0",placeholder: "2個" %>
+    <%= link_to_remove_association '削除', f, class: 'bg-orange btn-type-s' %>
+  </td>
 </tr>

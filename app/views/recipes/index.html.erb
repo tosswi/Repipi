@@ -9,11 +9,10 @@
       <div class="table-responsive">
         <div class="flex_test-box">
           <% @recipes.each do |recipe|%>
-          <%= link_to recipe_path(recipe) do %>
-          <%= image_tag recipe.recipe_images[0].recipe_image.to_s, class:"recipe_showimage_search" %><br>
-          <p><%= recipe.name %></p>
-          <% end %>
-          </tr>
+            <%= link_to recipe_path(recipe) do %>
+              <%= image_tag recipe.recipe_images[0].recipe_image.to_s, class:"recipe_showimage_search" %><br>
+              <p><%= recipe.name %></p>
+            <% end %>
           <% end %>
         </div>
       </div>
@@ -25,7 +24,7 @@
           <% @recipes_all.each do |recipe| %>
           <li>
             <%= link_to recipe_path(recipe) do %>
-            <%= image_tag recipe.recipe_images[0].recipe_image.to_s, class:"recipe_showimage" %>
+              <%= image_tag recipe.recipe_images[0].recipe_image.to_s, class:"recipe_showimage" %>
             <% end %>
           </li>
           <% end %>
@@ -35,7 +34,7 @@
           <% @recipes_bookmark.each do |recipe| %>
           <li>
             <%= link_to recipe_path(recipe) do %>
-            <%= image_tag recipe.recipe_images[0].recipe_image.to_s, class:"recipe_showimage_search1" %>
+              <%= image_tag recipe.recipe_images[0].recipe_image.to_s, class:"recipe_showimage_search1" %>
             <% end %>
           </li>
           <% end %>

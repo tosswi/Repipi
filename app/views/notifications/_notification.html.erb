@@ -1,27 +1,22 @@
 <% visitor_user = User.find(notification.visitor_id) %>
 
-
-
 <%= link_to user_path(visitor_user) do %>
-<strong>
-  <%= visitor_user.name %>
-  <% end %>さんが</strong>
-<%= notification.created_at.strftime('%Y年%m月%d日 %H時%M分に').upcase %>
-<% case notification.action %>
-<% when 'follow' then %>
-<%= "あなたをフォローしました" %><br>
-<% when 'message' then %>
-<%= "あなたに "%><%=link_to 'メッセージ', room_path(notification.message.room), style: "font-weight: bold;" %>を送りました<br>
-<% when 'bookmark' then %>
-<%=link_to 'あなたの投稿', notification.recipe, style: "font-weight: bold;" %>
-<%="をブックマークしました" %><br>
-<% when 'recipe_review' then %>
-<% if notification.recipe.user_id == visitor_user.id %>
-<%= link_to "あなたの投稿", notification.recipe, style: "font-weight: bold;" %>を評価しました。<br>
-<% else %>
-<%= link_to recipe_path(notification.recipe) do %>
-<strong>あなたの投稿 <% end %> </strong>
-にコメントしました。<br>
+  <strong><%= visitor_user.name %>
+<% end %>さんが</strong><%= notification.created_at.strftime('%Y年%m月%d日 %H時%M分に').upcase %>
 
-<% end %>
+<% case notification.action %>
+  <% when 'follow' then %>
+    <%= "あなたをフォローしました" %><br>
+  <% when 'message' then %>
+    <%= "あなたに "%><%=link_to 'メッセージ', room_path(notification.message.room), style: "font-weight: bold;" %>を送りました<br>
+  <% when 'bookmark' then %>
+    <%=link_to 'あなたの投稿', notification.recipe, style: "font-weight: bold;" %><%="をブックマークしました" %><br>
+  <% when 'recipe_review' then %>
+    <% if notification.recipe.user_id == visitor_user.id %>
+      <%= link_to "あなたの投稿", notification.recipe, style: "font-weight: bold;" %>を評価しました。<br>
+    <% else %>
+      <%= link_to recipe_path(notification.recipe) do %>
+    <strong>あなたの投稿 <% end %> </strong>
+    にコメントしました。<br>
+  <% end %>
 <% end %>

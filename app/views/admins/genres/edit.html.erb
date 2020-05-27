@@ -1,7 +1,7 @@
 <%= form_for @genre, url:admins_genre_path(@genre.id) do |f| %>
-<div class="field row">
-  <%= f.label :ジャンル %>
-  <%= f.text_field :name %>
-  <%= f.submit "追加", class: "btn btn-primary" %>
-</div>
+  <div class="field row">
+    <%= f.label :ジャンル %>
+    <%= f.text_field :name %>
+    <%= f.submit "追加", class: "btn btn-primary" %>
+  </div>
 <% end %>

@@ -1,15 +1,15 @@
 <div class="container">
-      <div class="row">
-            <div class="dol-xs-2">
-                  <%= form_with model:@recipe_review,url:recipe_recipe_reviews_path(@recipe_review),local: true do |f|%>
-                  <%= render 'layouts/error', model:@recipe_review %>
-                  <%= f.label :recipe_comment %>
-                  <%= f.text_field :recipe_comment %>
-                  <%= f.submit '投稿する' %>
-                  <% end %>
-            </div>
-            <div class="dol-xs-8">
-                  <%= link_to 'Destroy', recipe_recipe_reviews_path, class: 'btn-sm btn-danger', method: :delete %>
-            </div>
-      </div>
+  <div class="row">
+    <div class="dol-xs-2">
+      <%= form_with model:@recipe_review,url:recipe_recipe_reviews_path(@recipe_review),local: true do |f|%>
+        <%= render 'layouts/error', model:@recipe_review %>
+        <%= f.label :recipe_comment %>
+        <%= f.text_field :recipe_comment %>
+        <%= f.submit '投稿する' %>
+      <% end %>
+    </div>
+    <div class="dol-xs-8">
+      <%= link_to 'Destroy', recipe_recipe_reviews_path, class: 'btn-sm btn-danger', method: :delete %>
+    </div>
+  </div>
 </div>

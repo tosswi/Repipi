@@ -22,7 +22,11 @@ class RecipesController < ApplicationController
     @recipe_image=RecipeImage.find(params[:id])
     @recipe_reviews=@recipe.recipe_reviews
     @recipe_images=@recipe.recipe_images
-    @review_ave = @recipe.recipe_reviews.average(:rate)
+    if @recipe_reviews.blank?
+        @review_ave = 0
+    else
+        @review_ave = @recipe.recipe_reviews.average(:rate).round(2)
+    end
   end
 
   def  index
@@ -34,18 +38,10 @@ class RecipesController < ApplicationController
     if params[:category_id]
     @category=Category.find(params[:category_id])
     @recipes = @category.recipes.order(id: "DESC").page(params[:page]).per(4)
-  end
+    end
     if params[:genre_id]
     @genre=Genre.find(params[:genre_id])
     @recipes = @genre.recipes.order(id: "DESC").page(params[:page]).per(4)
-  end
-  end
-
-  def self.search(search)
-    if search
-      Recipe.where(['name LIKE ?', "%#{search}%"])
-    else
-      Recipe.all 
     end
   end
 
@@ -65,6 +61,7 @@ class RecipesController < ApplicationController
       render :new 
     end
   end
+  
   def edit
     @recipe=Recipe.find(params[:id])
     4.times do |i|
