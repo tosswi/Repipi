@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-xs-2">
       <%= form_for @genre, url:admins_genres_path do |f| %>
-      <%= render 'layouts/error', model:@category %>
+      <%= render 'layouts/error', model:@genre %>
       <div class="field row">
         <%= f.label :カテゴリー %>
         <%= f.text_field :name %>
@@ -19,8 +19,8 @@
         <tbody>
           <% @genres.each do |genre|%>
           <tr>
-            <td><%= category.name %></td>
-            <td><%= link_to "編集する", edit_admins_category_path(category.id) ,class: "btn btn-primary"%></td>
+            <td><%= genre.name %></td>
+            <td><%= link_to "編集する", edit_admins_genre_path(genre.id) ,class: "btn btn-primary"%></td>
           </tr>
           <% end %>
         </tbody>

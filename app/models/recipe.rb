@@ -11,8 +11,6 @@ class Recipe < ApplicationRecord
   belongs_to :user
   belongs_to :genre
   belongs_to :category
-  # recipeを星評価
-  ratyrate_rateable "recipe"
 
   validates :name, presence: true
   validates :content, presence: true

@@ -472,7 +472,6 @@ GEM
       activesupport (>= 5.2.1)
       i18n
       polyamorous (= 2.3.2)
-    ratyrate (1.2.2.alpha)
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -641,7 +640,6 @@ DEPENDENCIES
   rails (~> 5.2.4, >= 5.2.4.2)
   rails-i18n
   ransack
-  ratyrate
   refile!
   refile-mini_magick
   rspec-rails

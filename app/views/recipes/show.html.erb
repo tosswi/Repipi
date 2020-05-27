@@ -61,6 +61,10 @@
         </table>
         <%= form_for @recipe_review,url:recipe_recipe_reviews_path(@recipe) do |f|%>
         <%= render 'layouts/error', model:@recipe_review %>
+        <div id="star">
+          <%= f.label :rate %>
+          <%= f.hidden_field :rated, id: :review_star %>
+        </div>
         <%= f.label :recipe_comment %>
         <%= f.text_field :recipe_comment %>
         <%= f.submit '投稿する' %>
@@ -90,3 +94,6 @@
   </div>
 </div>
 </div>
+<script>
+
+</script>
