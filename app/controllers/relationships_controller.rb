@@ -14,7 +14,7 @@ class RelationshipsController < ApplicationController
     @user = User.find(params[:follow_id])
     following = current_user.follow(@user)
     if following.save
-      @user.point += 5
+      @user.point += 3
       @user.save 
       @user.create_notification_follow!(current_user)
       flash[:success] = 'ユーザーをフォローしました'
@@ -29,7 +29,7 @@ class RelationshipsController < ApplicationController
     @user = User.find(params[:follow_id])
     following = current_user.unfollow(@user)
     if following.destroy
-      @user.point -= 5
+      @user.point -= 3
       @user.save 
       flash[:success] = 'ユーザーのフォローを解除しました'
       redirect_to request.referer

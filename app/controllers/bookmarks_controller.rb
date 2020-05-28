@@ -6,7 +6,7 @@ class BookmarksController < ApplicationController
     bookmark = current_user.bookmarks.build(recipe_id: params[:recipe_id])
     bookmark.save
     if current_user != recipe.user
-      recipe.user.point += 10
+      recipe.user.point += 5
       recipe.user.save
     end
     recipe.create_notification_bookmark(current_user)
@@ -19,7 +19,7 @@ class BookmarksController < ApplicationController
     if recipe.bookmark_by?(current_user)
       current_user.bookmarks.find_by(recipe_id: params[:recipe_id]).destroy!
       if current_user != recipe.user
-        recipe.user.point -= 10
+        recipe.user.point -= 5
         recipe.user.save
       end
       flash[:success] = "ブックマークを解除しました"

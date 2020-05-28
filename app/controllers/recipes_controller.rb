@@ -51,7 +51,7 @@ class RecipesController < ApplicationController
     @categories = Category.all
     @recipe.user_id = current_user.id
     if @recipe.save
-      @recipe.user.point += 20
+      @recipe.user.point += 10
       @recipe.user.save
       flash[:success] = "レシピを投稿しました。"
       redirect_to recipe_path(@recipe)
@@ -76,6 +76,8 @@ class RecipesController < ApplicationController
   def destroy
     @recipe = Recipe.find(params[:id])
     @recipe.destroy
+    @recipe.user.point -= 10
+    @recipe.user.save
     flash[:success] = "レシピを削除しました。"
     redirect_to recipes_path
   end
