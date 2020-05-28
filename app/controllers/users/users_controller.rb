@@ -52,13 +52,16 @@ class Users::UsersController < ApplicationController
     @q = User.ransack(params[:q])
     @users = @q.result(distinct: true).page(params[:page]).per(3)
   end
+
   def explanation
   end
+
   def following
       @user  = User.find(params[:id])
       @users = @user.following
       render 'show_follow'
   end
+
   def hide
     #is_member_statusカラムにフラグを立てる(defaultはfalse)
     current_user.update(is_member_status: true)
@@ -73,21 +76,23 @@ class Users::UsersController < ApplicationController
     @users = @user.followers
     render 'show_follower'
   end
+
   def followerindex
     @user=User.find(params[:user_id])
   end
+
   def followindex
     @user=User.find(params[:user_id])
   end
-  def allergy_string
-    params[:user][:allergy] = params[:user][:allergy]&.join("/")  # to string
-  end
+
   private
+
   def user_params
     params.require(:user).permit(:name,:nickname,:sex,:phone_number,:image,allergy:[])
   end
+
   def correct_user
       @user = User.find(params[:id])
-      redirect_to(root_url) unless current_user?(@user)
+    redirect_to(root_url) unless current_user?(@user)
     end
-end
+  end

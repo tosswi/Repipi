@@ -4,29 +4,29 @@ Rails.application.routes.draw do
   post '/rate' => 'rater#create', :as => 'rate'
   delete 'notifications/destroy_all' => 'notifications#destroy_all'
   post 'follow/:id' => 'relationships#follow', as: 'follow' # フォローする
-delete 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow' # フォロー外す
+  delete 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow' # フォロー外す
   namespace :users do
     get 'confirm' => 'users#confirm'
     patch 'hide' => 'users#hide'
     put 'hide' => 'users#hide'
     get 'explanation' => 'users#explanation'
-end
+  end
   devise_for :users, controllers: {
       sessions: 'users/sessions',
       registrations: 'users/registrations',
       passwords: 'users/passwords',
       omniauth_callbacks: 'users/omniauth_callbacks'
     }
-        scope module: :users do
-          resources :users, only: [:show, :edit, :update,:index]do
+  scope module: :users do
+    resources :users, only: [:show, :edit, :update,:index]do
       get :following, :followers
-        get 'followindex'
-    get 'followerindex'
+      get 'followindex'
+      get 'followerindex'
+    end
   end
-  end
-        devise_for :admins, controllers: {
-          sessions: 'admins/sessions'
-        }
+  devise_for :admins, controllers: {
+    sessions: 'admins/sessions'
+  }
   namespace :admins do
     get '/' => 'admins#top'
     resources :users,only: [:show,:index,:edit,:update]
