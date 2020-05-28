@@ -81,7 +81,6 @@
               <th>レシピ名</th>
               <th>画像</th>
               <th>材料</th>
-              <th>投稿日時</th>
             </tr>
           </thead>
           <tbody>
@@ -98,9 +97,6 @@
                 <%= material.quantity %><br>
                 <% end %>
               </td>
-              <div class="search_g_and_c">
-                <td style="display:table-cell; width:200px"><%= recipe.created_at.strftime('%Y年%m月%d日') %></td>
-              </div>
             </tr>
             <% end %>
           </tbody>
