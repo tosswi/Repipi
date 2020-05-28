@@ -65,6 +65,33 @@ describe 'ユーザーのテスト' do
     fill_in 'user[password]', with: user.password
     click_button 'Log in'
   end
+  context 'ヘッダーから遷移する' do
+    it 'レシピ一覧画面に遷移する'do
+      visit recipes_path
+      expect(page).to have_current_path '/recipes'
+    end
+    it 'ユーザー一覧画面に遷移する' do
+      visit users_path
+      expect(page).to have_current_path '/users'
+    end
+    it 'マイページ画面に遷移する' do
+      visit user_path(user)
+      expect(current_path).to eq('/users/' + user.id.to_s)
+    end
+    it '通知ページ画面に遷移する' do
+      visit notifications_path
+      expect(page).to have_current_path '/notifications'
+    end
+    it 'ブックマーク一覧画面に遷移する' do
+      visit bookmarks_recipes_path
+      expect(page).to have_current_path '/recipes/bookmarks'
+    end
+    it 'レシピ投稿画面に遷移する' do
+      visit new_recipe_path
+      expect(page).to have_current_path '/recipes/new'
+    end
+  end
+
 
   describe '編集のテスト' do
     context '自分の編集画面への遷移' do
@@ -124,16 +151,6 @@ describe 'ユーザーのテスト' do
   end
 end
 
-describe 'Adminのテスト' do
-  let(:admin) { create(:admin) }
-  let!(:test_admin2) { create(:admin) }
-  before do
-    visit new_admin_session_path
-    fill_in 'admin[email]', with: admin.email
-    fill_in 'admin[password]', with: admin.password
-    click_button 'Log in'
-  end
-end
 describe 'topページのテスト' do
   let(:admin) { create(:admin) }
   before do
@@ -149,32 +166,18 @@ describe 'topページのテスト' do
     end
   end
   context 'ヘッダーから注文履歴一覧へのリンクを押下する' do
-    #subject { admins_path }
     it 'カテゴリー一覧に遷移する'do
-
-      #click_link ' カテゴリー登録'
       visit admins_categories_path
       expect(page).to have_current_path '/admins/categories'
-      #is_expected.to eq('admins/categories')
     end
-    # it 'About画面に遷移する' do
-    #   about_link = find_all('a')[1].native.inner_text
-    #   #about_link = about_link.gsub(/\n/, '').gsub(/\A\s*/, '').gsub(/\s*\Z/, '')
-    #   click_link about_link
-    #   is_expected.to eq('/home/about')
-    # end
-    # it '新規登録画面に遷移する' do
-    #   signup_link = find_all('a')[2].native.inner_text
-    #   #signup_link = signup_link.gsub(/\n/, '').gsub(/\A\s*/, '').gsub(/\s*\Z/, '')
-    #   click_link signup_link
-    #   is_expected.to eq(new_user_registration_path)
-    # end
-    # it 'ログイン画面に遷移する' do
-    #   login_link = find_all('a')[3].native.inner_text
-    #   login_link = login_link.gsub(/\n/, '').gsub(/\A\s*/, '').gsub(/\s*\Z/, '')
-    #   click_link login_link
-    #   is_expected.to eq(new_user_session_path)
-    # end
+    it '会員一覧画面に遷移する' do
+      visit admins_users_path
+      expect(page).to have_current_path '/admins/users'
+    end
+    it 'ジャンル一覧画面に遷移する' do
+      visit admins_genres_path
+      expect(page).to have_current_path '/admins/genres'
+    end
   end
 end
 

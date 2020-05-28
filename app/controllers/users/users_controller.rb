@@ -47,10 +47,9 @@ class Users::UsersController < ApplicationController
   def index
     @genres = Genre.all
     @categories = Category.all
-    @user_pointrank = User.all.order(point: "desc").limit(6)
-    @user_weekrank=@user_pointrank.where("updated_at >= ?", Time.zone.now.beginning_of_day)
+    @user_pointrank = User.all.order(point: "desc").limit(5)
     @q = User.ransack(params[:q])
-    @users = @q.result(distinct: true).page(params[:page]).per(3)
+    @users = @q.result(distinct: true).page(params[:page]).per(5)
   end
 
   def explanation
