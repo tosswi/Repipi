@@ -49,7 +49,7 @@ class Users::UsersController < ApplicationController
     @categories = Category.all
     @user_pointrank = User.all.order(point: "desc").limit(5)
     @q = User.ransack(params[:q])
-    @users = @q.result(distinct: true).page(params[:page]).per(5)
+    @users = @q.result(distinct: true).page(params[:page]).order(created_at: :desc).per(5)
   end
 
   def explanation
