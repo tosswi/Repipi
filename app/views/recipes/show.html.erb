@@ -3,8 +3,8 @@
   <div class="row">
     <div class="col-xs-2">
       <% if @recipe.user == current_user  %>
-      <%= link_to "Destroy", recipe_path(@recipe.id), method: :delete , class: "btn btn-danger",data: {confirm: '本当に削除しますか？'} %>
-      <%= link_to '編集する',edit_recipe_path(@recipe), class: "btn btn-primary"  %>
+        <%= link_to "Destroy", recipe_path(@recipe.id), method: :delete , class: "btn btn-danger",data: {confirm: '本当に削除しますか？'} %>
+        <%= link_to '編集する',edit_recipe_path(@recipe), class: "btn btn-primary"  %>
       <% end %>
       <%= render 'recipes/search', genre: @genres,category: @categories %>
     </div>
@@ -27,8 +27,8 @@
             <th width="100">材料</th>
             <td>
               <% @recipe.materials.each do |f|%>
-              <%=  f.name %>
-              <%= f.quantity %><br>
+                <%=  f.name %>
+                <%= f.quantity %><br>
               <% end %>
             </td>
           </tr>
@@ -40,33 +40,33 @@
           <tr>
             <%= link_to 'この投稿者のページを見る',user_path(@recipe.user), class: "btn btn-primary"  %><br>
             <% if current_user.present? %>
-            <% if @recipe.bookmark_by?(current_user) %>
-            <li>
-              <%= link_to recipe_bookmarks_path(@recipe), method: :delete do %>
-              <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-              <% @recipe.bookmarks %>ブックマークから外す
+              <% if @recipe.bookmark_by?(current_user) %>
+              <li>
+                <%= link_to recipe_bookmarks_path(@recipe), method: :delete do %>
+                  <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+                  <% @recipe.bookmarks %>ブックマークから外す
+                <% end %>
+              </li>
+              <% else %>
+              <li>
+                <%= link_to recipe_bookmarks_path(@recipe), method: :post do %>
+                  <i class="fa fa-heart-o" aria-hidden="true"></i>
+                  <% @recipe.bookmarks %> ブックマークする
+                <% end %>
+              </li>
               <% end %>
-            </li>
-            <% else %>
-            <li>
-              <%= link_to recipe_bookmarks_path(@recipe), method: :post do %>
-              <i class="fa fa-heart-o" aria-hidden="true"></i>
-              <% @recipe.bookmarks %> ブックマークする
-              <% end %>
-            </li>
-            <% end %>
             <% end %>
         </table>
         <div id="star-rate-<%=@recipe.id %>"> トータル評価<strong><%= @review_ave %></strong></div>
         評価数<strong><%= @recipe.recipe_reviews.count %></strong>件
         <%= form_for @recipe_review,url:recipe_recipe_reviews_path(@recipe) do |f|%>
-        <%= render 'layouts/error', model:@recipe_review %><br>
-        <div id="star" class="form-group">
-          評価<%= f.hidden_field :rate, id: :review_star %>
-        </div>
-        <%= f.label :recipe_comment %>
-        <%= f.text_field :recipe_comment %>
-        <%= f.submit '投稿する' %>
+          <%= render 'layouts/error', model:@recipe_review %><br>
+          <div id="star" class="form-group">
+            評価<%= f.hidden_field :rate, id: :review_star %>
+          </div>
+          <%= f.label :recipe_comment %>
+          <%= f.text_field :recipe_comment %>
+          <%= f.submit '投稿する' %>
         <% end %>
         <table>
           <thead>
@@ -81,9 +81,9 @@
               <td width="200"><%= review.user.nickname %></td>
               <td width="200"><%= review.recipe_comment %></td>
               <% if current_user == review.user %>
-              <td>
-                <%= link_to '編集する', edit_recipe_recipe_reviews_path(review), class: 'btn-sm btn-primary' %>
-              </td>
+                <td>
+                  <%= link_to '編集する', edit_recipe_recipe_reviews_path(review), class: 'btn-sm btn-primary' %>
+                </td>
               <% end %>
             </tr>
             <% end %>
