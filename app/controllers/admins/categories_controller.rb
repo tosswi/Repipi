@@ -5,6 +5,7 @@ class Admins::CategoriesController < ApplicationController
     if @category.save
       redirect_to request.referer
     else
+      @categories=Category.all
       render :index
     end
   end

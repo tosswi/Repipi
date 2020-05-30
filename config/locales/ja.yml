@@ -19,3 +19,7 @@ ja:
       recipe_review:
         rate: 評価
         recipe_comment: コメント
+      genre:
+        name: ジャンル名
+      category:
+        name: カテゴリー名
