@@ -78,7 +78,11 @@
           <tbody>
             <% @recipe_reviews.each do |review| %>
             <tr>
-              <td width="200"><%= review.user.nickname %></td>
+              <td width="200">
+                <%= link_to user_path(review.user) do %>
+                  <%= review.user.nickname %>
+                <% end %>
+              </td>
               <td width="200"><%= review.recipe_comment %></td>
               <% if current_user == review.user %>
                 <td>
