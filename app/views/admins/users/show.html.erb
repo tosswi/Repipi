@@ -10,7 +10,7 @@
         </th>
         <td>
           <%= @user.name %>
-          </td><br>
+        </td><br>
         <th>
           ニックネーム
         </th>
@@ -20,7 +20,7 @@
         <th>
           性別
         </th>
-          <%= @user.sex %>
+        <%= @user.sex %>
         <br>
       </tr>
     </div>
@@ -32,14 +32,14 @@
           </tr>
         </thead>
         <tbody>
-           <% @user.recipes.each do |recipe|%>
-              <tr>
-                <td>
-                  <%= link_to recipe.name ,admins_recipe_path(recipe) %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
+          <% @user.recipes.each do |recipe|%>
+          <tr>
+            <td>
+              <%= link_to recipe.name ,admins_recipe_path(recipe) %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
       </table>
     </div>
   </div>
