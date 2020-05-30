@@ -1,60 +1,61 @@
-<h2>レジピ 詳細画面</h2>
+<h2>レシピ 詳細画面</h2>
 <div class="container">
   <div class="row">
-    <div class="col-xs-2">
-      <%= link_to "Destroy", admins_recipe_path(@recipe.id), method: :delete ,class: "btn btn-danger" %>
-      <table class="table table-borderless">
-        <tr>
-          <th>レシピ画像</th>
-          <td>
+
+    <div class="col-xs-10">
+
+      <tr>
+        <th>料理画像</th>
+        <td>
+          <div class="flex_test-box">
             <% @recipe_images.each do |f|%>
-              <div class="recipe-image-show">
-                <%= image_tag f.recipe_image.url if f.recipe_image %>
-              </div>
+            <div class="recipe-image-show">
+              <%= image_tag f.recipe_image.url if f.recipe_image.present? %>
+            </div>
             <% end %>
-          </td>
-        <tr>
-          <th>レシピ名</th>
-          <td><%= @recipe.name %></td>
-        </tr>
-        <tr>
-          <th>人数分</th>
-          <td><%= @recipe.human %></td>
-        </tr>
-        <tr>
-          <th>材料</th>
-          <td><% @recipe.materials.each do |material|%>
-                <%=  material.name %>
-                <%= material.quantity %><br>
-              <% end %>
-          </td>
-        </tr>
-        <tr>
-          <th>料理手順</th>
-          <td><%= @recipe.content %></td>
-        </tr>
-      </table>
-    </div>
-    <table>
-      <thead>
-        <tr>
-          <th>コメント</th>
-          <th>評価</th>
-          <th colspan="1"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @recipe_reviews.each do |review| %>
+          </div>
+        </td>
+        <%= link_to 'この投稿者のページを見る',admins_user_path(@recipe.user), class: "btn btn-primary"  %><br>
+        <%= link_to "Destroy", admins_recipe_path(@recipe.id), method: :delete , class: "btn btn-danger",data: {confirm: '本当に削除しますか？'} %>
+        <table class="table table-borderless">
+          <th width="100">レシピ</th>
+          <td style="display:table-cell; width:100px; white-space:wrap" ;><%= @recipe.name %></td>
           <tr>
+            <th width="100">材料</th>
             <td>
-              <%= review.recipe_comment %>
-            </td>
-            <td>
-              <%= link_to 'Destroy', admins_recipe_recipe_reviews_path(review), class: 'btn-sm btn-danger', method: :delete %>
+              <% @recipe.materials.each do |f|%>
+              <%=  f.name %>
+              <%= f.quantity %><br>
+              <% end %>
             </td>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+          <tr>
+            <th width="100">作り方</th>
+            <td width="600" style="display:table-cell; white-space:wrap  white-space:pre;">
+              <%= @recipe.content %></td>
+          </tr>
+          <tr>
+        </table>
+        <table>
+          <thead>
+            <tr>
+              <th width="150">名前</th>
+              <th width="500">コメント</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @recipe_reviews.each do |review| %>
+            <tr>
+              <td width="200"><%= review.user.nickname %></td>
+              <td width="200"><%= review.recipe_comment %></td>
+              <td>
+                <%= link_to 'Destroy', admins_recipe_recipe_reviews_path(review), class: 'btn-sm btn-danger', method: :delete %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+    </div>
   </div>
+</div>
 </div>

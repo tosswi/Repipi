@@ -9,9 +9,9 @@ class Admins::RecipesController < ApplicationController
   def destroy
     recipe=Recipe.find(params[:id])
     if recipe.destroy
-      recipe.user.point -= 5
+      recipe.user.point -= 10
       recipe.user.save
-      redirect_to admins_path
+      redirect_to admins_user_path(recipe.user)
     end
   end
 end
