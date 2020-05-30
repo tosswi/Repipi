@@ -6,7 +6,8 @@ set :repo_url, "git@github.com:tosswi/Repipi.git"
 set :deploy_to, "/home/ec2-user/Repipi"
 set :rbenv_ruby, '2.5.7'
 set :linked_files, %w{config/master.key .env}
-append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "tmp/uploads", "public/uploads"
+set :linked_dirs, fetch(:linked_dirs) + %w{public/uploads}
+append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "tmp/uploads"
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
