@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>レシピ一覧</h2>
+  <h2>レシピ一覧test</h2>
   (全<%=@recipes_all.count%>件） (<%=@recipes.count%>件)
   <div class="row">
     <div class="col-xs-2">
@@ -9,10 +9,10 @@
       <div class="table-responsive">
         <div class="flex_test-box">
           <% @recipes.each do |recipe|%>
-            <%= link_to recipe_path(recipe) do %>
-              <%= image_tag recipe.recipe_images[0].recipe_image.to_s, class:"recipe_showimage_search" %><br>
-              <p><%= recipe.name %></p>
-            <% end %>
+          <%= link_to recipe_path(recipe) do %>
+          <%= image_tag recipe.recipe_images[0].recipe_image.to_s, class:"recipe_showimage_search" %><br>
+          <p><%= recipe.name %></p>
+          <% end %>
           <% end %>
         </div>
       </div>
@@ -24,7 +24,7 @@
           <% @recipes_all.each do |recipe| %>
           <li>
             <%= link_to recipe_path(recipe) do %>
-              <%= image_tag recipe.recipe_images[0].recipe_image.to_s, class:"recipe_showimage" %>
+            <%= image_tag recipe.recipe_images[0].recipe_image.to_s, class:"recipe_showimage" %>
             <% end %>
           </li>
           <% end %>
@@ -34,7 +34,7 @@
           <% @recipes_bookmark.each do |recipe| %>
           <li>
             <%= link_to recipe_path(recipe) do %>
-              <%= image_tag recipe.recipe_images[0].recipe_image.to_s, class:"recipe_showimage_search1" %>
+            <%= image_tag recipe.recipe_images[0].recipe_image.to_s, class:"recipe_showimage_search1" %>
             <% end %>
           </li>
           <% end %>
