@@ -31,11 +31,11 @@ class Users::SessionsController < Devise::SessionsController
     if @user
       # パスワードが正しいかつactive_for_authentication?メソッドでの処理でfalseである場合
       if (@user.valid_password?(params[:user][:password]) && (@user.active_for_authentication? == false))
-        flash[:error] = "退会済みです。"
+        flash[:errors] = "退会済みです。"
         redirect_to new_user_session_path
       end
     else
-      flash[:error] = "必須項目を入力してください。"
+      flash[:errors] = "必須項目を入力してください。"
     end
   end
 end

@@ -19,7 +19,6 @@ class RecipesController < ApplicationController
     @categories=Category.all
     @recipe=Recipe.find(params[:id])
     @recipe_review=RecipeReview.new
-    @recipe_image=RecipeImage.find(params[:id])
     @recipe_reviews=@recipe.recipe_reviews
     @recipe_images=@recipe.recipe_images
     if @recipe_reviews.blank?
@@ -66,7 +65,7 @@ class RecipesController < ApplicationController
     @recipe=Recipe.find(params[:id])
     4.times do |i|
       if @recipe.recipe_images[i].blank?
-        @recipe.recipe_images.build
+        @recipe.recipe_images.build #親モデルに属する子モデルのインスタンスを新たに生成したい場合に使うメソッド
       end
     end
     @genres=Genre.all
@@ -98,7 +97,7 @@ class RecipesController < ApplicationController
   def bookmarks
     @genres = Genre.all
     @categories = Category.all
-    @recipes = current_user.bookmark_recipes.includes(:user)
+    @recipes = current_user.bookmark_recipes.includes(:user).order(id: "DESC").page(params[:page]).per(10)
   end
 
   private

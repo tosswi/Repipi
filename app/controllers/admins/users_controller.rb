@@ -1,8 +1,7 @@
 class Admins::UsersController < ApplicationController
   before_action :authenticate_admin!
   def index
-    @users=User.all
-
+    @users=User.order(id: "DESC").page(params[:page]).per(10)
     @genres = Genre.all
     @categories = Category.all
   end

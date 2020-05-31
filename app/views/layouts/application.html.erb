@@ -73,6 +73,11 @@
           </ul>
         </div>
       </nav>
+      <div class="flash">
+        <% flash.each do |message_type, message| %>
+        <%= message %>
+        <% end %>
+      </div>
     </header>
     <% end %>
     <%= yield %>
